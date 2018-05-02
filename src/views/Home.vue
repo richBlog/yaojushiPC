@@ -12,9 +12,9 @@
   </div>
 </template>
 <script>
-import HeaderView from '../Header/Header'
-import HomeMain from './Home-main'
-import footerView from '../layout/Footer'
+import HeaderView from 'components/public/Header'
+import HomeMain from 'components/Home/Home-main'
+import footerView from 'components/public/Footer'
 
 export default {
   name: 'Home',
