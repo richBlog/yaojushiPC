@@ -1,36 +1,43 @@
 <template>
   <div class="layout-home">
     <el-header>
-      <HeaderView></HeaderView>
+      <headerView></headerView>
     </el-header>
     <el-main>
-      <HomeMain></HomeMain>
+      <homeMain></homeMain>
     </el-main>
     <el-footer>
       <footerView></footerView>
     </el-footer>
+    <lifeView></lifeView>
+    <navigationView></navigationView>
   </div>
 </template>
 <script>
-import HeaderView from 'components/public/Header'
-import HomeMain from 'components/Home/Home-main'
-import footerView from 'components/public/Footer'
+import headerView from "components/public/Header";
+import homeMain from "components/home/Home-main";
+import footerView from "components/public/Footer";
+import lifeView from "components/home/Home-life";
+import navigationView from "components/home/Home-navigation";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    HeaderView,
-    HomeMain,
-    footerView
+    headerView,
+    homeMain,
+    footerView,
+    lifeView,
+    navigationView
   }
-}
+};
 </script>
 <style lang="less">
-  .el-header, .el-footer {
-    padding: 0;
-    color: #333;
-    text-align: center;
-    line-height: 30px;
-    height: auto !important;
-  }
+.el-header,
+.el-footer {
+  padding: 0;
+  color: #333;
+  text-align: center;
+  line-height: 30px;
+  height: auto !important;
+}
 </style>

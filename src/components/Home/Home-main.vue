@@ -27,7 +27,7 @@
        <!-- 轮播S -->
         <el-carousel :interval="5000" arrow="always" class="banner">
           <el-carousel-item v-for="item in bannerUrl" :key="item.id">
-            <router-link to="/"><img :src="item" alt="轮播图"></router-link>
+            <router-link to="/"><img class="my-photo" alt="轮播图" :data-src="item"></router-link>
           </el-carousel-item>
         </el-carousel>
        <!-- 轮播E -->
@@ -38,7 +38,7 @@
          </ul>
          <div class="banner-menu-contact"><span>药师咨询</span><i></i><span>400-1234-123</span></div>
          <div class="banner-menu-info">监管信息发布</div>
-         <div class="banner-menu-advertisement"><router-link to="/"><img :src="advertisement" alt="广告"></router-link></div>
+         <div class="banner-menu-advertisement"><router-link to="/"><img class="my-photo" :data-src="advertisement" alt="广告"></router-link></div>
        </div>
        <!-- 广告E -->
      </div>
@@ -72,7 +72,6 @@
        <ul class="characteristic-container">
          <li class="characteristic-item" v-for="item in characteristic" :key="item.id">
            <router-link :to="item.url" class="characteristic-url">
-             <img :src="item.imgUrl" :alt="item.name" class="characteristic-img">
              <div class="characteristic-fff">
                <div class="characteristic-border">
                  <h3 class="characteristic-h2" v-text="item.name"></h3>
@@ -85,7 +84,7 @@
      </div>
      <!-- 特色会场E -->
      <!-- 热门类目S -->
-     <div class="container layout-main-hot">
+     <div class="container layout-main-hot" id="t1">
        <h2>热门类目</h2>
        <hotView></hotView>
      </div>
@@ -97,7 +96,7 @@
      </div>
      <!-- 热门专题E -->
      <!-- 电梯楼层1F S -->
-     <ElevatorView v-for="item in elevator" :key="item.id" :elevator = "item"></ElevatorView>
+     <elevatorView v-for="item in elevator" :key="item.id" :elevator = "item" :id="item.tId"></elevatorView>
      <!-- 电梯楼层1F E -->
      <!-- 热门品牌S -->
      <div class="container layout-main-brand">
@@ -105,7 +104,7 @@
         <ul class="brand-container">
             <li class="brand-item" v-for="item in brand" :key="item.id">
             <router-link :to="item.url">
-                <img :src="item.img" alt="品牌" :data-src="item.img">
+                <img class="my-photo" alt="品牌" :data-src="item.img">
             </router-link>
             </li>
         </ul>
@@ -115,13 +114,14 @@
 </template>
 <script>
 import hotView from "./Home-hot";
-import ElevatorView from "./Home-elevator";
+import elevatorView from "./Home-elevator";
+import cm from "apis/common";
 
 export default {
-  name: "HomeMain",
+  name: "homeMain",
   components: {
     hotView,
-    ElevatorView
+    elevatorView
   },
   data() {
     return {
@@ -394,12 +394,25 @@ export default {
           url: "#", // 链接地址和参数
           discount: 3.5, // 折扣
           imgUrl: require("../../assets/image/hc4.png") // 图片地址
+        },
+        {
+          name: "美妆美体", // 会场的名字
+          url: "#", // 链接地址和参数
+          discount: 3.5, // 折扣
+          imgUrl: require("../../assets/image/hc3.png") // 图片地址
+        },
+        {
+          name: "食品保健", // 会场的名字
+          url: "#", // 链接地址和参数
+          discount: 3.5, // 折扣
+          imgUrl: require("../../assets/image/hc4.png") // 图片地址
         }
       ],
       // 楼层信息
       elevator: [
         {
           // 楼层的大广告图
+          tId: "t2",
           advertisementImg: {
             img: require("../../assets/image/floor1.jpg"),
             url: "#"
@@ -492,6 +505,7 @@ export default {
           ]
         },
         {
+          tId: "t3",
           advertisementImg: {
             img: require("../../assets/image/floor2.jpg"),
             url: "#"
@@ -584,6 +598,7 @@ export default {
           ]
         },
         {
+          tId: "t4",
           advertisementImg: {
             img: require("../../assets/image/floor3.jpg"),
             url: "#"
@@ -676,6 +691,7 @@ export default {
           ]
         },
         {
+          tId: "t5",
           advertisementImg: {
             img: require("../../assets/image/floor1.jpg"),
             url: "#"
@@ -768,6 +784,7 @@ export default {
           ]
         },
         {
+          tId: "t6",
           advertisementImg: {
             img: require("../../assets/image/floor2.jpg"),
             url: "#"
@@ -935,405 +952,5 @@ export default {
 };
 </script>
 <style lang="less">
-.layout-main {
-  overflow: hidden;
-  padding-bottom: 20px;
-}
-.layout-main-nav {
-  line-height: 36px;
-  font-size: 16px;
-  text-align: center;
-  .nav-classification {
-    min-width: 180px; // 不知道为啥少3PX 所以强制最小180px
-    height: 36px;
-    background-color: #0066d4;
-    span {
-      color: #fff;
-    }
-    i {
-      display: inline-block;
-      position: relative;
-      top: 3px;
-      left: -26px;
-      width: 15px;
-      height: 17px;
-      background: url(../../assets/image/fenlei.png) no-repeat -12px -343px;
-    }
-  }
-  // 横向分类S
-  .nav-sub {
-    display: flex;
-    width: 1020px;
-    min-width: 1020px;
-    height: 36px;
-    border-bottom: 2px solid #0066d4;
-    .nav-item {
-      // width: 64px;
-      padding: 0 15px;
-      font-weight: 600;
-      &:hover {
-        background-color: #0066d4;
-        a {
-          color: #fff;
-          transition: none;
-          -webkit-transition: none;
-        }
-      }
-    }
-  }
-  // 横向分类E
-}
-// 轮播图最外层的壳子
-.layout-main-banner {
-  height: 460px;
-  // 轮播左边的分类
-  .banner-classification {
-    position: relative;
-    width: 180px;
-    min-width: 180px;
-    height: 100%;
-    text-align: center;
-    background-color: #197ee9;
-    .banner-item {
-      padding: 14px 0;
-      color: #fff;
-      i {
-        position: relative;
-        display: inline-block;
-        top: 5px;
-        left: -25px;
-        width: 15px;
-        height: 17px;
-        background: url(../../assets/image/fenlei.png) no-repeat -12px -304px;
-      }
-      a {
-        display: inline-block;
-        width: 56px;
-        color: #fff;
-      }
-      span {
-        font-size: 12px;
-        position: relative;
-        right: -30px;
-      }
-      &:nth-child(2) i {
-        background-position: -51px -65px;
-      }
-      &:nth-child(3) i {
-        background-position: -51px -382px;
-      }
-      &:nth-child(5) i {
-        background-position: -12px -262px;
-      }
-      &:nth-child(6) i {
-        background-position: -51px -104px;
-      }
-      &:nth-child(7) i {
-        background-position: -12px -185px;
-      }
-      &:nth-child(4) i {
-        background-position: -11px -62px;
-      }
-      &:nth-child(8) i {
-        background-position: -12px -104px;
-      }
-      &:nth-child(9) i {
-        background-position: -51px -382px;
-      }
-      // 移入分类
-      &:hover {
-        background-color: #0066d4;
-      }
-      &:nth-child(1):hover .second-level-container,
-      &:nth-child(2):hover .second-level-container,
-      &:nth-child(3):hover .second-level-container,
-      &:nth-child(4):hover .second-level-container,
-      &:nth-child(5):hover .second-level-container,
-      &:nth-child(6):hover .second-level-container,
-      &:nth-child(7):hover .second-level-container,
-      &:nth-child(8):hover .second-level-container,
-      &:nth-child(9):hover .second-level-container {
-        display: flex;
-      }
-      // 二级分类
-      .second-level-container {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 180px;
-        width: 1020px;
-        min-width: 1020px;
-        background-color: #eee;
-        flex-wrap: wrap;
-        padding: 5px 20px;
-        z-index: 1000;
-        .second-level-sub {
-          display: flex;
-          width: 25%;
-          flex-wrap: wrap;
-          margin-bottom: 13px;
-          .second-level-item {
-            margin-right: 10%;
-            margin-bottom: 5px;
-            &:nth-child(1) {
-              width: 100%;
-              margin-bottom: 5px;
-            }
-            &:nth-child(1) a {
-              display: block;
-              width: 100%;
-              font-weight: 900;
-              font-size: 14px;
-              text-align: left;
-            }
-          }
-          a {
-            white-space: nowrap;
-            text-align: left;
-            color: #333;
-            font-size: 12px;
-            &:hover {
-              color: red;
-            }
-          }
-        }
-      }
-    }
-  }
-  // 轮播
-  .banner {
-    width: 810px;
-    min-width: 810px;
-    height: 460px;
-    .el-carousel__container {
-      height: 460px;
-    }
-  }
-  // 广告
-  .banner-menu {
-    width: 210px;
-    min-width: 210px;
-    height: 460px;
-    // 认证6个图标S
-    .banner-menu-container {
-      display: flex;
-      flex-wrap: wrap;
-      height: 155px;
-      text-align: center;
-      .banner-menu-item {
-        width: 33.33%;
-        &:nth-child(2) i {
-          background: url(../../assets/image/zheng2.png) no-repeat;
-        }
-        &:nth-child(3) i {
-          background: url(../../assets/image/zheng6.png) no-repeat;
-        }
-        &:nth-child(4) i {
-          background: url(../../assets/image/zheng4.png) no-repeat;
-        }
-        &:nth-child(5) i {
-          background: url(../../assets/image/zheng5.png) no-repeat;
-        }
-        &:nth-child(6) i {
-          background: url(../../assets/image/zheng3.png) no-repeat;
-        }
-        i,
-        span {
-          display: block;
-        }
-        i {
-          width: 43px;
-          height: 42px;
-          margin: 5px auto;
-          background: url(../../assets/image/zheng1.png) no-repeat;
-        }
-        span {
-          font-size: 12px;
-        }
-      }
-    }
-    // 认证6个图标E
-    .banner-menu-contact {
-      height: 40px;
-      line-height: 40px;
-      border-top: 1px solid #efefef;
-      border-bottom: 1px solid #efefef;
-      padding-left: 10px;
-      span:last-child {
-        color: #ff0700;
-        font-weight: 600;
-      }
-      i {
-        display: inline-block;
-        position: relative;
-        top: 2px;
-        width: 13px;
-        height: 13px;
-        margin-left: 15px;
-        margin-right: 8px;
-        background: url(../../assets/image/ico_t2.png) no-repeat -3px -48px;
-      }
-    }
-    // 监管信息
-    .banner-menu-info {
-      height: 40px;
-      line-height: 40px;
-      padding-left: 10px;
-    }
-    // 广告
-    .banner-menu-advertisement {
-      img {
-        width: 210px;
-        height: 225px;
-      }
-    }
-  }
-}
-// 秒杀倒计时壳子
-.layout-main-seckill {
-  margin-top: 35px;
-  padding: 0;
-  .seckill-container {
-    display: flex;
-    justify-content: space-between;
-    min-width: 1200px;
-    height: 44px;
-    line-height: 44px;
-    margin-left: 10px;
-    background-color: #e01222;
-    .seckill-title {
-      margin-left: 30px;
-      span {
-        font-size: 20px;
-        color: #fff;
-      }
-      i {
-        display: inline-block;
-        position: relative;
-        top: 6px;
-        left: 20px;
-        width: 27px;
-        height: 30px;
-        background: url(../../assets/image/fenlei.png) no-repeat -51px -10px;
-      }
-    }
-    .seckill-time {
-      margin-right: 23px;
-      span {
-        color: #fff;
-        &:nth-child(2n) {
-          background-color: #440106;
-          padding: 5px;
-          font-size: 20px;
-        }
-      }
-    }
-  }
-}
-// 特色会场壳子
-.layout-main-characteristic {
-  position: relative;
-  margin-top: 50px;
-  .characteristic-line {
-    position: relative;
-    top: 30px;
-    width: 1200px;
-    min-width: 1200px;
-    height: 50px;
-    p {
-      height: 1px;
-      border: 1px solid #e44b7d;
-    }
-  }
-  .characteristic-title {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 200px;
-    margin-left: -100px;
-    text-align: center;
-    background-color: #fff;
-    z-index: 10;
-    h1 {
-      font-weight: 100;
-      font-size: 40px;
-      background-image: -webkit-gradient(
-        linear,
-        0 0,
-        0 bottom,
-        from(rgba(227, 100, 81, 1)),
-        to(rgba(235, 137, 166, 1))
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-  }
-  // 特色会场
-  .characteristic-container {
-    width: 1200px;
-    min-width: 1200px;
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 30px;
-    .characteristic-item {
-      width: 24%;
-      margin-right: 1.15%;
-      margin-bottom: 3px;
-      &:nth-child(4n) {
-        margin-right: 0;
-      }
-      a {
-        display: block;
-        position: relative;
-        .characteristic-fff {
-          position: absolute;
-          bottom: 20px;
-          width: 255px;
-          height: 135px;
-          background: url(../../assets/image/pro_bg.png) no-repeat;
-          left: 20px;
-          text-align: center;
-          padding: 37px 25px 0;
-          cursor: pointer;
-          h3 {
-            font-size: 18px;
-          }
-          p {
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px dashed #999;
-          }
-        }
-      }
-    }
-  }
-}
-// 热门类目
-.layout-main-hot {
-  margin-top: 20px;
-  h2 {
-    font-size: 24px;
-    font-weight: 100;
-  }
-}
-//   热门品牌
-.layout-main-brand {
-  margin-top: 20px;
-  h2 {
-    font-size: 24px;
-  }
-  .brand-container {
-    display: flex;
-    flex-wrap: wrap;
-    width: 1200px;
-    min-width: 1200px;
-    margin-top: 20px;
-    border-right: 1px solid #efefef;
-    border-bottom: 1px solid #efefef;
-    .brand-item {
-      border-left: 1px solid #efefef;
-      border-top: 1px solid #efefef;
-    }
-  }
-}
+  @import '../../styles/Home-main.less';
 </style>
