@@ -1,11 +1,6 @@
 <template>
   <section class="layout-main">
-     <div class="container flex layout-main-nav">
-       <div class="nav-classification"><i></i><span>全部分类</span></div>
-       <ul class="nav-sub">
-         <li class="nav-item" v-for="item in LateralClassification" :key="item.id"><router-link to="/" v-text="item.name"></router-link></li>
-       </ul>
-     </div>
+     <classifiedNavView/>
      <div class="container flex layout-main-banner">
         <!-- 纵向分类S -->
        <div class="banner-classification">
@@ -115,26 +110,18 @@
 <script>
 import hotView from "./Home-hot";
 import elevatorView from "./Home-elevator";
+import classifiedNavView from '../public/Classified-nav'
 import cm from "apis/common";
 
 export default {
   name: "homeMain",
   components: {
     hotView,
-    elevatorView
+    elevatorView,
+    classifiedNavView
   },
   data() {
     return {
-      // 横向分类字段 后期会后台会提供接口获取
-      LateralClassification: [
-        { name: "首页", url: "#" },
-        { name: "内科用药", url: "#" },
-        { name: "儿科用药", url: "#" },
-        { name: "妇科用药", url: "#" },
-        { name: "五官用药", url: "#" },
-        { name: "皮肤外用", url: "#" },
-        { name: "健康咨询", url: "#" }
-      ],
       // 纵向分类字段 后期会后台会提供接口获取
       longitudinalClassification: [
         { name: "中西药品", url: "#", secondLevel: [] },

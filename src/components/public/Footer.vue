@@ -1,5 +1,5 @@
 <template>
-	<footer class="layout-footer-container">
+	<el-footer class="layout-footer-container">
 		<!-- 认证 -->
 		<div class="layout-footer-brank">
 			<ul class="container brank-box">
@@ -59,7 +59,7 @@
         <div class="copyright">©2010-2016 <router-link to="/">武汉药居士网上药店</router-link> 版权所有，并保留所有权利</div>
       </div>
     </div>
-	</footer>
+	</el-footer>
 </template>
 <script>
 export default {

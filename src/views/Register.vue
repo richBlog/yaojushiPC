@@ -136,12 +136,15 @@ export default {
   margin: 0 auto;
   padding-top: 30px;
   padding-bottom: 50px;
+  p{
+    cursor: pointer;
+  }
 }
 
 .register-main {
   width: 990px;
   margin: 0 auto;
-  background-color: #f1f8fe;
+  background-color: #e7f2f9;
   border-radius: 10px;
   box-sizing: border-box;
   text-align: center;

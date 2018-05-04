@@ -1,12 +1,12 @@
 <template>
-  <div class="layout-header">
+  <el-header class="layout-header">
      <!-- 顶部导航s -->
     <div class="layout-nav">
       <div class="layout-nav-container">
           <div class="layout-nav-left">
             <span>欢迎来到药居士网上药店!</span>
-            <router-link to="Login" class="layout-login">登录</router-link>
-            <router-link to="Register">注册</router-link>
+            <router-link to="/Login" class="layout-login">登录</router-link>
+            <router-link to="/Register">注册</router-link>
           </div>
           <ul class="layout-nav-right">
             <li class="layout-nav-right-item">
@@ -48,7 +48,7 @@
       </div>
     </div>
     <!-- logo+搜索 e -->
-  </div>
+  </el-header>
 </template>
 <script>
 export default {

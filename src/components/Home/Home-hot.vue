@@ -24,7 +24,7 @@ export default {
       seckillProduct: [
         {
           name: '强爱 创口贴 超弹防水型 10贴', // 秒杀产品的名字
-          url: '#', // 秒杀产品链接地址和参数
+          url: 'product/1', // 秒杀产品链接地址和参数
           oldPrice: 9.9, // 秒杀产品的之前的价格
           newPrice: 1, // 秒杀产品的现价
           discount: 1.0, // 秒杀产品的折扣

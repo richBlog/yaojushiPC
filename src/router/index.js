@@ -21,5 +21,10 @@ export default new Router({
       name: 'Register',
       component: path.register
     },
+    {
+      path: '/Product/:id',
+      name: 'Product',
+      component: path.product
+    },
   ]
 })
