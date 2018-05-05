@@ -233,6 +233,11 @@ export default {
 }
 .login-footer {
   padding-top: 20px;
+  text-align: center;
+  p{
+    height: 30px;
+    line-height: 30px;
+  }
 }
 </style>
 
