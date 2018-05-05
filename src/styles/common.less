@@ -1,3 +1,17 @@
 @charset 'UTF-8';
 //引入初始化样式
 @import "./base.less";
+
+.product-combination {
+  .el-tabs__nav {
+    border: 0 !important;
+  }
+  .el-tabs__item{
+      &:last-child{
+          border-right: 1px solid #ddd;
+      }
+  }
+  .el-tabs__header{
+    margin: 0;
+  }
+}

@@ -1,0 +1,156 @@
+.product-info {
+  display: flex;
+  width: 1200px;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.info-img {
+  width: 405px;
+  min-width: 405px;
+  // height: 1000px;
+}
+
+.info-words {
+  width: 608px;
+  min-width: 608px;
+  padding-right: 18px;
+  .info-words-name {
+    padding-top: 20px;
+    font-size: 18px;
+  }
+  .info-words-discount {
+    padding: 5px 0;
+    line-height: 20px;
+    color: red;
+    text-align: left;
+    a {
+      color: #5e69ad;
+      text-decoration: underline;
+    }
+  }
+  .info-words-price {
+    height: 156px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    background-color: #f3f3f3;
+  }
+  .administration {
+    color: #ff0000;
+  }
+  .info-title-big {
+    padding-left: 10px;
+  }
+
+  .info-title-sub {
+    margin-bottom: 10px;
+    &:nth-child(3) {
+      padding-bottom: 18px;
+      border-bottom: 1px solid #b5b5b5;
+    }
+  }
+  .product-info-title {
+    display: inline-block;
+    min-width: 100px;
+    color: #888;
+  }
+  img {
+    margin-left: 5px;
+    vertical-align: middle;
+  }
+
+  .info-spec {
+    display: flex;
+    padding-top: 5px;
+    .info-spec-class {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .info-spec-class-item {
+      padding: 5px;
+      border: 1px solid #b5b5b5;
+      margin-right: 10px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      &.active {
+        border: 2px solid #ff4040;
+        background: url(../assets/image/actii.png) right bottom no-repeat;
+      }
+    }
+  }
+
+  .info-amount {
+    display: flex;
+    .el-input-number {
+      margin-bottom: 20px;
+    }
+    .phone {
+      width: 260px;
+      margin-left: 80px;
+    }
+  }
+
+  .info-prompt {
+    margin-top: 20px;
+    display: flex;
+    span {
+      color: #ff0000;
+    }
+  }
+
+  .info-promise {
+    &:extend(.info-words .info-prompt);
+
+    .el-icon-check {
+      margin-right: 8px;
+      color: #409eff;
+      border: 1px solid #409eff;
+      border-radius: 50px;
+    }
+    span {
+      margin-right: 20px;
+    }
+  }
+}
+
+.info-other {
+  width: 168px;
+  border: 1px solid #ddd;
+  padding: 0 5px;
+  padding-top: 26px;
+  box-sizing: border-box;
+  .info-other-promise {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px dashed #ddd;
+    .promise-item {
+      width: 50%;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    p {
+      font-size: 12px;
+    }
+  }
+
+  .info-other-phone {
+    padding-top: 40px;
+    padding-bottom: 50px;
+    border-bottom: 1px dashed #ddd;
+    text-align: center;
+  }
+
+  .info-other-wx {
+    padding-top: 30px;
+    text-align: center;
+    img {
+      width: 100%;
+    }
+    p {
+      margin-bottom: 5px;
+    }
+    span {
+      color: #ff0000;
+    }
+  }
+}

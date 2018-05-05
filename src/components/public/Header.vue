@@ -11,7 +11,7 @@
           <ul class="layout-nav-right">
             <li class="layout-nav-right-item">
               <div><span>我的药居士</span><i></i></div>
-              <div class="item-menu"><router-link to=""  v-for="item in myYaoJuShi" :key="item.id" v-text="item.name"></router-link></div>
+              <div class="item-menu"><router-link to="/"  v-for="item in myYaoJuShi" :key="item.id" v-text="item.name"></router-link></div>
             </li>
             <li class="layout-nav-right-item">
               <i></i><span>400-1234-123</span>
@@ -25,11 +25,11 @@
             </li>
             <li class="layout-nav-right-item">
               <div><span>客户服务</span><i></i></div>
-              <div class="item-menu"><router-link to="" v-for="item in helpCenter" :key="item.id" v-text="item.name"></router-link></div>
+              <div class="item-menu"><router-link to="/" v-for="item in helpCenter" :key="item.id" v-text="item.name"></router-link></div>
             </li>
             <li class="layout-nav-right-item">
               <div><span>网站导航</span><i></i></div>
-              <div class="item-menu"><router-link to="" v-for="item in webNavigation" :key="item.id" v-text="item.name"></router-link></div>
+              <div class="item-menu"><router-link to="/" v-for="item in webNavigation" :key="item.id" v-text="item.name"></router-link></div>
             </li>
           </ul>
       </div>

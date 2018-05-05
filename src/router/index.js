@@ -26,5 +26,9 @@ export default new Router({
       name: 'Product',
       component: path.product
     },
-  ]
+  ],
+  // 路由跳转时候滚动到顶部
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
