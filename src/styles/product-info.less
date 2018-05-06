@@ -8,7 +8,49 @@
 .info-img {
   width: 405px;
   min-width: 405px;
-  // height: 1000px;
+  position: relative;
+  .small-box{
+    position: relative;
+    margin-top: 20px;
+    margin-right: 20px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    #lay{
+        position: absolute;
+        top: 0; 
+        left: 0;
+        border: 1px solid #666;
+        opacity: 0.6;
+        filter: opacity(30%);
+        background: #ddd;
+        // display: none;
+        cursor: move;
+    }
+    img{
+      width: 100%;
+    }
+  }
+  .big-box{
+    position: absolute;
+    top: 20px;
+    left: 383px ;
+    width: 383px;
+    height: 389px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    img{
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+  .img-list{
+    display: flex;
+    box-sizing: border-box;
+    .img-item{
+      border: 1px solid #ddd;
+    }
+  }
 }
 
 .info-words {

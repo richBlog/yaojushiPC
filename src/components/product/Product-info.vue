@@ -1,18 +1,29 @@
 <template>
   <div class="product-info">
         <!-- 放大镜图片START -->
-        <div class="info-img">
-            <div>
-                <img src="" alt="">
+        <div class="info-img" ref="samllBox">
+            <!-- 大图开始 -->
+            <div class="small-box" @mouseover="show" @mouseout="hide"  @mousemove="magnifier">
+                <img ref="img" src="../../assets/image/cp1.jpg" alt="img" >
+                <div v-show="isImg" id="lay" ref="lay"></div>
             </div>
-            <div>
+            <!-- 大图结束 -->
+            <!-- 左右滑动开始 -->
+            <div class="info-img-list">
                 <span class="el-icon-arrow-left"></span>
                 <span class="el-icon-arrow-right"></span>
-                <ul>
-                    <li><img src="" alt=""></li>
+                <ul class="img-list">
+                    <li class="img-item" v-for="item in imgList" :key="item.id">
+                        <img :src="item.img" alt="img" :data-small="item.imgSmall" :data-big="item.imgBig">
+                    </li>
                 </ul>
             </div>
-            <div></div>
+            <!-- 左右滑动结束 -->
+            <!-- 放大的图片开始 -->
+            <div class="big-box" v-show="isImg">
+                <img ref="big"  src="../../assets/image/cpmax1.jpg" alt="img">
+            </div>
+            <!-- 放大的图片结束 -->
             <div></div>
         </div>
         <!-- 放大镜图片END -->
@@ -97,6 +108,33 @@ export default {
   name: "productInfo",
   data() {
     return {
+      imgList: [
+        {
+          img: require("../../assets/image/cpmin1.jpg"),
+          imgSmall: require("../../assets/image/cp1.jpg"),
+          imgBig: require("../../assets/image/cpmax1.jpg")
+        },
+        {
+          img: require("../../assets/image/cpmin2.jpg"),
+          imgSmall: require("../../assets/image/cp2.jpg"),
+          imgBig: require("../../assets/image/cpmax2.jpg")
+        },
+        {
+          img: require("../../assets/image/cpmin3.jpg"),
+          imgSmall: require("../../assets/image/cp3.jpg"),
+          imgBig: require("../../assets/image/cpmax3.jpg")
+        },
+        {
+          img: require("../../assets/image/cpmin4.jpg"),
+          imgSmall: require("../../assets/image/cp4.jpg"),
+          imgBig: require("../../assets/image/cpmax4.jpg")
+        },
+        {
+          img: require("../../assets/image/cpmin5.jpg"),
+          imgSmall: require("../../assets/image/cp5.jpg"),
+          imgBig: require("../../assets/image/cpmax5.jpg")
+        }
+      ],
       productList: {
         name: "达芙文 阿达帕林凝胶 0.1%:30g",
         rx: require("../../assets/image/rx.png"),
@@ -157,10 +195,60 @@ export default {
           name: "隐私包装",
           img: require("../../assets/image/zheng4.png")
         }
-      ]
+      ],
+      isImg: false
+    };
+  },
+  mounted() {
+    window.onload = () => {
+      let lay = this.$refs.lay;
+      let img = this.$refs.img;
+      let w = img.offsetWidth;
+      let h = img.offsetHeight;
+
+      let scale = 4;
+      console.log(h);
+      lay.style.width = w / scale + "px";
+      lay.style.height = h / scale + "px";
     };
   },
   methods: {
+    show() {
+      this.isImg = true;
+    },
+    hide() {
+      this.isImg = false;
+    },
+    //   放大镜效果
+    magnifier(e) {
+      let img = this.$refs.img;
+      let lay = this.$refs.lay;
+      let box = this.$refs.samllBox;
+      let big = this.$refs.big;
+      let x = e.clientX - box.offsetLeft - lay.offsetWidth / 2;
+      let y =
+        e.clientY - box.getBoundingClientRect().top - 20 - lay.offsetHeight / 2;
+      if (x <= 0) {
+        x = 0;
+      }
+      if (y <= 0) {
+        y = 0;
+      }
+      if (x > img.offsetWidth - lay.offsetWidth) {
+        console.log("1");
+        x = img.offsetWidth - lay.offsetWidth; //右侧边界判断
+      }
+      if (y > img.offsetHeight - lay.offsetHeight) {
+        console.log("2");
+        y = img.offsetHeight - lay.offsetHeight; //右侧边界判断
+      }
+
+      lay.style.left = x + "px";
+      lay.style.top = y + "px";
+
+      big.style.left = -x * 2.1 + "px";
+      big.style.top = -y * 2.1 + "px";
+    },
     handleChange() {}
   }
 };
