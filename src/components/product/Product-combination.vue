@@ -56,8 +56,8 @@ export default {
           ],
           comment:
             "奥薇塔是常用医用级面膜，主要成分活性胶原蛋白，易于吸收，对细胞有很强的修复能力，还可以改善皮脂分泌，减轻炎症，帮助消除痤疮痘痘，联合使用效果更佳。",
-          suitPrice: 669.00,
-          originalPrice: 1248.00
+          suitPrice: 669.0,
+          originalPrice: 1248.0
         },
         {
           name: "美白祛疤",
@@ -84,9 +84,7 @@ export default {
     };
   },
   methods: {
-    handleClick(tab, event) {
-      console.log(tab, event);
-    }
+    handleClick(tab, event) {}
   }
 };
 </script>
@@ -111,31 +109,31 @@ export default {
       width: 100%;
       padding: 95px 36px 0 36px;
       text-align: left;
-      .el-button--primary{
+      .el-button--primary {
         width: 100%;
       }
 
-      .group-info-province{
+      .group-info-province {
         position: relative;
-        span{
+        span {
           position: absolute;
           top: 15%;
           left: 28%;
           color: #ff0000;
         }
       }
-      .group-info-suitPrice{
-        span{
+      .group-info-suitPrice {
+        span {
           font-size: 18px;
           color: #ff0000;
         }
       }
-      .group-info-originalPrice{
+      .group-info-originalPrice {
         margin-top: 12px;
         margin-bottom: 20px;
         color: #777;
-        span{
-          text-decoration:line-through;
+        span {
+          text-decoration: line-through;
         }
       }
     }
@@ -145,22 +143,22 @@ export default {
       padding-left: 26px;
       padding-bottom: 28px;
       border-bottom: 1px dashed #ddd;
-      .image-item{
+      .image-item {
         display: flex;
         align-items: center;
-        .image-item-symbol{
+        .image-item-symbol {
           margin-left: 20px;
         }
-       .image-add{
+        .image-add {
           width: 40px;
           height: 40px;
         }
       }
-      .image-item-name{
+      .image-item-name {
         margin-bottom: 12px;
       }
-      .image-item-price{
-        span{
+      .image-item-price {
+        span {
           color: #ff0000;
         }
       }
@@ -169,16 +167,16 @@ export default {
       }
     }
 
-    .image-comments{
+    .image-comments {
       display: flex;
       padding: 20px 22px 23px 41px;
       text-align: left;
-      span{
+      span {
         display: inline-block;
       }
-      .image-comments-title{
+      .image-comments-title {
         width: 90px;
-        color: #4199f5; 
+        color: #4199f5;
       }
     }
   }

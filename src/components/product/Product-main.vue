@@ -12,20 +12,31 @@
           <el-breadcrumb-item v-for="item in productList.crumbs" :to="item.url"  :key="item.id">{{item.name}}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
+      <!-- 产品购买信息开始 -->
       <productInfoView/>
+      <!-- 产品购买信息结束 -->
+
+      <!-- 商品组合推荐开始 -->
       <combinationView/>
+      <!-- 商品组合推荐结束 -->
+
+      <!-- 产品介绍开始 -->
+      <productDetailsView/>
+      <!-- 产品介绍结束 -->
   </el-main>
 </template>
 <script>
 import classifiedNavView from '../public/Classified-nav'
 import productInfoView from './Product-info'
 import combinationView from './Product-combination'
+import productDetailsView from './Product-details'
 export default {
   name: 'productMain',
   components: {
     classifiedNavView,
     productInfoView,
-    combinationView
+    combinationView,
+    productDetailsView
   },
   data(){
     return {

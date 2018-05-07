@@ -8,49 +8,97 @@
 .info-img {
   width: 405px;
   min-width: 405px;
+  margin-right: 20px;
   position: relative;
-  .small-box{
+
+  .commodity-coding{
+    padding-top: 10px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ddd;
+  }
+  .info-reminder{
+    padding-top: 10px;
+    span{
+      color: #ff8400;
+    }
+  }
+
+  .info-img-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    span{
+      cursor: pointer;
+    }
+    .img-box{
+      width: 100%;
+      height: 63px;
+      position: relative;
+      overflow: hidden;
+    }
+    .img-list {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      box-sizing: border-box;
+      .img-item {
+        margin-right: 11px;
+        text-align: center;
+        width: 63px;
+        height: 63px;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        &.active{
+          border-color: #ff0000;
+        }
+        &:first-child {
+          margin-left: 10px;
+        }
+        img{
+          width: 100%;
+        }
+      }
+    }
+  }
+  .small-box {
     position: relative;
     margin-top: 20px;
-    margin-right: 20px;
+
     border: 1px solid #ddd;
     box-sizing: border-box;
-    #lay{
-        position: absolute;
-        top: 0; 
-        left: 0;
-        border: 1px solid #666;
-        opacity: 0.6;
-        filter: opacity(30%);
-        background: #ddd;
-        // display: none;
-        cursor: move;
+    #lay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: 1px solid #666;
+      opacity: 0.6;
+      filter: opacity(30%);
+      background: #ddd;
+      // display: none;
+      cursor: move;
     }
-    img{
+    img {
       width: 100%;
     }
   }
-  .big-box{
+  .big-box {
     position: absolute;
     top: 20px;
-    left: 383px ;
+    left: 403px;
     width: 383px;
-    height: 389px;
+    height: 409px;
     border: 1px solid #ddd;
+    background-color: #fff;
     overflow: hidden;
-    img{
+    img {
       position: absolute;
       top: 0;
       left: 0;
     }
   }
-  .img-list{
-    display: flex;
-    box-sizing: border-box;
-    .img-item{
-      border: 1px solid #ddd;
-    }
-  }
+
 }
 
 .info-words {

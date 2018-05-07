@@ -10,13 +10,15 @@
             <!-- 大图结束 -->
             <!-- 左右滑动开始 -->
             <div class="info-img-list">
-                <span class="el-icon-arrow-left"></span>
-                <span class="el-icon-arrow-right"></span>
-                <ul class="img-list">
-                    <li class="img-item" v-for="item in imgList" :key="item.id">
-                        <img :src="item.img" alt="img" :data-small="item.imgSmall" :data-big="item.imgBig">
+                <span class="el-icon-arrow-left" @click="toLeft"></span>
+                <div class="img-box" ref="imgBox">
+                  <ul class="img-list" ref="imgList" style="left:0;">
+                    <li class="img-item" @click="isActive(index,$event)" :class="active == index?'active':''" v-for="(item,index) in imgList" :key="item.id">
+                        <img :data-big="item.imgBig" :src="item.img" alt="img" :data-small="item.imgSmall">
                     </li>
-                </ul>
+                  </ul>
+                </div> 
+                <span class="el-icon-arrow-right" @click="toRigth"></span>
             </div>
             <!-- 左右滑动结束 -->
             <!-- 放大的图片开始 -->
@@ -24,7 +26,8 @@
                 <img ref="big"  src="../../assets/image/cpmax1.jpg" alt="img">
             </div>
             <!-- 放大的图片结束 -->
-            <div></div>
+            <p class="commodity-coding">商品编码：{{productList.coding}}</p>
+            <p class="info-reminder"><span>温馨提示：</span>图片均为药居士对原品的真实拍摄，仅供参考；如遇新包装上市可能存在上新滞后，请以实物为准。</p>
         </div>
         <!-- 放大镜图片END -->
 
@@ -108,6 +111,8 @@ export default {
   name: "productInfo",
   data() {
     return {
+      active: 0,
+      storageDist: 0,
       imgList: [
         {
           img: require("../../assets/image/cpmin1.jpg"),
@@ -133,9 +138,20 @@ export default {
           img: require("../../assets/image/cpmin5.jpg"),
           imgSmall: require("../../assets/image/cp5.jpg"),
           imgBig: require("../../assets/image/cpmax5.jpg")
+        },
+        {
+          img: require("../../assets/image/cpmin4.jpg"),
+          imgSmall: require("../../assets/image/cp4.jpg"),
+          imgBig: require("../../assets/image/cpmax4.jpg")
+        },
+        {
+          img: require("../../assets/image/cpmin5.jpg"),
+          imgSmall: require("../../assets/image/cp5.jpg"),
+          imgBig: require("../../assets/image/cpmax5.jpg")
         }
       ],
       productList: {
+        coding: '6021',
         name: "达芙文 阿达帕林凝胶 0.1%:30g",
         rx: require("../../assets/image/rx.png"),
         discount:
@@ -205,17 +221,47 @@ export default {
       let img = this.$refs.img;
       let w = img.offsetWidth;
       let h = img.offsetHeight;
-
       let scale = 4;
-      console.log(h);
       lay.style.width = w / scale + "px";
       lay.style.height = h / scale + "px";
     };
   },
   methods: {
+    // 向左滑动
+    toLeft() {
+      let imgBox = this.$refs.imgBox;
+      let imgList = this.$refs.imgList;
+      let dist = -74;
+      if (-(imgList.offsetWidth - imgBox.offsetWidth) < this.storageDist - 3) {
+        this.storageDist += dist;
+        imgList.style.left = this.storageDist + "px";
+      }
+    },
+    // 向右滑动
+    toRigth() {
+      let imgBox = this.$refs.imgBox;
+      let imgList = this.$refs.imgList;
+      let dist = 74;
+      if (this.storageDist + 3 < 0) {
+        this.storageDist += dist;
+        imgList.style.left = this.storageDist + "px";
+      }
+    },
+    // 放大镜效果的大中小图片切换
+    isActive(index, e) {
+      let smallSrc = e.path[0].getAttribute("data-small");
+      let bigSrc = e.path[0].getAttribute("data-big");
+      let img = this.$refs.img;
+      let big = this.$refs.big;
+      img.src = smallSrc;
+      big.src = bigSrc;
+      this.active = index;
+    },
+    // 放大镜的大图片显示
     show() {
       this.isImg = true;
     },
+    // 放大镜的大图片隐藏
     hide() {
       this.isImg = false;
     },
@@ -225,7 +271,7 @@ export default {
       let lay = this.$refs.lay;
       let box = this.$refs.samllBox;
       let big = this.$refs.big;
-      let x = e.clientX - box.offsetLeft - lay.offsetWidth / 2;
+      let x = e.clientX - box.offsetLeft - lay.offsetWidth / 2; //获取遮罩框的位置=鼠标的位置-图片容器到视口的距离-遮罩框一半的大小
       let y =
         e.clientY - box.getBoundingClientRect().top - 20 - lay.offsetHeight / 2;
       if (x <= 0) {
@@ -235,19 +281,17 @@ export default {
         y = 0;
       }
       if (x > img.offsetWidth - lay.offsetWidth) {
-        console.log("1");
         x = img.offsetWidth - lay.offsetWidth; //右侧边界判断
       }
       if (y > img.offsetHeight - lay.offsetHeight) {
-        console.log("2");
         y = img.offsetHeight - lay.offsetHeight; //右侧边界判断
       }
 
       lay.style.left = x + "px";
       lay.style.top = y + "px";
 
-      big.style.left = -x * 2.1 + "px";
-      big.style.top = -y * 2.1 + "px";
+      big.style.left = -x * 2 + "px";
+      big.style.top = -y * 2 + "px";
     },
     handleChange() {}
   }
