@@ -10,7 +10,7 @@
             <!-- 大图结束 -->
             <!-- 左右滑动开始 -->
             <div class="info-img-list">
-                <span class="el-icon-arrow-left" @click="toLeft"></span>
+                <span class="el-icon-arrow-left" @click="toRigth"></span>
                 <div class="img-box" ref="imgBox">
                   <ul class="img-list" ref="imgList" style="left:0;">
                     <li class="img-item" @click="isActive(index,$event)" :class="active == index?'active':''" v-for="(item,index) in imgList" :key="item.id">
@@ -18,7 +18,7 @@
                     </li>
                   </ul>
                 </div> 
-                <span class="el-icon-arrow-right" @click="toRigth"></span>
+                <span class="el-icon-arrow-right" @click="toLeft"></span>
             </div>
             <!-- 左右滑动结束 -->
             <!-- 放大的图片开始 -->

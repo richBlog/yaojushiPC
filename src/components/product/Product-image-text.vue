@@ -1,15 +1,34 @@
 <template>
   <div class="product-image-text">
         <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
-            <el-tab-pane label="商品介绍" name="first">用户管理</el-tab-pane>
-            <el-tab-pane label="说明书" name="second">配置管理</el-tab-pane>
-            <el-tab-pane label="商品问答" name="third">角色管理</el-tab-pane>
-            <el-tab-pane label="相关文章" name="fourth">定时任务补偿</el-tab-pane>
+            <el-tab-pane label="商品介绍" name="first">
+                <detailsView/>
+            </el-tab-pane>
+            <el-tab-pane label="说明书" name="second">
+                <instructionsView/>
+            </el-tab-pane>
+            <el-tab-pane label="用户评论（1000）" name="third">
+                <commentView/>
+            </el-tab-pane>
+            <el-tab-pane label="商品问答" name="fourth">
+                <discussView/>
+            </el-tab-pane>
         </el-tabs>
   </div>
 </template>
 <script>
+import detailsView from './details'
+import instructionsView from './instructions'
+import discussView from './discuss'
+import commentView from './comment'
+
 export default {
+    components: {
+        detailsView,
+        instructionsView,
+        discussView,
+        commentView
+    },
     data(){
         return {
             activeName: 'first'
