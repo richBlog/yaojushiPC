@@ -42,8 +42,17 @@
             </p>
             <!-- 产品信息优惠价格活动 -->
             <div class="info-words-price">
-                <div></div>
-                <div></div>
+                <div class="price-box">
+                  <span class="words-title">门店价</span>
+                  ￥<span class="price">{{productList.originalPrice}}.00</span>
+                </div>
+                <div class="info-box">
+                  <div class="words-title">活动</div>
+                  <div>
+                    <div class="discount-info-box"><div class="discount-info">换取</div><div class="discount-info-content">{{productList.exchangeFor}}</div></div>
+                    <div class="discount-info-box"><div class="discount-info">满减</div><div class="discount-info-content">{{productList.fullSubtraction}}</div></div>
+                  </div>
+                </div>
             </div>
             <!-- 产品信息厂家及部分药品相关信息描述 -->
             <div class="info-title-big">
@@ -53,7 +62,7 @@
                 <div class="info-spec">
                     <div class="product-info-title">规格</div>
                     <ul class="info-spec-class">
-                        <router-link class="info-spec-class-item" :class="index===0?'active':''" :to="item.url" tag="li" v-for="(item,index) in productList.spec" :key="item.id" v-text="item.info"></router-link>
+                        <router-link @click.native="specSwitch(index)" class="info-spec-class-item" :class="index===specTab?'active':''" :to="item.url" tag="li" v-for="(item,index) in productList.spec" :key="item.id" v-text="item.info"></router-link>
                     </ul>
                 </div>
                 <div class="info-amount">
@@ -111,6 +120,7 @@ export default {
   name: "productInfo",
   data() {
     return {
+      specTab: 0,
       active: 0,
       storageDist: 0,
       imgList: [
@@ -227,6 +237,11 @@ export default {
     };
   },
   methods: {
+    // 规格切换
+    specSwitch(index){
+      console.log(index);
+      this.specTab = index;
+    },
     // 向左滑动
     toLeft() {
       let imgBox = this.$refs.imgBox;

@@ -135,6 +135,9 @@ export default {
       text-align: center;
       font-size: 12px;
       cursor: pointer;
+      &:hover{
+        color: #0788f7;
+      }
     }
   }
   .groom-box {

@@ -3,7 +3,7 @@
 
       <classifiedNavView/>
 
-      <!-- 面包屑导航 -->
+      <!-- 面包屑导航开始 -->
       <div class="product-crumbs">
         <router-link to="/" tag="div" class="product-crumbs-advert"><img :src="productList.ggImage" alt="img"></router-link>
         <p class="product-prompt">药品监管部门提示：如发现本网站有任何直接或变相销售处方药行为，请保留证据，拨打12331举报，举报查实给予奖励。</p>
@@ -12,17 +12,25 @@
           <el-breadcrumb-item v-for="item in productList.crumbs" :to="item.url"  :key="item.id">{{item.name}}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
+      <!-- 面包屑导航结束 -->
+
+
       <!-- 产品购买信息开始 -->
       <productInfoView/>
       <!-- 产品购买信息结束 -->
+
 
       <!-- 商品组合推荐开始 -->
       <combinationView/>
       <!-- 商品组合推荐结束 -->
 
+
+
       <!-- 产品介绍开始 -->
       <productDetailsView/>
       <!-- 产品介绍结束 -->
+
+
   </el-main>
 </template>
 <script>
