@@ -1,4 +1,4 @@
-.el-footer{
+.el-footer {
   width: 100%;
   padding: 0;
   height: auto !important;
@@ -6,143 +6,143 @@
 }
 // 品牌认证
 .layout-footer-brank {
-    background-color: #1a82ee;
+  background-color: #1a82ee;
+  height: 105px;
+  border-bottom: 1px solid #0c74df;
+  .brank-box {
     height: 105px;
-    border-bottom: 1px solid #0c74df;
-    .brank-box {
-      height: 105px;
-      display: flex;
-      align-items: center;
-      .brank-box-item {
-        flex-grow: 1;
-        div {
-          display: inline-block;
-          text-align: left;
-          &:first-child {
-            margin-right: 10px;
-          }
-          p {
-            font-size: 19px;
-            color: #fff;
-          }
-          h5 {
-            color: #fff;
-          }
+    display: flex;
+    align-items: center;
+    .brank-box-item {
+      flex-grow: 1;
+      div {
+        display: inline-block;
+        text-align: left;
+        &:first-child {
+          margin-right: 10px;
+        }
+        p {
+          font-size: 19px;
+          color: #fff;
+        }
+        h5 {
+          color: #fff;
         }
       }
     }
   }
-  // 微信和手机二维码
-  .layout-footer-wx {
-    background-color: #1a82ee;
+}
+// 微信和手机二维码
+.layout-footer-wx {
+  background-color: #1a82ee;
+  height: 245px;
+  margin-bottom: 14px;
+  // 二维码
+  .wx-container {
     height: 245px;
-    margin-bottom: 14px;
-    // 二维码
-    .wx-container {
-      height: 245px;
-      padding: 42.5px 0;
+    padding: 42.5px 0;
+    display: flex;
+    .wx {
       display: flex;
-      .wx {
-        display: flex;
-        border-right: 1px solid #0c74df;
-        div {
-          margin-right: 35px;
-        }
-        span {
-          display: block;
-          height: 30px;
-          line-height: 30px;
-          color: #fff;
-        }
-        img{
-          width: 100px;
-          height: 100px;
-        }
-      }
-    }
-    // 帮助说明
-    .wx-sm {
-      padding-left: 40px;
       border-right: 1px solid #0c74df;
-      .wx-sm-box {
-        display: flex;
-        .wx-sm-item {
-          margin-right: 47px;
-          &:last-child {
-            margin-right: 40px;
-          }
-          p {
-            font-size: 20px;
-            color: #fff;
-          }
-          a {
-            display: block;
-            color: #fff;
-            height: 42px;
-            line-height: 42px;
-            &:hover {
-              color: red;
-            }
-          }
-        }
+      div {
+        margin-right: 35px;
       }
-    }
-    //   联系电话
-    .wx-tel {
-      margin-left: 47px;
-      .wx-tel-item {
+      span {
+        display: block;
         height: 30px;
         line-height: 30px;
         color: #fff;
-        text-align: left;
-        font-size: 12px;
-        &:nth-child(2),
-        &:nth-child(5) {
-          font-size: 26px;
+      }
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }
+  // 帮助说明
+  .wx-sm {
+    padding-left: 40px;
+    border-right: 1px solid #0c74df;
+    .wx-sm-box {
+      display: flex;
+      .wx-sm-item {
+        margin-right: 47px;
+        &:last-child {
+          margin-right: 40px;
+        }
+        p {
+          font-size: 20px;
+          color: #fff;
+        }
+        a {
+          display: block;
+          color: #fff;
+          height: 42px;
+          line-height: 42px;
+          &:hover {
+            color: red;
+          }
         }
       }
     }
   }
-  // 友情链接
-  .link {
-    padding-left: 10px;
-    li {
+  //   联系电话
+  .wx-tel {
+    margin-left: 47px;
+    .wx-tel-item {
       height: 30px;
       line-height: 30px;
-      margin-right: 15px;
-      a:hover {
+      color: #fff;
+      text-align: left;
+      font-size: 12px;
+      &:nth-child(2),
+      &:nth-child(5) {
+        font-size: 26px;
+      }
+    }
+  }
+}
+// 友情链接
+.link {
+  padding-left: 10px;
+  li {
+    height: 30px;
+    line-height: 30px;
+    margin-right: 15px;
+    a:hover {
+      color: red;
+    }
+  }
+}
+// 底部信息
+.layout-footer-me {
+  margin-top: 10px;
+  border-top: 1px solid #efefef;
+  padding-top: 10px;
+  padding-bottom: 100px;
+  .me-box {
+    height: 30px;
+    line-height: 30px;
+    a {
+      color: #777;
+      padding: 0 8px;
+      border-right: 1px solid #777;
+      &:last-child {
+        border: 0;
+      }
+      &:hover {
         color: red;
       }
     }
   }
-  // 底部信息
-  .layout-footer-me {
-    margin-top: 10px;
-    border-top: 1px solid #efefef;
-    padding-top: 10px;
-    padding-bottom: 100px;
-    .me-box {
-      height: 30px;
-      line-height: 30px;
-      a {
-        color: #777;
-        padding: 0 8px;
-        border-right: 1px solid #777;
-        &:last-child {
-          border: 0;
-        }
-        &:hover {
-          color: red;
-        }
-      }
-    }
-    .copyright{
+  .copyright {
+    color: #777;
+    a {
       color: #777;
-      a{
-        color: #777;
-        &:hover{
-          color: red;
-        }
+      &:hover {
+        color: red;
       }
     }
   }
+}

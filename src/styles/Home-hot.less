@@ -1,80 +1,78 @@
-   // 推荐产品壳子
-   .layout-main-product{
-    position: relative;
-    margin-top: 12px;
-    padding: 10px;
-    // 产品信息
-    .product-container{
-      display: flex;
-      width: 1200px;
-      min-width: 1200px;
-      .produce-item{
-        width: 20%;
-        border-right: 1px solid #efefef;
-        text-align: center;
-        &:last-child{
-          border: 0;
-        }
-        .produce-img{
-          position: relative;
-          img{
-            width: 150px;
-            height: 150px;
-          }
-          .produce-discount{
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            display: block;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            background-color: #fe4b47;
-            border-radius: 50%;
-            color: #fff;
-            text-align: center;
-          }
-        }
-        .produce-name{
-          color: #666;
-          margin-top: 10px;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-        }
-        .produce-price{
-          margin-top: 5px;
-          span{
-            font-size: 12px;
-            color: #ccc;
-            &:first-child{
-              color: #ff002f;
-              font-size: 14px;
-              margin-right: 20px;
-            }
-            &:last-child{
-              text-decoration:line-through;
-            }
-          }
-        }
+// 推荐产品壳子
+.layout-main-product {
+  position: relative;
+  margin-top: 12px;
+  padding: 10px;
+  // 产品信息
+  .product-container {
+    display: flex;
+    .produce-item {
+      width: 20%;
+      border-right: 1px solid #efefef;
+      text-align: center;
+      &:last-child {
+        border: 0;
       }
-    }
-    // 换一换
-    .product-change{
-      position: absolute;
-      bottom: -19px;
-      right: 0;
-      span{
-        color: #1e1e1e;
-      }
-      i{
-        display: inline-block;
+      .produce-img {
         position: relative;
-        top: 5px;
-        right: -5px;
-        width: 20px;
-        height: 20px;
-        background: url(../assets/image/fenlei.png) no-repeat -51px -140px;
+        img {
+          width: 150px;
+          height: 150px;
+        }
+        .produce-discount {
+          position: absolute;
+          top: 10px;
+          right: 20px;
+          display: block;
+          width: 40px;
+          height: 40px;
+          line-height: 40px;
+          background-color: #fe4b47;
+          border-radius: 50%;
+          color: #fff;
+          text-align: center;
+        }
+      }
+      .produce-name {
+        color: #666;
+        margin-top: 10px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .produce-price {
+        margin-top: 5px;
+        span {
+          font-size: 12px;
+          color: #ccc;
+          &:first-child {
+            color: #ff002f;
+            font-size: 14px;
+            margin-right: 20px;
+          }
+          &:last-child {
+            text-decoration: line-through;
+          }
+        }
       }
     }
   }
+  // 换一换
+  .product-change {
+    position: absolute;
+    bottom: -19px;
+    right: 0;
+    span {
+      color: #1e1e1e;
+    }
+    i {
+      display: inline-block;
+      position: relative;
+      top: 5px;
+      right: -5px;
+      width: 20px;
+      height: 20px;
+      background: url(../assets/image/fenlei.png) no-repeat -51px -140px;
+    }
+  }
+}

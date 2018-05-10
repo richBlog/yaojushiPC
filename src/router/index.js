@@ -5,30 +5,37 @@ import path from './path'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: 'Home',
-      component: path.home
+      component: path.Home
     },
     {
       path: '/Login',
       name: 'Login',
-      component: path.login
+      component: path.Login
     },
     {
       path: '/Register',
       name: 'Register',
-      component: path.register
+      component: path.Register
     },
     {
       path: '/Product/:id',
       name: 'Product',
-      component: path.product
+      component: path.Product
+    },
+    {
+      path: '/ShoppingCart',
+      name: 'ShoppingCart',
+      component: path.ShoppingCart
     },
   ],
   // 路由跳转时候滚动到顶部
-  scrollBehavior (to, from, savedPosition) {
-    return { x: 0, y: 0 }
+  scrollBehavior(to, from, savedPosition) {
+    return {
+      x: 0,
+      y: 0
+    }
   }
 })

@@ -1,5 +1,5 @@
 <template>
-  <div class="product-image-text">
+    <div class="product-image-text">
         <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
             <el-tab-pane label="商品介绍" name="first">
                 <detailsView/>
@@ -14,13 +14,13 @@
                 <discussView/>
             </el-tab-pane>
         </el-tabs>
-  </div>
+    </div>
 </template>
 <script>
-import detailsView from './details'
-import instructionsView from './instructions'
-import discussView from './discuss'
-import commentView from './comment'
+import detailsView from "./details";
+import instructionsView from "./instructions";
+import discussView from "./discuss";
+import commentView from "./comment";
 
 export default {
     components: {
@@ -29,20 +29,18 @@ export default {
         discussView,
         commentView
     },
-    data(){
+    data() {
         return {
-            activeName: 'first'
-        }
+            activeName: "first"
+        };
     },
     methods: {
-        handleClick(){
-
-        }
+        handleClick() {}
     }
-}
+};
 </script>
 <style lang="less" scoped>
-.product-image-text{
+.product-image-text {
     width: 100%;
     border: 1px solid #ddd;
 }

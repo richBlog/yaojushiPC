@@ -7,14 +7,27 @@
   .el-tabs__nav {
     border: 0 !important;
   }
-  .el-tabs__item{
-      &:last-child{
-          border-right: 1px solid #ddd;
-      }
+  .el-tabs__item {
+    &:last-child {
+      border-right: 1px solid #ddd;
+    }
   }
-  .el-tabs__header{
+  .el-tabs__header {
     margin: 0;
   }
 }
 
+// 设置购物车里面的进度条的样式
+.shopping-cart-header {
+  .el-step__title.is-process,
+  .el-step__head.is-process {
+    color: #409eff !important;
+    border-color: #409eff;
+  }
+}
 
+.shopping-recommend {
+  .el-tabs__nav-wrap::after {
+    width: 0;
+  }
+}

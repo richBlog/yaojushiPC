@@ -26,7 +26,12 @@ import {
   Header,
   BreadcrumbItem,
   Main,
-  Radio
+  Radio,
+  CarouselItem,
+  Steps,
+  Row,
+  Col,
+  Step
 } from 'element-ui'
 import App from './App'
 import router from './router'
@@ -57,6 +62,11 @@ Vue.use(Header)
 Vue.use(BreadcrumbItem)
 Vue.use(Main)
 Vue.use(Radio)
+Vue.use(CarouselItem)
+Vue.use(Steps)
+Vue.use(Step)
+Vue.use(Row)
+Vue.use(Col)
 
 
 Vue.config.productionTip = false
