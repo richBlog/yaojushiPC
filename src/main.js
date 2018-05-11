@@ -31,7 +31,9 @@ import {
   Steps,
   Row,
   Col,
-  Step
+  Step,
+  MessageBox,
+  Message
 } from 'element-ui'
 import App from './App'
 import router from './router'
@@ -67,6 +69,12 @@ Vue.use(Steps)
 Vue.use(Step)
 Vue.use(Row)
 Vue.use(Col)
+
+Vue.prototype.$msgbox = MessageBox;
+Vue.prototype.$alert = MessageBox.alert;
+Vue.prototype.$confirm = MessageBox.confirm;
+Vue.prototype.$prompt = MessageBox.prompt;
+Vue.prototype.$message = Message;
 
 
 Vue.config.productionTip = false

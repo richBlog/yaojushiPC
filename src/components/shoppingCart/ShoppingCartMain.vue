@@ -1,24 +1,31 @@
 <template>
     <div class="shopping-cart-main box">
-
+        <el-alert v-if="token" title="您还没有登录！登录后购物车的商品将保存到您账号中" type="warning" :closable="false">
+            <el-button class="login-btn" size="mini" type="danger" @click="jumpLogin">登陆</el-button>
+        </el-alert>
         <!-- 数据加载时候的状态开始 -->
         <div v-if="dataState==='state'"></div>
         <!-- 数据加载时候的状态结束 -->
 
         <!-- 购物车没有产品时候的状态开始 -->
         <div v-else-if="dataState===0">
-
+            <el-row class="message">
+                <el-col :span="10" class="message-img">
+                    <img src="../../assets/image/no-login-icon.png" alt="img">
+                </el-col>
+                <el-col :span="14" class="message-content">
+                    <p>购物车空空的哦~，去看看心仪的商品吧~</p>
+                    <router-link to="/">去购物&gt;</router-link>
+                </el-col>
+            </el-row>
         </div>
         <!-- 购物车没有产品时候的状态结束 -->
 
         <!-- 购物车有产品时候的状态开始 -->
         <div v-else>
-            <el-alert title="您还没有登录！登录后购物车的商品将保存到您账号中" type="warning" :closable="false">
-                <el-button class="login-btn" size="mini" type="danger">登陆</el-button>
-            </el-alert>
             <el-row class="shopping-info-title">
                 <el-col :span="2">
-                    <el-checkbox v-model="checked">全选</el-checkbox>
+                    <el-checkbox v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
                 </el-col>
                 <el-col :span="10">商品名称</el-col>
                 <el-col :span="3">数量</el-col>
@@ -26,42 +33,64 @@
                 <el-col :span="3">小计</el-col>
                 <el-col :span="3">操作</el-col>
             </el-row>
-            <ul class="shopping-info-list" v-for="item in DataList" :key="item.id">
+            <ul class="shopping-info-list" v-for="(item,index) in DataList.List" :key="item.id">
                 <li>
-                    <el-checkbox v-model="checked">药居士自营</el-checkbox>
+                    <el-checkbox v-model="item.checked" @change="handleCheckedChange(index)">{{item.Seller}}</el-checkbox>
                 </li>
-                <li v-for="i in item.ProductList" :key="i.id">
+                <li v-for="(i,dex) in item.ProductList" :key="i.id">
                     <el-row class="">
                         <el-col :span="2">
-                            <el-checkbox v-model="checked"></el-checkbox>
+                            <el-checkbox v-model="i.checked" @change="CheckedChange(index,dex)"></el-checkbox>
                         </el-col>
                         <el-col :span="2" class="info-img">
-                            <router-link :to="'/product/'+i.Url"><img :src="i.Img" alt="img"></router-link>
+                            <router-link :to="'/product/'+i.Url" target='_blank'><img :src="i.Img" alt="img"></router-link>
                         </el-col>
                         <el-col :span="8">{{i.Name}}</el-col>
                         <el-col :span="3">
-                            <el-input-number v-model="i.Count" @change="handleChange" :min="1" :max="10" label="描述文字"></el-input-number>
+                            <el-input-number v-model="i.Count" @change="handleChange(Count)" :min="1" :max="10"></el-input-number>
                         </el-col>
                         <el-col :span="3" class="info-discount">
                             <p>￥{{i.Discount}}</p>
-                            <div class="promotion-box">
-                                <p class="promotion-title" @click="infoShow">促销信息</p>
-                                <p :class="isHide?'cover active':'cover'"></p>
-                                <p :class="isHide?'promotion-content active':'promotion-content'">{{i.SalesPromotion}}</p>
+                            <div class="promotion-box" @mouseover="show(index,dex)" @mouseout="hide">
+                                <p class="promotion-title">促销信息</p>
+                                <p :class="isHide===index&&isShow===dex?'cover active':'cover'"></p>
+                                <p :class="isHide===index&&isShow===dex?'promotion-content active':'promotion-content'">{{i.SalesPromotion}}</p>
                             </div>
                         </el-col>
                         <el-col :span="3" class="info-subtotal">￥{{i.Subtotal}}</el-col>
                         <el-col :span="3">
-                            <el-button>删除</el-button>
+                            <el-button type="danger" size="mini" @click="del(dex)">删除</el-button>
                         </el-col>
                     </el-row>
                 </li>
+
             </ul>
+            <el-row class="balance-accounts">
+                <el-col :span="2">
+                    <el-checkbox v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+                </el-col>
+                <el-col :span="3" class="del-product" @click.native="delSelect">删除选中的商品</el-col>
+                <el-col :span="13" class="add-collection">
+                    <span @click="addCollection">移入到我的收藏夹</span>
+                </el-col>
+                <el-col :span="3" class="computed-price">
+                    <p>总价：
+                        <span class="total-price">￥{{DataList.TotalPrice}}</span>
+                    </p>
+                    <p>
+                        已节省：
+                        <span class="concession">-￥{{DataList.Concession}}</span>
+                    </p>
+                </el-col>
+                <el-col :span="3">
+                    <el-button type="danger">去结算</el-button>
+                </el-col>
+            </el-row>
         </div>
         <!-- 购物车有产品时候的状态结束 -->
 
         <!-- 产品推荐开始 -->
-        <ShoppingRecommendView/>
+        <!-- <ShoppingRecommendView/> -->
         <!-- 产品推荐结束 -->
     </div>
 </template>
@@ -75,169 +104,265 @@ export default {
     },
     data() {
         return {
+            token: false,
             dataState: "state",
-            checked: true,
-            isHide: false,
-            DataList: [
-                {
-                    Seller: "药居士自营",
-                    ProductList: [
-                        {
-                            Url: 1,
-                            Img: require("../../assets/image/loading.png"),
-                            Name: "养方堂  红枣黑糖姜茶（固体饮料）",
-                            Count: 1,
-                            Discount: 12.0,
-                            Subtotal: 15.9,
-                            SalesPromotion:
-                                "【5/9-5/13把肾透支的补回来】2盒一疗程！单盒下单立减10，两盒下单优惠30，三盒下单优惠50！五盒原价下单减60，再送原品一盒！治疗阳痿早泄搭配<固本回元口服液>效果好!"
-                        },
-                        {
-                            Url: 1,
-                            Img: require("../../assets/image/loading.png"),
-                            Name: "养方堂  红枣黑糖姜茶（固体饮料）",
-                            Count: 1,
-                            Discount: 12.0,
-                            Subtotal: 15.9,
-                            SalesPromotion:
-                                "【5/9-5/13把肾透支的补回来】2盒一疗程！单盒下单立减10，两盒下单优惠30，三盒下单优惠50！五盒原价下单减60，再送原品一盒！治疗阳痿早泄搭配<固本回元口服液>效果好!"
-                        }
-                    ]
-                }
-            ]
+            isHide: "state",
+            isShow: "state",
+            checkAll: true,
+            DataList: {
+                TotalPrice: "356.90",
+                Concession: "55.00",
+                List: [
+                    {
+                        Seller: "药居士自营",
+                        checked: true,
+                        ProductList: [
+                            {
+                                checked: true,
+                                Url: 1,
+                                Img: require("../../assets/image/loading.png"),
+                                Name: "养方堂  红枣黑糖姜茶（固体饮料）",
+                                Count: 1,
+                                Discount: "15.90",
+                                Subtotal: "12.00",
+                                SalesPromotion:
+                                    "【5/9-5/13把肾透支的补回来】2盒一疗程！单盒下单立减10，两盒下单优惠30，三盒下单优惠50！五盒原价下单减60，再送原品一盒！治疗阳痿早泄搭配<固本回元口服液>效果好!"
+                            },
+                            {
+                                checked: true,
+                                Url: 1,
+                                Img: require("../../assets/image/loading.png"),
+                                Name: "养方堂  红枣黑糖姜茶（固体饮料）",
+                                Count: 1,
+                                Discount: "15.90",
+                                Subtotal: "12.00",
+                                SalesPromotion:
+                                    "【5/9-5/13把肾透支的补回来】2盒一疗程！单盒下单立减10，两盒下单优惠30，三盒下单优惠50！五盒原价下单减60，再送原品一盒！治疗阳痿早泄搭配<固本回元口服液>效果好!"
+                            },
+                            {
+                                checked: true,
+                                Url: 1,
+                                Img: require("../../assets/image/loading.png"),
+                                Name: "养方堂  红枣黑糖姜茶（固体饮料）",
+                                Count: 1,
+                                Discount: "15.90",
+                                Subtotal: "12.00",
+                                SalesPromotion:
+                                    "【5/9-5/13把肾透支的补回来】2盒一疗程！单盒下单立减10，两盒下单优惠30，三盒下单优惠50！五盒原价下单减60，再送原品一盒！治疗阳痿早泄搭配<固本回元口服液>效果好!"
+                            }
+                        ]
+                    },
+                    {
+                        Seller: "药居士自营",
+                        checked: true,
+                        ProductList: [
+                            {
+                                checked: true,
+                                Url: 1,
+                                Img: require("../../assets/image/loading.png"),
+                                Name: "养方堂  红枣黑糖姜茶（固体饮料）",
+                                Count: 1,
+                                Discount: "15.90",
+                                Subtotal: "12.00",
+                                SalesPromotion:
+                                    "【5/9-5/13把肾透支的补回来】2盒一疗程！单盒下单立减10，两盒下单优惠30，三盒下单优惠50！五盒原价下单减60，再送原品一盒！治疗阳痿早泄搭配<固本回元口服液>效果好!"
+                            },
+                            {
+                                checked: true,
+                                Url: 1,
+                                Img: require("../../assets/image/loading.png"),
+                                Name: "养方堂  红枣黑糖姜茶（固体饮料）",
+                                Count: 1,
+                                Discount: "15.90",
+                                Subtotal: "12.00",
+                                SalesPromotion:
+                                    "【5/9-5/13把肾透支的补回来】2盒一疗程！单盒下单立减10，两盒下单优惠30，三盒下单优惠50！五盒原价下单减60，再送原品一盒！治疗阳痿早泄搭配<固本回元口服液>效果好!"
+                            },
+                            {
+                                checked: true,
+                                Url: 1,
+                                Img: require("../../assets/image/loading.png"),
+                                Name: "养方堂  红枣黑糖姜茶（固体饮料）",
+                                Count: 1,
+                                Discount: "15.90",
+                                Subtotal: "12.00",
+                                SalesPromotion:
+                                    "【5/9-5/13把肾透支的补回来】2盒一疗程！单盒下单立减10，两盒下单优惠30，三盒下单优惠50！五盒原价下单减60，再送原品一盒！治疗阳痿早泄搭配<固本回元口服液>效果好!"
+                            }
+                        ]
+                    }
+                ]
+            }
         };
     },
     created() {
         this.dataState = 1;
     },
     methods: {
-        handleChange() {},
-        infoShow(){
-           
-            this.isHide = !this.isHide;
-             console.log(this.isHide)
+        // 选中的商品移入到收藏夹
+        addCollection() {
+            let list = this.select();
+            this.$confirm(
+                `是否移入这${list.length}件产品到您的收藏夹?`,
+                "提示",
+                {
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                    type: "warning"
+                }
+            )
+                .then(() => {
+                    this.$message({
+                        type: "success",
+                        message: "移入成功!"
+                    });
+                })
+                .catch(() => {
+                    this.$message({
+                        type: "info",
+                        message: "已取消移入"
+                    });
+                });
+        },
+        // 删除选中的商品
+        delSelect() {
+            let list = this.select();
+            this.$confirm(`是否删除这${list.length}件产品?`, "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning"
+            })
+                .then(() => {
+                    this.$message({
+                        type: "success",
+                        message: "删除成功!"
+                    });
+                })
+                .catch(() => {
+                    this.$message({
+                        type: "info",
+                        message: "已取消删除"
+                    });
+                });
+        },
+        // 获取选中的商品
+        select() {
+            let list = [];
+            for (let item of this.DataList.List) {
+                for (let key of item.ProductList) {
+                    if (key["checked"] == true) {
+                        list.push(key);
+                    }
+                }
+            }
+            return list;
+        },
+        // 单个产品是否选中
+        CheckedChange(index, dex) {
+            let list = this.DataList.List[index].ProductList;
+            let flag = true;
+            let flags = true;
+            if (!list[dex]["checked"]) {
+                this.DataList.List[index]["checked"] = false;
+                this.checkAll = false;
+            } else {
+                // 一个商家下面的所有产品是的都选中
+                for (let item of list) {
+                    if (item["checked"] == false) {
+                        flag = false;
+                        break;
+                    }
+                }
+                flag
+                    ? (this.DataList.List[index]["checked"] = true)
+                    : (this.DataList.List[index]["checked"] = false);
+                // 所有商家是否都选中
+                for (let key of this.DataList.List) {
+                    if (key["checked"] == false) {
+                        flags = false;
+                        break;
+                    }
+                }
+                flags ? (this.checkAll = true) : (this.checkAll = false);
+            }
+        },
+        // 一个商家下面的所有产品全选
+        handleCheckedChange(index) {
+            let list = this.DataList.List;
+            let ProductList = list[index].ProductList;
+            let flag = true;
+            if (!list[index]["checked"]) {
+                this.checkAll = false;
+                for (let item of ProductList) {
+                    item["checked"] = false;
+                }
+            } else {
+                for (let item of ProductList) {
+                    item["checked"] = true;
+                }
+                for (let item of list) {
+                    if (item["checked"] == false) {
+                        flag = false;
+                        break;
+                    }
+                }
+                flag ? (this.checkAll = true) : (this.checkAll = false);
+            }
+        },
+        // 所有商品的全选
+        handleCheckAllChange(val) {
+            if (val) {
+                for (let item of this.DataList.List) {
+                    item["checked"] = true;
+                    for (let key of item.ProductList) {
+                        key["checked"] = true;
+                    }
+                }
+            } else {
+                for (let item of this.DataList.List) {
+                    item["checked"] = false;
+                    for (let key of item.ProductList) {
+                        key["checked"] = false;
+                    }
+                }
+            }
+        },
+        handleChange(Count) {
+            console.log(Count);
+        },
+        // 跳转到登陆页
+        jumpLogin() {
+            this.$router.push("/Login");
+        },
+        // 删除单个产品信息
+        del(dex) {
+            console.log(dex);
+            this.$confirm("是否删除?", "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning"
+            }).then(() => {
+                this.$message({
+                    type: "success",
+                    message: "删除成功!"
+                });
+            });
+        },
+        // 促销信息显示
+        show(index, dex) {
+            console.log(1);
+            this.isHide = index;
+            this.isShow = dex;
+        },
+        // 促销信息隐藏
+        hide() {
+            this.isHide = "state";
+            this.isShow = "state";
         }
     }
 };
 </script>
 
 <style lang="less" scoped>
-.shopping-cart-main {
-    margin-top: 30px;
-    .login-btn {
-        margin-left: 15px;
-    }
-    .shopping-info-title {
-        margin: 10px 0;
-        padding: 10px 0;
-        background-color: #f3f4f3;
-        border: 1px solid #eee;
-        border-top: 2px solid #0066d4;
-        box-sizing: border-box;
-        .el-col {
-            text-align: center;
-            color: #666;
-            border-right: 1px solid #ddd;
-            &:first-child {
-                padding-left: 15px;
-                text-align: left;
-            }
-            &:last-child {
-                border: none;
-            }
-        }
-    }
-    .shopping-info-list {
-        border: 1px solid #eee;
-        text-align: center;
-        li {
-            border-top: 1px solid #eee;
-            padding: 10px 0;
-            line-height: 80px;
-            &:first-child {
-                padding: 10px 0 10px 15px;
-                text-align: left;
-                border: none;
-                line-height: 20px;
-            }
-            .el-col {
-                &:first-child {
-                    padding-left: 15px;
-                    text-align: left;
-                }
-                .el-input-number {
-                    width: 100%;
-                }
-            }
-
-            .info-img {
-                a {
-                    display: block;
-                    width: 80px;
-                    height: 80px;
-                    padding: 10px;
-                    border: 1px solid #eee;
-                    img {
-                        width: 100%;
-                        height: 100%;
-                    }
-                }
-            }
-
-            .info-discount {
-                line-height: 40px;
-                .unit-price{
-
-                }
-            }
-
-            .info-subtotal {
-                color: #ff0000;
-            }
-
-            .promotion-box{
-                position: relative;
-                .promotion-title{
-                    width: 50%;
-                    height: 20px;
-                    line-height: 18px;
-                    margin: 0 auto;
-                    color: #ff0000;
-                    border: 1px solid #ff0000;
-                    z-index: 100;
-                    cursor: pointer;
-                }
-                .cover{
-                    display: none;
-                    position: absolute;
-                    top: 19px;
-                    left: 32px;
-                    width: 49%;
-                    border-bottom: 1px solid #fff;
-                    z-index: 100;
-                    &.active{
-                        display: block;
-                    }
-                }
-                .promotion-content{
-                    display: none;
-                    position: absolute;
-                    top: 19px;
-                    left: 31px;
-                    width: 220px;
-                    line-height: 18px;
-                    padding: 5px;
-                    border: 1px solid #ff0000;
-                    background-color: #fff;
-                    font-size: 12px;
-                    color: #666;
-                    z-index: 99;
-                    &.active{
-                        display: block;
-                    }
-                }
-            }
-        }
-    }
-}
+@import "../../styles/ShoppingCartMain.less";
 </style>
