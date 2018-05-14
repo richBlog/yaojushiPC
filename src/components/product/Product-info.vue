@@ -39,7 +39,7 @@
             <!-- 产品信息优惠活动 -->
             <p class="info-words-discount">
                 {{productList.discount}}
-                <router-link :to="productList.discountUrl">{{productList.discountUrlName}}</router-link>
+                <a :href="'#'+productList.discountUrl">{{productList.discountUrlName}}</a>
             </p>
             <!-- 产品信息优惠价格活动 -->
             <div class="info-words-price">
@@ -145,110 +145,32 @@ export default {
             specTab: 0,
             active: 0,
             storageDist: 0,
-            imgList: [
-                {
-                    img: require("../../assets/image/cpmin1.jpg"),
-                    imgSmall: require("../../assets/image/cp1.jpg"),
-                    imgBig: require("../../assets/image/cpmax1.jpg")
-                },
-                {
-                    img: require("../../assets/image/cpmin2.jpg"),
-                    imgSmall: require("../../assets/image/cp2.jpg"),
-                    imgBig: require("../../assets/image/cpmax2.jpg")
-                },
-                {
-                    img: require("../../assets/image/cpmin3.jpg"),
-                    imgSmall: require("../../assets/image/cp3.jpg"),
-                    imgBig: require("../../assets/image/cpmax3.jpg")
-                },
-                {
-                    img: require("../../assets/image/cpmin4.jpg"),
-                    imgSmall: require("../../assets/image/cp4.jpg"),
-                    imgBig: require("../../assets/image/cpmax4.jpg")
-                },
-                {
-                    img: require("../../assets/image/cpmin5.jpg"),
-                    imgSmall: require("../../assets/image/cp5.jpg"),
-                    imgBig: require("../../assets/image/cpmax5.jpg")
-                },
-                {
-                    img: require("../../assets/image/cpmin4.jpg"),
-                    imgSmall: require("../../assets/image/cp4.jpg"),
-                    imgBig: require("../../assets/image/cpmax4.jpg")
-                },
-                {
-                    img: require("../../assets/image/cpmin5.jpg"),
-                    imgSmall: require("../../assets/image/cp5.jpg"),
-                    imgBig: require("../../assets/image/cpmax5.jpg")
-                }
-            ],
-            productList: {
-                coding: "6021",
-                name: "达芙文 阿达帕林凝胶 0.1%:30g",
-                rx: require("../../assets/image/rx.png"),
-                discount:
-                    "【月中钜惠】低至50元，满3盒送价值27元眼贴+棉签+湿巾，数量有限哦！ 全场低至11.11元，美",
-                discountUrlName: " 颜就趁现在啦！抢>>",
-                discountUrl: "/",
-                originalPrice: 57,
-                concessionalRate: 0,
-                exchangeFor:
-                    "满10.00元加15.90元，即可获得价值39.90元的 爱及恩牌天然维生素E咀嚼片20g(1g*20片) 1件；加5.90元，即可获得价值15.00元的白云山 蛇油护手霜 80g/瓶 1件",
-                fullSubtraction:
-                    "满3件+0.01元，即可获得：仙琚 棉签 1包1件+舒瞳 双金眼贴 2贴1件+优选通用清洁湿巾160mm*180mm*10片1件",
-                trivialName: "阿达帕林凌胶",
-                approvalNumber: "注册证号H20160022",
-                manufacturing: "Lzboratoires  GALDERMA",
-                spec: [
-                    {
-                        url: "#",
-                        info: "0.1%:30g"
-                    },
-                    {
-                        url: "#",
-                        info: "10支起 | 50元/支"
-                    },
-                    {
-                        url: "#",
-                        info: "20支起 | 70元/支"
-                    },
-                    {
-                        url: "#",
-                        info: "30支起 | 80元/支"
-                    },
-                    {
-                        url: "#",
-                        info: "40支起 | 82元/支"
-                    }
-                ],
-                prompt:
-                    "本品为处方药，您成功预订后，展示药品的药店会根据处方审核结果主动与您联系。（如需协助请拨打"
-            },
             num1: 1,
             tel: "",
-            promiseList: [
-                {
-                    name: "正品保证",
-                    img: require("../../assets/image/zheng1.png")
-                },
-                {
-                    name: "专业药师",
-                    img: require("../../assets/image/zheng2.png")
-                },
-                {
-                    name: "79元包邮",
-                    img: require("../../assets/image/zheng3.png")
-                },
-                {
-                    name: "隐私包装",
-                    img: require("../../assets/image/zheng4.png")
-                }
-            ],
-            isImg: false
+            isImg: false,
+            imgList:[],
+            productList:{},
+            promiseList:[]
         };
     },
+    created() {
+         this.$ajax({
+            url: "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/productInfo",
+            methods: "get"
+        })
+            .then(response => {
+                if (response.status == 200) {
+                    this.imgList = response.data.data.imgList;
+                    this.productList = response.data.data.productList;
+                    this.promiseList = response.data.data.promiseList;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    },
     mounted() {
-        window.onload = () => {
+        this.$nextTick(() => {
             let lay = this.$refs.lay;
             let img = this.$refs.img;
             let w = img.offsetWidth;
@@ -256,7 +178,7 @@ export default {
             let scale = 4;
             lay.style.width = w / scale + "px";
             lay.style.height = h / scale + "px";
-        };
+        });
     },
     methods: {
         // 规格切换

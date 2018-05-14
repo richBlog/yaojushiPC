@@ -51,7 +51,7 @@ export default {
             const bound = el.getBoundingClientRect();
             const clientHeight = window.innerHeight;
             //如果只考虑向下滚动加载
-            //const clientWidth=window.innerWeight;
+            //const clientWidth = window.innerWeight;
             return bound.top <= clientHeight + 100;
         },
         checkImgs() {
@@ -59,12 +59,12 @@ export default {
             let _this = this;
             let index = 0;
             const imgs = document.querySelectorAll(".my-photo");
-            for (let i = index; i < imgs.length; i++) {
-                if (_this.isInSight(imgs[i])) {
-                    _this.loadImg(imgs[i]);
-                    index = i;
+            Array.from(imgs).forEach(el => {
+                console.log(el)
+                if (this.isInSight(el)) {
+                    this.loadImg(el);
                 }
-            }
+            });
         },
         loadImg(el) {
             if (!el.src) {

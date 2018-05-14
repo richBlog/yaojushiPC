@@ -37,6 +37,9 @@ import {
 } from 'element-ui'
 import App from './App'
 import router from './router'
+import axios from 'axios'
+import store from 'vuexs/index'
+
 
 
 Vue.use(Container)
@@ -75,7 +78,7 @@ Vue.prototype.$alert = MessageBox.alert;
 Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$prompt = MessageBox.prompt;
 Vue.prototype.$message = Message;
-
+Vue.prototype.$ajax = axios;
 
 Vue.config.productionTip = false
 
@@ -83,6 +86,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: {
     App
   },

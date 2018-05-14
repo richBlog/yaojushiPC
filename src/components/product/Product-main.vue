@@ -5,11 +5,11 @@
 
         <!-- 面包屑导航开始 -->
         <div class="product-crumbs container">
-            <router-link to="/" tag="div" class="product-crumbs-advert"><img :src="productList.ggImage" alt="img"></router-link>
+            <router-link to="/" tag="div" class="product-crumbs-advert"><img :src="ggImage" alt="img"></router-link>
             <p class="product-prompt">药品监管部门提示：如发现本网站有任何直接或变相销售处方药行为，请保留证据，拨打12331举报，举报查实给予奖励。</p>
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                <el-breadcrumb-item v-for="item in productList.crumbs" :to="item.url" :key="item.id">{{item.name}}</el-breadcrumb-item>
+                <el-breadcrumb-item v-for="item in crumbs" :to="item.url" :key="item.id">{{item.name}}</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <!-- 面包屑导航结束 -->
@@ -19,7 +19,7 @@
         <!-- 产品购买信息结束 -->
 
         <!-- 商品组合推荐开始 -->
-        <combinationView/>
+        <combinationView :groutList="groutList"/>
         <!-- 商品组合推荐结束 -->
 
         <!-- 产品介绍开始 -->
@@ -34,7 +34,6 @@ import productInfoView from "./Product-info";
 import combinationView from "./Product-combination";
 import productDetailsView from "./Product-details";
 export default {
-    name: "productMain",
     components: {
         classifiedNavView,
         productInfoView,
@@ -43,32 +42,26 @@ export default {
     },
     data() {
         return {
-            productList: {
-                ggImage: require("../../assets/image/gg1.png"),
-                crumbs: [
-                    {
-                        name: "中西药品 ",
-                        url: "#"
-                    },
-                    {
-                        name: "皮肤科 ",
-                        url: "#"
-                    },
-                    {
-                        name: "痤疮（青春痘） ",
-                        url: "#"
-                    },
-                    {
-                        name: " 阿达帕林凝胶 ",
-                        url: "#"
-                    },
-                    {
-                        name: " 达芙文 阿达帕林凝胶 ",
-                        url: "#"
-                    }
-                ]
-            }
+            ggImage: "",
+            crumbs: [],
+            groutList:[]
         };
+    },
+    created() {
+        this.$ajax({
+            url: "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/product",
+            methods: "get"
+        })
+            .then(response => {
+                if (response.status == 200) {
+                    this.ggImage = response.data.data.ggImage;
+                    this.crumbs = response.data.data.crumbs;
+                    this.groutList = response.data.data.groutList;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 };
 </script>

@@ -24,54 +24,8 @@
 <script>
 export default {
     name: "hotView",
-    data() {
-        return {
-            // 秒杀产品的信息
-            seckillProduct: [
-                {
-                    name: "强爱 创口贴 超弹防水型 10贴", // 秒杀产品的名字
-                    url: "product/1", // 秒杀产品链接地址和参数
-                    oldPrice: 9.9, // 秒杀产品的之前的价格
-                    newPrice: 1, // 秒杀产品的现价
-                    discount: 1.0, // 秒杀产品的折扣
-                    imgUrl: require("../../assets/image/ms1.jpg") // 秒杀产品的图片地址
-                },
-                {
-                    name:
-                        "WINNER稳健医疗 医用护理口罩 灭菌级挂耳型 17cm×9cm-3P 1只",
-                    url: "#",
-                    oldPrice: 9.9,
-                    newPrice: 1,
-                    discount: 1.0,
-                    imgUrl: require("../../assets/image/ms2.jpg")
-                },
-                {
-                    name: "恩惠 医用棉签 12cm*50支",
-                    url: "#",
-                    oldPrice: 9.9,
-                    newPrice: 1,
-                    discount: 1.0,
-                    imgUrl: require("../../assets/image/ms3.jpg")
-                },
-                {
-                    name: "约斯夫 医用酒精消毒棉片 10片",
-                    url: "#",
-                    oldPrice: 9.9,
-                    newPrice: 1,
-                    discount: 1.0,
-                    imgUrl: require("../../assets/image/ms5.jpg")
-                },
-                {
-                    name: "珍视明 护眼贴 2贴/袋",
-                    url: "#",
-                    oldPrice: 9.9,
-                    newPrice: 1,
-                    discount: 1.0,
-                    imgUrl: require("../../assets/image/ms6.jpg")
-                }
-            ]
-        };
-    }
+    props:["seckillProduct"]
+
 };
 </script>
 <style lang="less">

@@ -40,73 +40,24 @@
 export default {
     data() {
         return {
-            classifyList: [
-                {
-                    name: "黑头粉刺",
-                    url: "#"
-                },
-                {
-                    name: "色斑",
-                    url: "#"
-                },
-                {
-                    name: "臃肿",
-                    url: "#"
-                },
-                {
-                    name: "丘疹",
-                    url: "#"
-                },
-                {
-                    name: "白头粉刺",
-                    url: "#"
-                },
-                {
-                    name: "脓包",
-                    url: "#"
-                },
-                {
-                    name: "疼痛",
-                    url: "#"
-                },
-                {
-                    name: "触痛",
-                    url: "#"
-                }
-            ],
-            groomList: [
-                {
-                    name: "复方玄驹胶囊(施强)",
-                    price: 69.8,
-                    img: require("../../assets/image/tj1.jpg"),
-                    url: "#"
-                },
-                {
-                    name: "复方玄驹胶囊(施强)",
-                    price: 69.8,
-                    img: require("../../assets/image/tj1.jpg"),
-                    url: "#"
-                },
-                {
-                    name: "复方玄驹胶囊(施强)",
-                    price: 69.8,
-                    img: require("../../assets/image/tj1.jpg"),
-                    url: "#"
-                },
-                {
-                    name: "复方玄驹胶囊(施强)",
-                    price: 69.8,
-                    img: require("../../assets/image/tj1.jpg"),
-                    url: "#"
-                },
-                {
-                    name: "复方玄驹胶囊(施强)",
-                    price: 69.8,
-                    img: require("../../assets/image/tj1.jpg"),
-                    url: "#"
-                }
-            ]
+            classifyList: [],
+            groomList: []
         };
+    },
+    created () {
+        this.$ajax({
+            url: "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/productGroom",
+            methods: "get"
+        })
+            .then(response => {
+                if (response.status == 200) {
+                    this.classifyList = response.data.data.classifyList;
+                    this.groomList = response.data.data.groomList;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 };
 </script>

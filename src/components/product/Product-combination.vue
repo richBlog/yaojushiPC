@@ -42,53 +42,10 @@
 </template>
 <script>
 export default {
+    props:["groutList"],
     data() {
         return {
             activeName: "0",
-            groutList: [
-                {
-                    name: "修复痤疮",
-                    list: [
-                        {
-                            img: require("../../assets/image/group2.png"),
-                            name: "达芙文 阿达帕林淩胶0.1%...",
-                            price: 53.0,
-                            url: "/"
-                        },
-                        {
-                            img: require("../../assets/image/group1.png"),
-                            name: "（Ovita）奥维塔胶原贴敷料 五片装",
-                            price: 255.0,
-                            url: "/"
-                        }
-                    ],
-                    comment:
-                        "奥薇塔是常用医用级面膜，主要成分活性胶原蛋白，易于吸收，对细胞有很强的修复能力，还可以改善皮脂分泌，减轻炎症，帮助消除痤疮痘痘，联合使用效果更佳。",
-                    suitPrice: 669.0,
-                    originalPrice: 1248.0
-                },
-                {
-                    name: "美白祛疤",
-                    list: [
-                        {
-                            img: require("../../assets/image/group1.png"),
-                            name: "达芙文 阿达帕林淩胶0.1%...",
-                            price: 53.0,
-                            url: "/"
-                        },
-                        {
-                            img: require("../../assets/image/group1.png"),
-                            name: "（Ovita）奥维塔胶原贴敷料 五片装",
-                            price: 255.0,
-                            url: "/"
-                        }
-                    ],
-                    comment:
-                        "奥薇塔是常用医用级面膜，主要成分活性胶原蛋白，易于吸收，对细胞有很强的修复能力，还可以改善皮脂分泌，减轻炎症，帮助消除痤疮痘痘，联合使用效果更佳。",
-                    suitPrice: 669.0,
-                    originalPrice: 1148.0
-                }
-            ]
         };
     },
     methods: {

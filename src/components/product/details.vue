@@ -69,73 +69,9 @@
 </template>
 <script>
 export default {
+    props: ["interlocutionList", "tabList", "present"],
     data() {
         return {
-            present:
-                "该商品为外用处方药，具有批准文号H20160022，符合国家食品药品局对药品的注册要求。",
-            tabList: {
-                CommodityName: "达芙文 阿达帕林凝胶",
-                Specifications: '0.1%:30g"',
-                ManufacturingEnterprise: "Laboratoires GALDERMA",
-                GeneralName: "阿达帕林凝胶",
-                TermOfValidity: "36个月",
-                DosageForm: "凝胶剂",
-                ApprovalNumber: "注册证号H20160022",
-                Indication: "本品适用于以粉刺、丘疹和脓疱为主要表...",
-                Usage: "详见说明书",
-                AdverseReaction:
-                    "可能出现的主要不良反应为皮肤剌激性，减少用...",
-                imgList: [
-                    require("../../assets/image/tw1.jpg"),
-                    require("../../assets/image/tw2.jpg"),
-                    require("../../assets/image/tw3.jpg"),
-                    require("../../assets/image/tw4.jpg"),
-                    require("../../assets/image/tw5.jpg"),
-                    require("../../assets/image/tw6.jpg")
-                ]
-            },
-            interlocutionList: [
-                {
-                    problem: "高中长过水痘后有黑色的痘印，怎么办好",
-                    userName: "k12*****",
-                    time: "2017/11/11",
-                    answer:
-                        "你好，本品适用于粉刺、丘疹和脓包为主要表现的寻常型痤疮的皮肤治疗。建议您可以使用喜辽复痘印舒缓凝胶，具有淡化黑印，修复痘印的效果",
-                    answerTime: "2017/11/11"
-                },
-                {
-                    problem: "高中长过水痘后有黑色的痘印，怎么办好",
-                    userName: "k12*****",
-                    time: "2017/11/11",
-                    answer:
-                        "你好，本品适用于粉刺、丘疹和脓包为主要表现的寻常型痤疮的皮肤治疗。建议您可以使用喜辽复痘印舒缓凝胶，具有淡化黑印，修复痘印的效果",
-                    answerTime: "2017/11/11"
-                },
-                {
-                    problem: "高中长过水痘后有黑色的痘印，怎么办好",
-                    userName: "k12*****",
-                    time: "2017/11/11",
-                    answer:
-                        "你好，本品适用于粉刺、丘疹和脓包为主要表现的寻常型痤疮的皮肤治疗。建议您可以使用喜辽复痘印舒缓凝胶，具有淡化黑印，修复痘印的效果",
-                    answerTime: "2017/11/11"
-                },
-                {
-                    problem: "高中长过水痘后有黑色的痘印，怎么办好",
-                    userName: "k12*****",
-                    time: "2017/11/11",
-                    answer:
-                        "你好，本品适用于粉刺、丘疹和脓包为主要表现的寻常型痤疮的皮肤治疗。建议您可以使用喜辽复痘印舒缓凝胶，具有淡化黑印，修复痘印的效果",
-                    answerTime: "2017/11/11"
-                },
-                {
-                    problem: "高中长过水痘后有黑色的痘印，怎么办好",
-                    userName: "k12*****",
-                    time: "2017/11/11",
-                    answer:
-                        "你好，本品适用于粉刺、丘疹和脓包为主要表现的寻常型痤疮的皮肤治疗。建议您可以使用喜辽复痘印舒缓凝胶，具有淡化黑印，修复痘印的效果",
-                    answerTime: "2017/11/11"
-                }
-            ],
             form: {
                 desc: "",
                 checked: true,

@@ -109,94 +109,23 @@ export default {
             isHide: "state",
             isShow: "state",
             checkAll: true,
-            DataList: {
-                TotalPrice: "356.90",
-                Concession: "55.00",
-                List: [
-                    {
-                        Seller: "药居士自营",
-                        checked: true,
-                        ProductList: [
-                            {
-                                checked: true,
-                                Url: 1,
-                                Img: require("../../assets/image/loading.png"),
-                                Name: "养方堂  红枣黑糖姜茶（固体饮料）",
-                                Count: 1,
-                                Discount: "15.90",
-                                Subtotal: "12.00",
-                                SalesPromotion:
-                                    "【5/9-5/13把肾透支的补回来】2盒一疗程！单盒下单立减10，两盒下单优惠30，三盒下单优惠50！五盒原价下单减60，再送原品一盒！治疗阳痿早泄搭配<固本回元口服液>效果好!"
-                            },
-                            {
-                                checked: true,
-                                Url: 1,
-                                Img: require("../../assets/image/loading.png"),
-                                Name: "养方堂  红枣黑糖姜茶（固体饮料）",
-                                Count: 1,
-                                Discount: "15.90",
-                                Subtotal: "12.00",
-                                SalesPromotion:
-                                    "【5/9-5/13把肾透支的补回来】2盒一疗程！单盒下单立减10，两盒下单优惠30，三盒下单优惠50！五盒原价下单减60，再送原品一盒！治疗阳痿早泄搭配<固本回元口服液>效果好!"
-                            },
-                            {
-                                checked: true,
-                                Url: 1,
-                                Img: require("../../assets/image/loading.png"),
-                                Name: "养方堂  红枣黑糖姜茶（固体饮料）",
-                                Count: 1,
-                                Discount: "15.90",
-                                Subtotal: "12.00",
-                                SalesPromotion:
-                                    "【5/9-5/13把肾透支的补回来】2盒一疗程！单盒下单立减10，两盒下单优惠30，三盒下单优惠50！五盒原价下单减60，再送原品一盒！治疗阳痿早泄搭配<固本回元口服液>效果好!"
-                            }
-                        ]
-                    },
-                    {
-                        Seller: "药居士自营",
-                        checked: true,
-                        ProductList: [
-                            {
-                                checked: true,
-                                Url: 1,
-                                Img: require("../../assets/image/loading.png"),
-                                Name: "养方堂  红枣黑糖姜茶（固体饮料）",
-                                Count: 1,
-                                Discount: "15.90",
-                                Subtotal: "12.00",
-                                SalesPromotion:
-                                    "【5/9-5/13把肾透支的补回来】2盒一疗程！单盒下单立减10，两盒下单优惠30，三盒下单优惠50！五盒原价下单减60，再送原品一盒！治疗阳痿早泄搭配<固本回元口服液>效果好!"
-                            },
-                            {
-                                checked: true,
-                                Url: 1,
-                                Img: require("../../assets/image/loading.png"),
-                                Name: "养方堂  红枣黑糖姜茶（固体饮料）",
-                                Count: 1,
-                                Discount: "15.90",
-                                Subtotal: "12.00",
-                                SalesPromotion:
-                                    "【5/9-5/13把肾透支的补回来】2盒一疗程！单盒下单立减10，两盒下单优惠30，三盒下单优惠50！五盒原价下单减60，再送原品一盒！治疗阳痿早泄搭配<固本回元口服液>效果好!"
-                            },
-                            {
-                                checked: true,
-                                Url: 1,
-                                Img: require("../../assets/image/loading.png"),
-                                Name: "养方堂  红枣黑糖姜茶（固体饮料）",
-                                Count: 1,
-                                Discount: "15.90",
-                                Subtotal: "12.00",
-                                SalesPromotion:
-                                    "【5/9-5/13把肾透支的补回来】2盒一疗程！单盒下单立减10，两盒下单优惠30，三盒下单优惠50！五盒原价下单减60，再送原品一盒！治疗阳痿早泄搭配<固本回元口服液>效果好!"
-                            }
-                        ]
-                    }
-                ]
-            }
+            DataList: {}
         };
     },
     created() {
-        this.dataState = 1;
+        
+        this.$ajax({
+            url: 'https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/shoppingCart',
+            method: 'get'
+        }).then(response=>{
+            if(response.status==200){
+                this.DataList = response.data.data;
+                console.log(this.DataList);
+                this.dataState = 1;
+            }
+        }).catch(error=>{
+            console.log(error);
+        })
     },
     methods: {
         // 选中的商品移入到收藏夹
