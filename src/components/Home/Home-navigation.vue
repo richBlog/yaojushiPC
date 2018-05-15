@@ -24,7 +24,7 @@
                 <i class="iconfont icon-ren"></i>
                 <span slot="title">我的账户</span>
             </el-menu-item>
-            <el-menu-item index="3">
+            <el-menu-item index="3" @click="goShoppingCart">
                 <i class="el-icon-goods"></i>
                 <span slot="title">我的购物车</span>
             </el-menu-item>
@@ -73,8 +73,13 @@ export default {
         handleClose(key, keyPath) {
             console.log(key, keyPath);
         },
+        // 回到顶部
         top() {
             cm.top(); // 调用公共回到顶部函数
+        },
+        // 跳转购物车
+        goShoppingCart() {
+            this.$router.push("/shoppingCart");
         }
     }
 };

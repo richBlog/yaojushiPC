@@ -30,6 +30,11 @@ export default new Router({
       name: 'ShoppingCart',
       component: path.ShoppingCart
     },
+    {
+      path: '/OrderConfirm',
+      name: 'OrderConfirm',
+      component: path.OrderConfirm
+    },
   ],
   // 路由跳转时候滚动到顶部
   scrollBehavior(to, from, savedPosition) {

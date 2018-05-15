@@ -35,12 +35,12 @@
             </el-row>
             <ul class="shopping-info-list" v-for="(item,index) in dataList.List" :key="item.id">
                 <li>
-                    <el-checkbox v-model="item.checked" @change="handleCheckedChange(index)">{{item.Seller}}</el-checkbox>
+                    <el-checkbox v-model="item.Checked" @change="handleCheckedChange(index)">{{item.Seller}}</el-checkbox>
                 </li>
                 <li v-for="(i,dex) in item.ProductList" :key="i.id">
                     <el-row class="">
                         <el-col :span="2">
-                            <el-checkbox v-model="i.checked" @change="CheckedChange(index,dex)"></el-checkbox>
+                            <el-checkbox v-model="i.Checked" @change="CheckedChange(index,dex)"></el-checkbox>
                         </el-col>
                         <el-col :span="2" class="info-img">
                             <router-link :to="'/product/'+i.Url" target='_blank'><img v-lazy="i.Img" alt="img"></router-link>
@@ -83,7 +83,9 @@
                     </p>
                 </el-col>
                 <el-col :span="3">
-                    <el-button type="danger">去结算</el-button>
+                    <router-link to="/OrderConfirm">
+                        <el-button type="danger">去结算</el-button>
+                    </router-link>
                 </el-col>
             </el-row>
         </div>
@@ -113,18 +115,20 @@ export default {
         };
     },
     created() {
-        
         this.$ajax({
-            url: 'https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/shoppingCart',
-            method: 'get'
-        }).then(response=>{
-            if(response.status==200){
-                this.dataList = response.data.data;
-                this.dataState = 1;
-            }
-        }).catch(error=>{
-            console.log(error);
+            url:
+                "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/shoppingCart",
+            method: "get"
         })
+            .then(response => {
+                if (response.status == 200) {
+                    this.dataList = response.data.data;
+                    this.dataState = 1;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
     },
     methods: {
         // 选中的商品移入到收藏夹
@@ -176,9 +180,9 @@ export default {
         // 获取选中的商品
         select() {
             let list = [];
-            for (let item of this.DataList.List) {
+            for (let item of this.dataList.List) {
                 for (let key of item.ProductList) {
-                    if (key["checked"] == true) {
+                    if (key["Checked"] == true) {
                         list.push(key);
                     }
                 }
@@ -187,26 +191,26 @@ export default {
         },
         // 单个产品是否选中
         CheckedChange(index, dex) {
-            let list = this.DataList.List[index].ProductList;
+            let list = this.dataList.List[index].ProductList;
             let flag = true;
             let flags = true;
-            if (!list[dex]["checked"]) {
-                this.DataList.List[index]["checked"] = false;
+            if (!list[dex]["Checked"]) {
+                this.dataList.List[index]["Checked"] = false;
                 this.checkAll = false;
             } else {
                 // 一个商家下面的所有产品是的都选中
                 for (let item of list) {
-                    if (item["checked"] == false) {
+                    if (item["Checked"] == false) {
                         flag = false;
                         break;
                     }
                 }
                 flag
-                    ? (this.DataList.List[index]["checked"] = true)
-                    : (this.DataList.List[index]["checked"] = false);
+                    ? (this.dataList.List[index]["Checked"] = true)
+                    : (this.dataList.List[index]["Checked"] = false);
                 // 所有商家是否都选中
-                for (let key of this.DataList.List) {
-                    if (key["checked"] == false) {
+                for (let key of this.dataList.List) {
+                    if (key["Checked"] == false) {
                         flags = false;
                         break;
                     }
@@ -216,20 +220,20 @@ export default {
         },
         // 一个商家下面的所有产品全选
         handleCheckedChange(index) {
-            let list = this.DataList.List;
+            let list = this.dataList.List;
             let ProductList = list[index].ProductList;
             let flag = true;
-            if (!list[index]["checked"]) {
+            if (!list[index]["Checked"]) {
                 this.checkAll = false;
                 for (let item of ProductList) {
-                    item["checked"] = false;
+                    item["Checked"] = false;
                 }
             } else {
                 for (let item of ProductList) {
-                    item["checked"] = true;
+                    item["Checked"] = true;
                 }
                 for (let item of list) {
-                    if (item["checked"] == false) {
+                    if (item["Checked"] == false) {
                         flag = false;
                         break;
                     }
@@ -240,17 +244,17 @@ export default {
         // 所有商品的全选
         handleCheckAllChange(val) {
             if (val) {
-                for (let item of this.DataList.List) {
-                    item["checked"] = true;
+                for (let item of this.dataList.List) {
+                    item["Checked"] = true;
                     for (let key of item.ProductList) {
-                        key["checked"] = true;
+                        key["Checked"] = true;
                     }
                 }
             } else {
-                for (let item of this.DataList.List) {
-                    item["checked"] = false;
+                for (let item of this.dataList.List) {
+                    item["Checked"] = false;
                     for (let key of item.ProductList) {
-                        key["checked"] = false;
+                        key["Checked"] = false;
                     }
                 }
             }

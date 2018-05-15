@@ -185,60 +185,6 @@ export default {
             .catch(error => {
                 console.log(error);
             });
-    },
-    mounted() {
-        // window.onload = () => {
-        // let _this = this;
-        // this.$nextTick(this.checkImgs)
-        // this.checkImgs();
-        // window.addEventListener("scroll", this.throttle(this.scrollList));
-        // };
-    },
-    // beforeDestroy() {
-    //     window.removeEventListener("scroll", this.scrollList, false);
-    // },
-    methods: {
-        //   电梯滚动监控
-        scrollMonitor() {
-            let t =
-                document.documentElement.scrollTop || document.body.scrollTop; //获取距离页面顶部的距离
-            // t1-t7获取对应的楼层到顶部的距离
-            let t1 = document.querySelector("#t1").offsetTop - 1;
-            let t2 = document.querySelector("#t2").offsetTop - 1;
-            let t3 = document.querySelector("#t3").offsetTop - 1;
-            let t4 = document.querySelector("#t4").offsetTop - 1;
-            let t5 = document.querySelector("#t5").offsetTop - 1;
-            let t6 = document.querySelector("#t6").offsetTop - 1;
-            let t7 = t6 + 654;
-            //判断显示和隐藏的距离
-            if (t > 1000 && t < t7) {
-                this.isShow = true;
-            } else {
-                this.isShow = false;
-            }
-            // 根据楼层距离让对应的楼层亮起背景色
-            if (t >= t1 && t < t2) {
-                cm.removeClass(".life-item", "active");
-                document.querySelector(".t1").classList.add("active");
-            } else if (t >= t2 && t < t3) {
-                cm.removeClass(".life-item", "active");
-                document.querySelector(".t2").classList.add("active");
-            } else if (t >= t3 && t < t4) {
-                cm.removeClass(".life-item", "active");
-                document.querySelector(".t3").classList.add("active");
-            } else if (t >= t4 && t < t5) {
-                cm.removeClass(".life-item", "active");
-                document.querySelector(".t4").classList.add("active");
-            } else if (t >= t5 && t < t6) {
-                cm.removeClass(".life-item", "active");
-                document.querySelector(".t5").classList.add("active");
-            } else if (t >= t6 && t < t7) {
-                cm.removeClass(".life-item", "active");
-                document.querySelector(".t6").classList.add("active");
-            } else {
-                cm.removeClass(".life-item", "active");
-            }
-        }
     }
 };
 </script>
