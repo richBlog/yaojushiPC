@@ -49,15 +49,18 @@ export default {
         })
             .then(response => {
                 if (response.status == 200) {
-                    this.imgList = response.data.data.imgList;
-                    this.instructions = response.data.data.instructions;
-                    this.discussList = response.data.data.discussList;
-                    this.interlocutionList = response.data.data.interlocutionList;
-                    this.tabList = response.data.data.tabList;
-                    this.present = response.data.data.present;
-                    this.progressList = response.data.data.progressList;
-                    this.contentList = response.data.data.contentList;
-                    this.progressType = response.data.data.progressType;
+
+                    const data = response.data.data;
+
+                    this.imgList = data.imgList;
+                    this.instructions = data.instructions;
+                    this.discussList = data.discussList;
+                    this.interlocutionList = data.interlocutionList;
+                    this.tabList = data.tabList;
+                    this.present = data.present;
+                    this.progressList = data.progressList;
+                    this.contentList = data.contentList;
+                    this.progressType = data.progressType;
                 }
             })
             .catch(error => {

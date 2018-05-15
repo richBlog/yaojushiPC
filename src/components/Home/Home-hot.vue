@@ -4,7 +4,7 @@
             <li class="produce-item" v-for="item in seckillProduct" :key="item.id">
                 <div class="produce-img">
                     <router-link :to="item.url" class="produce-url">
-                        <img class="my-photo" :alt="item.name" :data-src="item.imgUrl">
+                        <img :alt="item.name" v-lazy="item.imgUrl">
                     </router-link>
                     <span class="produce-discount" v-text="item.discount+'折'"></span>
                 </div>

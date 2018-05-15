@@ -4,7 +4,7 @@
         <div class="layout-footer-brank">
             <ul class="container brank-box">
                 <li v-for="item in brankImg" :key="item.id" class="brank-box-item">
-                    <div class="brank-item-img"><img :src="item.img" alt="img" :data-src="item.img"></div>
+                    <div class="brank-item-img"><img v-lazy="item.img" alt="img" :data-src="item.img"></div>
                     <div class="brank-item-content">
                         <p v-text="item.name"></p>
                         <h5 v-text="item.explain"></h5>
@@ -18,11 +18,11 @@
                 <div class="wx">
                     <div>
                         <span>手机购药</span>
-                        <img :src="wxImg" alt="手机">
+                        <img v-lazy="wxImg" alt="手机">
                     </div>
                     <div>
                         <span>微信购药</span>
-                        <img :src="wxImg" alt="微信">
+                        <img v-lazy="wxImg" alt="微信">
                     </div>
                 </div>
                 <div class="wx-sm">

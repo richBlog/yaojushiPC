@@ -26,7 +26,7 @@
 </template>
 <script>
 export default {
-    props:["discussList"]
+    props: ["discussList"]
 };
 </script>
 <style lang="less" scoped>

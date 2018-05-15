@@ -14,7 +14,7 @@
                 <div class="img-box" ref="imgBox">
                     <ul class="img-list" ref="imgList" style="left:0;">
                         <li class="img-item" @click="isActive(index,$event)" :class="active == index?'active':''" v-for="(item,index) in imgList" :key="item.id">
-                            <img :data-big="item.imgBig" :src="item.img" alt="img" :data-small="item.imgSmall">
+                            <img :data-big="item.imgBig" v-lazy="item.img" alt="img" :data-small="item.imgSmall">
                         </li>
                     </ul>
                 </div>
@@ -66,7 +66,7 @@
             <div class="info-title-big">
                 <p class="info-title-sub">
                     <span class="product-info-title">通用名</span>
-                    <span>{{productList.trivialName}}</span><img :src="productList.rx" alt="img"></p>
+                    <span>{{productList.trivialName}}</span><img v-lazy="productList.rx" alt="img"></p>
                 <p class="info-title-sub">
                     <span class="product-info-title">批准文号</span>
                     <span>{{productList.approvalNumber}}</span>
@@ -120,7 +120,7 @@
         <div class="info-other">
             <div class="info-other-promise">
                 <div class="promise-item" v-for="item in promiseList" :key="item.id">
-                    <img :src="item.img" alt="img">
+                    <img v-lazy="item.img" alt="img">
                     <p>{{item.name}}</p>
                 </div>
             </div>
@@ -160,9 +160,10 @@ export default {
         })
             .then(response => {
                 if (response.status == 200) {
-                    this.imgList = response.data.data.imgList;
-                    this.productList = response.data.data.productList;
-                    this.promiseList = response.data.data.promiseList;
+                    const data = response.data.data;
+                    this.imgList = data.imgList;
+                    this.productList = data.productList;
+                    this.promiseList = data.promiseList;
                 }
             })
             .catch(error => {
@@ -174,10 +175,9 @@ export default {
             let lay = this.$refs.lay;
             let img = this.$refs.img;
             let w = img.offsetWidth;
-            let h = img.offsetHeight;
             let scale = 4;
             lay.style.width = w / scale + "px";
-            lay.style.height = h / scale + "px";
+            lay.style.height = w / scale + "px";
         });
     },
     methods: {

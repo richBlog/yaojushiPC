@@ -5,7 +5,7 @@
 
         <!-- 面包屑导航开始 -->
         <div class="product-crumbs container">
-            <router-link to="/" tag="div" class="product-crumbs-advert"><img :src="ggImage" alt="img"></router-link>
+            <router-link to="/" tag="div" class="product-crumbs-advert"><img v-lazy="ggImage" alt="img"></router-link>
             <p class="product-prompt">药品监管部门提示：如发现本网站有任何直接或变相销售处方药行为，请保留证据，拨打12331举报，举报查实给予奖励。</p>
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -19,7 +19,7 @@
         <!-- 产品购买信息结束 -->
 
         <!-- 商品组合推荐开始 -->
-        <combinationView :groutList="groutList"/>
+        <combinationView :groutList="groutList" />
         <!-- 商品组合推荐结束 -->
 
         <!-- 产品介绍开始 -->
@@ -44,7 +44,7 @@ export default {
         return {
             ggImage: "",
             crumbs: [],
-            groutList:[]
+            groutList: []
         };
     },
     created() {
@@ -54,9 +54,10 @@ export default {
         })
             .then(response => {
                 if (response.status == 200) {
-                    this.ggImage = response.data.data.ggImage;
-                    this.crumbs = response.data.data.crumbs;
-                    this.groutList = response.data.data.groutList;
+                    const data = response.data.data;
+                    this.ggImage = data.ggImage;
+                    this.crumbs = data.crumbs;
+                    this.groutList = data.groutList;
                 }
             })
             .catch(error => {

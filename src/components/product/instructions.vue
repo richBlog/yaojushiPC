@@ -49,13 +49,13 @@
         <p>
             <em>【生产企业】</em>{{instructions.ManufacturingEnterprise}}</p>
         <div>
-            <img :src="item" alt="img" v-for="item in instructions.imgList" :key="item.id">
+            <img v-lazy="item" alt="img" v-for="item in instructions.imgList" :key="item.id">
         </div>
     </div>
 </template>
 <script>
 export default {
-    props:["instructions"]
+    props: ["instructions"]
 };
 </script>
 <style lang="less" scoped>

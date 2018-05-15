@@ -28,7 +28,7 @@
             <!-- 轮播S -->
             <el-carousel :interval="5000" arrow="always" class="banner">
                 <el-carousel-item v-for="item in bannerUrl" :key="item.id">
-                    <router-link to="/"><img class="my-photo" alt="轮播图" :data-src="item"></router-link>
+                    <router-link to="/"><img alt="轮播图" v-lazy="item"></router-link>
                 </el-carousel-item>
             </el-carousel>
             <!-- 轮播E -->
@@ -48,7 +48,7 @@
                 <div class="banner-menu-info">监管信息发布</div>
                 <div class="banner-menu-advertisement">
                     <router-link to="/">
-                        <img class="my-photo" :data-src="advertisement" alt="广告">
+                        <img v-lazy="advertisement" alt="广告">
                     </router-link>
                 </div>
             </div>
@@ -119,7 +119,7 @@
             <ul class="brand-container container">
                 <li class="brand-item" v-for="item in brand" :key="item.id">
                     <router-link :to="item.url">
-                        <img class="my-photo" alt="品牌" :data-src="item.img">
+                        <img alt="品牌" v-lazy="item.img">
                     </router-link>
                 </li>
             </ul>
@@ -132,6 +132,8 @@ import hotView from "./Home-hot";
 import elevatorView from "./Home-elevator";
 import classifiedNavView from "../public/Classified-nav";
 import cm from "apis/common";
+
+let timer = null;
 
 export default {
     name: "homeMain",
@@ -160,7 +162,7 @@ export default {
             //   热门品牌
             brand: [],
             // 秒杀产品
-            seckillProduct:[]
+            seckillProduct: []
         };
     },
     created() {
@@ -169,20 +171,75 @@ export default {
             method: "get"
         })
             .then(response => {
-                console.log(response);
-                this.longitudinalClassification = response.data.data.longitudinalClassification;
-                this.bannerUrl = response.data.data.bannerUrl;
-                this.authentication = response.data.data.authentication;
-                this.advertisement = response.data.data.advertisement;
-                this.characteristic = response.data.data.characteristic;
-                this.elevator = response.data.data.elevator;
-                this.brand = response.data.data.brand;
-                this.seckillProduct = response.data.data.seckillProduct;
+                const data = response.data.data;
+                this.longitudinalClassification =
+                    data.longitudinalClassification;
+                this.bannerUrl = data.bannerUrl;
+                this.authentication = data.authentication;
+                this.advertisement = data.advertisement;
+                this.characteristic = data.characteristic;
+                this.elevator = data.elevator;
+                this.brand = data.brand;
+                this.seckillProduct = data.seckillProduct;
             })
             .catch(error => {
                 console.log(error);
             });
     },
+    mounted() {
+        // window.onload = () => {
+        // let _this = this;
+        // this.$nextTick(this.checkImgs)
+        // this.checkImgs();
+        // window.addEventListener("scroll", this.throttle(this.scrollList));
+        // };
+    },
+    // beforeDestroy() {
+    //     window.removeEventListener("scroll", this.scrollList, false);
+    // },
+    methods: {
+        //   电梯滚动监控
+        scrollMonitor() {
+            let t =
+                document.documentElement.scrollTop || document.body.scrollTop; //获取距离页面顶部的距离
+            // t1-t7获取对应的楼层到顶部的距离
+            let t1 = document.querySelector("#t1").offsetTop - 1;
+            let t2 = document.querySelector("#t2").offsetTop - 1;
+            let t3 = document.querySelector("#t3").offsetTop - 1;
+            let t4 = document.querySelector("#t4").offsetTop - 1;
+            let t5 = document.querySelector("#t5").offsetTop - 1;
+            let t6 = document.querySelector("#t6").offsetTop - 1;
+            let t7 = t6 + 654;
+            //判断显示和隐藏的距离
+            if (t > 1000 && t < t7) {
+                this.isShow = true;
+            } else {
+                this.isShow = false;
+            }
+            // 根据楼层距离让对应的楼层亮起背景色
+            if (t >= t1 && t < t2) {
+                cm.removeClass(".life-item", "active");
+                document.querySelector(".t1").classList.add("active");
+            } else if (t >= t2 && t < t3) {
+                cm.removeClass(".life-item", "active");
+                document.querySelector(".t2").classList.add("active");
+            } else if (t >= t3 && t < t4) {
+                cm.removeClass(".life-item", "active");
+                document.querySelector(".t3").classList.add("active");
+            } else if (t >= t4 && t < t5) {
+                cm.removeClass(".life-item", "active");
+                document.querySelector(".t4").classList.add("active");
+            } else if (t >= t5 && t < t6) {
+                cm.removeClass(".life-item", "active");
+                document.querySelector(".t5").classList.add("active");
+            } else if (t >= t6 && t < t7) {
+                cm.removeClass(".life-item", "active");
+                document.querySelector(".t6").classList.add("active");
+            } else {
+                cm.removeClass(".life-item", "active");
+            }
+        }
+    }
 };
 </script>
 <style lang="less">

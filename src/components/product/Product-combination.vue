@@ -8,7 +8,7 @@
                             <div class="image-item" v-for="(key,dex) in item.list" :key="key.id">
                                 <div>
                                     <router-link :to="key.url">
-                                        <img :src="key.img" alt="img">
+                                        <img v-lazy="key.img" alt="img">
                                     </router-link>
                                     <p class="image-item-name">{{key.name}}</p>
                                     <p class="image-item-price">
@@ -42,10 +42,10 @@
 </template>
 <script>
 export default {
-    props:["groutList"],
+    props: ["groutList"],
     data() {
         return {
-            activeName: "0",
+            activeName: "0"
         };
     },
     methods: {

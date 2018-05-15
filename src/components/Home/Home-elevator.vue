@@ -3,7 +3,7 @@
         <!-- 广告图 -->
         <div class="elevator-advertisement container">
             <router-link :to="elevator && elevator.advertisementImg.url">
-                <img class="my-photo" alt="图片" :data-src="elevator && elevator.advertisementImg.img">
+                <img  alt="图片" v-lazy="elevator && elevator.advertisementImg.img">
             </router-link>
         </div>
         <!-- 电梯楼层 -->
@@ -21,14 +21,14 @@
                     </li>
                 </ul>
                 <div class="floor-business-logo">
-                    <router-link :to="item.url" v-for="item in elevator && elevator.floorLogo" :key="item.id"><img class="my-photo" alt="logo" :data-src="item.img"></router-link>
+                    <router-link :to="item.url" v-for="item in elevator && elevator.floorLogo" :key="item.id"><img alt="logo" v-lazy="item.img"></router-link>
                 </div>
             </div>
             <!-- 轮播 -->
             <div class="block">
                 <el-carousel width="380px" height="487px">
                     <el-carousel-item v-for="item in elevator && elevator.floorImg" :key="item.id">
-                        <router-link :to='item.url'><img class="my-photo" alt="banner" :data-src="item.img"></router-link>
+                        <router-link :to='item.url'><img alt="banner" v-lazy="item.img"></router-link>
                     </el-carousel-item>
                 </el-carousel>
             </div>
@@ -37,7 +37,7 @@
                 <ul class="floor-four-container">
                     <li class="floor-four-item" v-for="item in elevator && elevator.floorFour" :key="item.id">
                         <router-link :to='item.url'>
-                            <img class="my-photo" alt="img" :data-src="item.img">
+                            <img alt="img" v-lazy="item.img">
                             <p v-text="item.name"></p>
                         </router-link>
                     </li>
@@ -48,7 +48,7 @@
                 <ul class="floor-three-container">
                     <li class="floor-three-item" v-for="item in elevator && elevator.floorThree" :key="item.id">
                         <router-link :to='item.url'>
-                            <img class="my-photo" alt="img" :data-src="item.img">
+                            <img alt="img" v-lazy="item.img">
                             <p v-text="item.name"></p>
                         </router-link>
                     </li>

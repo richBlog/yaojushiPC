@@ -38,6 +38,7 @@ import {
 import App from './App'
 import router from './router'
 import axios from 'axios'
+import VueLazyload  from 'vue-lazyload'
 import store from 'vuexs/index'
 
 
@@ -72,6 +73,10 @@ Vue.use(Steps)
 Vue.use(Step)
 Vue.use(Row)
 Vue.use(Col)
+Vue.use(VueLazyload)
+
+
+
 
 Vue.prototype.$msgbox = MessageBox;
 Vue.prototype.$alert = MessageBox.alert;

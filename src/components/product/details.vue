@@ -20,7 +20,7 @@
             <span>图文详情</span>
         </p>
         <div class="datails-img-box">
-            <img :src="item" alt="img" v-for="item in tabList.imgList" :key="item.id">
+            <img v-lazy="item" alt="img" v-for="item in tabList.imgList" :key="item.id">
         </div>
         <div class="questionAndAnswer">
             <P class="questionAndAnswer-title">

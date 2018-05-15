@@ -42,7 +42,7 @@
 </template>
 <script>
 export default {
-    props:["progressList","contentList","progressType"],
+    props: ["progressList", "contentList", "progressType"],
     data() {
         return {
             radio: "1"

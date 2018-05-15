@@ -1,10 +1,9 @@
 <template>
     <aside class="layout-navigation">
-        <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+        <el-menu class="el-menu-vertical-demo" background-color="#2d8ef3" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
             <el-submenu index="1">
                 <template slot="title">
                     <i class="el-icon-service"></i>
-                    <span slot="title">导航一</span>
                 </template>
                 <el-menu-item-group>
                     <el-menu-item index="1-1">

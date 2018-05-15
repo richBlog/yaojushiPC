@@ -14,7 +14,7 @@
             <p class="groom-title">买过该商品的人还看过</p>
             <ul class="groom-list">
                 <router-link class="groom-item" :to="item.url" tag="li" v-for="item in groomList" :key="item.id">
-                    <div class="groom-item-img"><img :src="item.img" alt="img"></div>
+                    <div class="groom-item-img"><img v-lazy="item.img" alt="img"></div>
                     <p class="groom-item-name">{{item.name}}</p>
                     <p class="groom-item-price">￥{{item.price}}</p>
                 </router-link>
@@ -27,7 +27,7 @@
             <p class="browse-title">你最近浏览的历史</p>
             <ul class="browse-list">
                 <router-link class="browse-item" :to="item.url" tag="li" v-for="item in groomList" :key="item.id">
-                    <div class="browse-item-img"><img :src="item.img" alt="img"></div>
+                    <div class="browse-item-img"><img v-lazy="item.img" alt="img"></div>
                     <p class="browse-item-name">{{item.name}}</p>
                     <p class="browse-item-price">￥{{item.price}}</p>
                 </router-link>
@@ -44,15 +44,17 @@ export default {
             groomList: []
         };
     },
-    created () {
+    created() {
         this.$ajax({
-            url: "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/productGroom",
+            url:
+                "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/productGroom",
             methods: "get"
         })
             .then(response => {
                 if (response.status == 200) {
-                    this.classifyList = response.data.data.classifyList;
-                    this.groomList = response.data.data.groomList;
+                    const data = response.data.data;
+                    this.classifyList = data.classifyList;
+                    this.groomList = data.groomList;
                 }
             })
             .catch(error => {

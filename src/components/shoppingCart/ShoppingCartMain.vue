@@ -33,7 +33,7 @@
                 <el-col :span="3">小计</el-col>
                 <el-col :span="3">操作</el-col>
             </el-row>
-            <ul class="shopping-info-list" v-for="(item,index) in DataList.List" :key="item.id">
+            <ul class="shopping-info-list" v-for="(item,index) in dataList.List" :key="item.id">
                 <li>
                     <el-checkbox v-model="item.checked" @change="handleCheckedChange(index)">{{item.Seller}}</el-checkbox>
                 </li>
@@ -43,7 +43,7 @@
                             <el-checkbox v-model="i.checked" @change="CheckedChange(index,dex)"></el-checkbox>
                         </el-col>
                         <el-col :span="2" class="info-img">
-                            <router-link :to="'/product/'+i.Url" target='_blank'><img :src="i.Img" alt="img"></router-link>
+                            <router-link :to="'/product/'+i.Url" target='_blank'><img v-lazy="i.Img" alt="img"></router-link>
                         </el-col>
                         <el-col :span="8">{{i.Name}}</el-col>
                         <el-col :span="3">
@@ -75,11 +75,11 @@
                 </el-col>
                 <el-col :span="3" class="computed-price">
                     <p>总价：
-                        <span class="total-price">￥{{DataList.TotalPrice}}</span>
+                        <span class="total-price">￥{{dataList.TotalPrice}}</span>
                     </p>
                     <p>
                         已节省：
-                        <span class="concession">-￥{{DataList.Concession}}</span>
+                        <span class="concession">-￥{{dataList.Concession}}</span>
                     </p>
                 </el-col>
                 <el-col :span="3">
@@ -109,7 +109,7 @@ export default {
             isHide: "state",
             isShow: "state",
             checkAll: true,
-            DataList: {}
+            dataList: {}
         };
     },
     created() {
@@ -119,8 +119,7 @@ export default {
             method: 'get'
         }).then(response=>{
             if(response.status==200){
-                this.DataList = response.data.data;
-                console.log(this.DataList);
+                this.dataList = response.data.data;
                 this.dataState = 1;
             }
         }).catch(error=>{
