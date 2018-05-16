@@ -1,11 +1,16 @@
 <template>
     <div class="order-main container">
         <p class="order-title">填写核对订单信息</p>
+        <OrderAddress/>
     </div>
 </template>
 
 <script>
+    import OrderAddress from './OrderAddress'
     export default {
+        components:{
+            OrderAddress
+        },
         data() {
             return {
             }
@@ -15,7 +20,7 @@
 
 <style lang="less" scoped>
     .order-main{
-        margin-top: 39px;
+        margin: 39px auto;
         border: 1px solid #ddd;
         border-top: 2px solid #0066d4;
         .order-title{

@@ -33,7 +33,8 @@ import {
   Col,
   Step,
   MessageBox,
-  Message
+  Message,
+  Cascader
 } from 'element-ui'
 import App from './App'
 import router from './router'
@@ -73,6 +74,7 @@ Vue.use(Steps)
 Vue.use(Step)
 Vue.use(Row)
 Vue.use(Col)
+Vue.use(Cascader)
 Vue.use(VueLazyload)
 
 
