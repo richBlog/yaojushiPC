@@ -4,7 +4,7 @@
         <div class="info-img" ref="samllBox">
             <!-- 大图开始 -->
             <div class="small-box" @mouseover="show" @mouseout="hide" @mousemove="magnifier">
-                <img ref="img" src="../../assets/image/cp1.jpg" alt="img">
+                <img ref="img" v-lazy="img.imgSmall">
                 <div v-show="isImg" id="lay" ref="lay"></div>
             </div>
             <!-- 大图结束 -->
@@ -14,7 +14,7 @@
                 <div class="img-box" ref="imgBox">
                     <ul class="img-list" ref="imgList" style="left:0;">
                         <li class="img-item" @click="isActive(index,$event)" :class="active == index?'active':''" v-for="(item,index) in imgList" :key="item.id">
-                            <img :data-big="item.imgBig" v-lazy="item.img" alt="img" :data-small="item.imgSmall">
+                            <img :data-big="item.imgBig" v-lazy="item.imgBig" :data-small="item.imgSmall">
                         </li>
                     </ul>
                 </div>
@@ -23,7 +23,7 @@
             <!-- 左右滑动结束 -->
             <!-- 放大的图片开始 -->
             <div class="big-box" v-show="isImg">
-                <img ref="big" src="../../assets/image/cpmax1.jpg" alt="img">
+                <img ref="big" v-lazy="img.imgBig">
             </div>
             <!-- 放大的图片结束 -->
             <p class="commodity-coding">商品编码：{{productList.coding}}</p>
@@ -149,6 +149,7 @@ export default {
             tel: "",
             isImg: false,
             imgList:[],
+            img:{},
             productList:{},
             promiseList:[]
         };
@@ -161,7 +162,10 @@ export default {
             .then(response => {
                 if (response.status == 200) {
                     const data = response.data.data;
+                  
                     this.imgList = data.imgList;
+                    this.img = this.imgList[0];
+                      console.log();
                     this.productList = data.productList;
                     this.promiseList = data.promiseList;
                 }

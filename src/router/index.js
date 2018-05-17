@@ -35,6 +35,11 @@ export default new Router({
       name: 'OrderConfirm',
       component: path.OrderConfirm
     },
+    {
+      path: '/Pay',
+      name: 'Pay',
+      component: path.Pay
+    },
   ],
   // 路由跳转时候滚动到顶部
   scrollBehavior(to, from, savedPosition) {

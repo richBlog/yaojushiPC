@@ -4,6 +4,7 @@ import Register from 'views/Register'
 import Product from 'views/Product'
 import ShoppingCart from 'views/ShoppingCart'
 import OrderConfirm from 'views/OrderConfirm'
+import Pay from 'views/Pay'
 
 
 export default {
@@ -12,5 +13,6 @@ export default {
     Register,
     Product,
     ShoppingCart,
-    OrderConfirm
+    OrderConfirm,
+    Pay
 }

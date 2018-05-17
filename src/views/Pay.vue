@@ -2,7 +2,7 @@
 
     <div class="shopping-cart-box">
         <CarHeaderView :state="state" />
-        <OrderMainView/>
+        <PayMainView/>
         <FooterView/>
     </div>
 
@@ -10,18 +10,18 @@
 
 <script>
 import CarHeaderView from "components/shoppingCart/ShoppingCartHeader";
-import OrderMainView from "components/shoppingCart/OrderMain";
+import PayMainView from "components/shoppingCart/PayMain";
 import FooterView from 'components/public/Footer'
 
 export default {
     components: {
         CarHeaderView,
-        OrderMainView,
+        PayMainView,
         FooterView
     },
     data() {
         return {
-            state: 1,
+            state: 2,
         };
     }
 };
