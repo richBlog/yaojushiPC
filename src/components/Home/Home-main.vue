@@ -2,29 +2,7 @@
     <section class="layout-main">
         <classifiedNavView/>
         <div class="container flex layout-main-banner">
-            <!-- 纵向分类S -->
-            <div class="banner-classification">
-                <ul class="banner-sub">
-                    <li class="banner-item" v-for="item in longitudinalClassification" :key="item.id">
-                        <i></i>
-                        <router-link to="/" v-text="item.name"></router-link>
-                        <span>&gt;</span>
-                        <!-- 二级分类S -->
-                        <div class="second-level-container">
-                            <ul class="second-level-sub" v-for="i in item.secondLevel" :key="i.id">
-                                <li class="second-level-item">
-                                    <router-link to="/" v-text="i.name"></router-link>
-                                </li>
-                                <li class="second-level-item" v-for="items in i.Submenu" :key="items.id">
-                                    <router-link to="/" v-text="items.name"></router-link>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- 二级分类E -->
-                    </li>
-                </ul>
-            </div>
-            <!-- 纵向分类E -->
+            <classifyView :active='false'/>
             <!-- 轮播S -->
             <el-carousel :interval="5000" arrow="always" class="banner">
                 <el-carousel-item v-for="item in bannerUrl" :key="item.id">
@@ -131,6 +109,7 @@
 import hotView from "./Home-hot";
 import elevatorView from "./Home-elevator";
 import classifiedNavView from "../public/Classified-nav";
+import classifyView from "../public/Classify"
 import cm from "apis/common";
 
 let timer = null;
@@ -140,15 +119,11 @@ export default {
     components: {
         hotView,
         elevatorView,
-        classifiedNavView
+        classifiedNavView,
+        classifyView
     },
     data() {
         return {
-            // 纵向分类字段 后期会后台会提供接口获取
-            longitudinalClassification: [],
-            // 二级分类模拟数据
-            secondLevel1: [],
-            secondLevel2: [],
             // 轮播图片地址 后期后台返回数据
             bannerUrl: [],
             // 轮播右边认证
@@ -172,8 +147,6 @@ export default {
         })
             .then(response => {
                 const data = response.data.data;
-                this.longitudinalClassification =
-                    data.longitudinalClassification;
                 this.bannerUrl = data.bannerUrl;
                 this.authentication = data.authentication;
                 this.advertisement = data.advertisement;

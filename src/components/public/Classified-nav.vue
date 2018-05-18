@@ -3,6 +3,7 @@
         <div class="nav-classification">
             <i></i>
             <span>全部分类</span>
+            <classifyView v-if="active"/>
         </div>
         <ul class="nav-sub">
             <li class="nav-item" v-for="item in LateralClassification" :key="item.id">
@@ -12,8 +13,12 @@
     </div>
 </template>
 <script>
+import classifyView from "./Classify";
 export default {
-    name: "classifiedNav",
+    props:["active"],
+    components:{
+        classifyView
+    },
     data() {
         return {
             // 横向分类字段 后期会后台会提供接口获取
@@ -50,6 +55,12 @@ export default {
             width: 15px;
             height: 17px;
             background: url(../../assets/image/fenlei.png) no-repeat -12px -343px;
+        }
+        .banner-classification{
+            display: none;
+        }
+        &:hover .banner-classification{
+            display: block;
         }
     }
     // 横向分类S

@@ -40,6 +40,11 @@ export default new Router({
       name: 'Pay',
       component: path.Pay
     },
+    {
+      path: '/Search',
+      name: 'Search',
+      component: path.Search
+    },
   ],
   // 路由跳转时候滚动到顶部
   scrollBehavior(to, from, savedPosition) {

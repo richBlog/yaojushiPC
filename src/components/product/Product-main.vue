@@ -1,7 +1,7 @@
 <template>
     <el-main>
 
-        <classifiedNavView/>
+        <classifiedView :active="true"/>
 
         <!-- 面包屑导航开始 -->
         <div class="product-crumbs container">
@@ -29,13 +29,13 @@
     </el-main>
 </template>
 <script>
-import classifiedNavView from "../public/Classified-nav";
+import classifiedView from "../public/Classified-nav";
 import productInfoView from "./Product-info";
 import combinationView from "./Product-combination";
 import productDetailsView from "./Product-details";
 export default {
     components: {
-        classifiedNavView,
+        classifiedView,
         productInfoView,
         combinationView,
         productDetailsView
@@ -68,7 +68,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .product-crumbs {
-    padding: 0 10px;
+    // padding: 0 10px;
     padding-top: 10px;
     box-sizing: border-box;
     .product-crumbs-advert {
