@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import path from './path'
 
 Vue.use(Router)
 
@@ -8,42 +7,42 @@ export default new Router({
   routes: [{
       path: '/',
       name: 'Home',
-      component: path.Home
+      component: resolve => require(['views/Home'], resolve)
     },
     {
       path: '/Login',
       name: 'Login',
-      component: path.Login
+      component: resolve => require(['views/Login'], resolve)
     },
     {
       path: '/Register',
       name: 'Register',
-      component: path.Register
+      component: resolve => require(['views/Register'], resolve)
     },
     {
       path: '/Product/:id',
       name: 'Product',
-      component: path.Product
+      component: resolve => require(['views/Product'], resolve)
     },
     {
       path: '/ShoppingCart',
       name: 'ShoppingCart',
-      component: path.ShoppingCart
+      component: resolve => require(['views/ShoppingCart'], resolve)
     },
     {
       path: '/OrderConfirm',
       name: 'OrderConfirm',
-      component: path.OrderConfirm
+      component: resolve => require(['views/OrderConfirm'], resolve)
     },
     {
       path: '/Pay',
       name: 'Pay',
-      component: path.Pay
+      component: resolve => require(['views/Pay'], resolve)
     },
     {
       path: '/Search',
       name: 'Search',
-      component: path.Search
+      component: resolve => require(['views/Search'], resolve)
     },
   ],
   // 路由跳转时候滚动到顶部
