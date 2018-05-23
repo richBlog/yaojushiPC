@@ -1,41 +1,194 @@
 .search-main {
   margin-top: 20px;
+  margin-bottom: 50px;
   .search-content {
-    margin-top: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
   }
   .search-left {
     width: 988px;
+    font-size: 12px;
   }
+
+  //   商品筛选面包屑开始
+  .product-screen {
+    width: 100%;
+    margin-bottom: 15px;
+    .product-screen-title {
+      font-weight: bold;
+    }
+    .product-screen-item {
+      border: 1px solid #dadada;
+      padding: 5px 8px;
+      margin-right: 10px;
+      font-size: 12px;
+      color: #333;
+      cursor: pointer;
+      .product-screen-content {
+        color: #ff0000;
+      }
+    }
+  }
+  //   商品筛选面包屑结束
+
   //   产品筛选功能开始
   .screen-box {
     border: 1px solid #ddd;
     .screen-type {
       display: flex;
+      border-bottom: 1px solid #dadada;
+      background-color: #eee;
+      &:last-child {
+        border: 0;
+      }
     }
     .screen-name {
       width: 10%;
-      padding: 6px 0;
+      padding: 10px 0;
       text-align: center;
       background-color: #f3f3f3;
     }
-    .screen-content {
-      width: 70%;
-      padding: 6px 10px;
+    // 不是多选时候的状态展示开始
+    .screen-not-selection {
       display: flex;
-      flex-wrap: wrap;
-      background-color: #fff;
-      .sreen-item{
-          margin-right: 10px;
+      width: 90%;
+      .screen-content {
+        width: 86%;
+        height: 36px;
+        padding: 0 10px;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #fff;
+        overflow: hidden;
+        &.active {
+          height: auto;
+        }
+        .sreen-item {
+          padding: 10px 0;
+          margin-right: 15px;
+          color: #2d8ef3;
+          &:hover {
+            color: #ff0000;
+            text-decoration: underline;
+          }
+        }
+      }
+      .screen-more,
+      .screen-checkbox {
+        width: 7%;
+        padding: 10px 0;
+        text-align: center;
+        background-color: #fff;
+        cursor: pointer;
+        i {
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          margin-left: 5px;
+          background: url("../assets/image/sprites.png") no-repeat -43px -126px;
+          vertical-align: middle;
+          &.active {
+            background-position-x: -62px;
+          }
+        }
+      }
+
+      .screen-checkbox {
+        background-color: #eee;
+        i {
+          width: 14px;
+          height: 14px;
+          background-position: -81px -122px;
+          margin-right: 5px;
+        }
       }
     }
-    .screen-more,
-    .screen-checkbox {
-      width: 10%;
-      padding: 6px 0;
-      text-align: center;
+    // 不是多选时候的状态展示结束
+
+    // 多选时候的状态展示开始
+
+    .screen-selection {
+      width: 90%;
       background-color: #fff;
-      cursor: pointer;
+      .screen-content {
+        padding: 0 20px;
+        .el-checkbox {
+          padding: 6px 0;
+        }
+      }
+      .select-btn {
+        padding: 8px 0;
+        text-align: center;
+      }
     }
+    // 多选时候的状态展示结束
   }
   //   产品筛选功能结束
+
+  //   产品按条件排序开始
+  .sort-box {
+    position: relative;
+    margin-top: 20px;
+    .price-range {
+      position: absolute;
+      display: flex;
+      top: -41px;
+      left: 400px;
+      line-height: 39px;
+      padding: 0 10px;
+      box-sizing: border-box;
+      
+      z-index: 1000;
+      &:hover {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-bottom: 0;
+        box-shadow: 3px 3px 3px #888888;
+        .range-btn {
+          display: block;
+        }
+      }
+      .range-btn {
+        display: none;
+        position: absolute;
+        top: 39px;
+        left: -1px;
+        width: 101.5%;
+        padding: 0 10px;
+        border: 1px solid #ddd;
+        border-top: 0;
+        background-color: #fff;
+        text-align: center;
+        box-shadow: 3px 3px 3px #888888;
+      }
+    }
+
+    .priduct-amount{
+        display: flex;
+        position: absolute;
+        top: -39px;
+        right: 30px;
+        line-height: 40px;
+        .amount-box{
+            margin-right: 20px;
+            .amount{
+                color: #ff0000;
+            }
+        }
+        .paging-box{
+            .current-page{
+                color: #ff0000;
+            }
+            i{
+                cursor: pointer;
+                &:hover{
+                    color: #ff0000;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+  }
+
+  //   产品按条件排序结束
 }
