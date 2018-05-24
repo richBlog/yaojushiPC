@@ -34,7 +34,8 @@ import {
   Step,
   MessageBox,
   Message,
-  Cascader
+  Cascader,
+  CheckboxGroup
 } from 'element-ui'
 import App from './App'
 import router from './router'
@@ -75,6 +76,7 @@ Vue.use(Step)
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Cascader)
+Vue.use(CheckboxGroup)
 Vue.use(VueLazyload)
 
 

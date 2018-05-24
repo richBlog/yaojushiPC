@@ -1,9 +1,35 @@
 .search-main {
   margin-top: 20px;
   margin-bottom: 50px;
+
+  .not-product{
+      margin-top: 30px;
+      padding: 120px 0 120px 220px;
+      background-color: #eee;
+      img{
+          width: 150px;
+      }
+      .not-product-title{
+          width: 500px;
+          margin-left: 30px;
+          p{
+              font-size: 12px;
+            &:first-child{
+                padding: 5px 0;
+                font-size: 14px;
+                font-weight: bold;
+            }
+          }
+          
+      }
+  }
+
+
+
+
   .search-content {
-    margin-top: 30px;
-    flex-wrap: wrap;
+    margin-top: 20px;
+    align-items: inherit;
   }
   .search-left {
     width: 988px;
@@ -13,7 +39,8 @@
   //   商品筛选面包屑开始
   .product-screen {
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    margin-top: 30px;
     .product-screen-title {
       font-weight: bold;
     }
@@ -129,6 +156,7 @@
   .sort-box {
     position: relative;
     margin-top: 20px;
+    // 价格范围开始
     .price-range {
       position: absolute;
       display: flex;
@@ -137,7 +165,7 @@
       line-height: 39px;
       padding: 0 10px;
       box-sizing: border-box;
-      
+
       z-index: 1000;
       &:hover {
         background-color: #fff;
@@ -162,33 +190,159 @@
         box-shadow: 3px 3px 3px #888888;
       }
     }
+    // 价格范围结束
 
-    .priduct-amount{
-        display: flex;
-        position: absolute;
-        top: -39px;
-        right: 30px;
-        line-height: 40px;
-        .amount-box{
-            margin-right: 20px;
-            .amount{
-                color: #ff0000;
-            }
+    // 商品总数开始
+    .priduct-amount {
+      display: flex;
+      position: absolute;
+      top: -39px;
+      right: 30px;
+      line-height: 40px;
+      .amount-box {
+        margin-right: 20px;
+        .amount {
+          color: #ff0000;
         }
-        .paging-box{
-            .current-page{
-                color: #ff0000;
+      }
+      .paging-box {
+        .current-page {
+          color: #ff0000;
+        }
+        i {
+          cursor: pointer;
+          &:hover {
+            color: #ff0000;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    // 商品总数结束
+
+    // 处方、非处方、是否有货选项开始
+    .el-checkbox-group {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+    }
+    // 处方、非处方、是否有货选项结束
+  }
+  //   产品按条件排序结束
+
+  // 搜索出来的产品结果开始
+  .search-content-box {
+    margin-top: 20px;
+    text-align: center;
+    .search-product-sub{
+        display: flex;
+        flex-wrap: wrap;
+        .search-product-item{
+            width: 25%;
+            border: 3px solid transparent;
+            &:hover{
+                border-color: #fafafa;
+                .pic{
+                    border-color: #eee;
+                    z-index: 10;
+                }
+                .pic-name{
+                    height: auto;
+                    overflow: inherit;
+                }
             }
-            i{
-                cursor: pointer;
+            .pic{
+                display: block;
+                height: 326px;
+                padding: 20px;
+                border: 1px solid transparent;
+                box-sizing: border-box;
+                overflow: hidden;
+            }
+            .pic-img{
+               margin-bottom: 20px;
+                img{
+                    width: 100%;
+                }
+            }
+            .pic-name{
+                height: 30px;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 &:hover{
                     color: #ff0000;
                     text-decoration: underline;
                 }
             }
+            .pic-box{
+                display: flex;
+                justify-content: space-between;
+                height: 30px;
+                line-height: 30px;
+                .new-pic{
+                    font-size: 20px;
+                    color: #ff0000;
+                }
+                .old-pic{
+                    text-decoration: line-through;
+                    color: #999;
+                }
+            }
         }
     }
   }
+  // 搜索出来的产品结果结束
 
-  //   产品按条件排序结束
+
+//   右边广告推广开始
+.search-right{
+    flex: 1;
+    margin-left: 20px;
+    border: 1px solid #dadada;
+    overflow: hidden;
+    .right-title{
+        padding: 10px 0;
+        text-align: center;
+        background-color: #dadada;
+    }
+    .right-product-item{
+        padding: 10px 0;
+        border-bottom: 1px dashed #dadada; 
+        &:last-child{
+            border-bottom: none;
+        }
+        .right-img{
+            padding: 20px;
+            img{
+                width: 100%;
+            }
+        }
+        .right-name{
+            padding: 0 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .right-box{
+            display: flex;
+            justify-content: space-between;
+            padding: 0 5px;
+            line-height: 26px;
+            span{
+                color: #999;
+                &:first-child{
+                    font-size: 20px;
+                    color: #ff0000;
+                }
+                &:last-child{
+                    text-decoration: line-through;
+                }
+            }
+        }
+
+    }
+}
+
+//   右边广告推广结束
 }

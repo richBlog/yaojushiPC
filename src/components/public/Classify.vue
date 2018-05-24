@@ -37,7 +37,6 @@ export default {
             method: "get"
         })
             .then(response => {
-                console.log(response)
                 this.classifyList = response.data.data;
             })
             .catch(error => {
