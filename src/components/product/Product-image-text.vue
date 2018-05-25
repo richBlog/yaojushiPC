@@ -47,10 +47,10 @@ export default {
             url: "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/productImgText",
             methods: "get"
         })
-            .then(response => {
-                if (response.status == 200) {
+            .then(res => {
+                if (res.status == 200) {
 
-                    const data = response.data.data;
+                    const data = res.data.data;
 
                     this.imgList = data.imgList;
                     this.instructions = data.instructions;

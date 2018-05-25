@@ -159,9 +159,9 @@ export default {
             url: "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/productInfo",
             methods: "get"
         })
-            .then(response => {
-                if (response.status == 200) {
-                    const data = response.data.data;
+            .then(res => {
+                if (res.status == 200) {
+                    const data = res.data.data;
                   
                     this.imgList = data.imgList;
                     this.img = this.imgList[0];

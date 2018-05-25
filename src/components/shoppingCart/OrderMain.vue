@@ -236,8 +236,8 @@ export default {
                 url: url,
                 method: "get"
             })
-                .then(response => {
-                    callback(response);
+                .then(res => {
+                    callback(res);
                 })
                 .catch(error => {
                     console.log(error);

@@ -120,9 +120,9 @@ export default {
                 "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/shoppingCart",
             method: "get"
         })
-            .then(response => {
-                if (response.status == 200) {
-                    this.dataList = response.data.data;
+            .then(res => {
+                if (res.status == 200) {
+                    this.dataList = res.data.data;
                     this.dataState = 1;
                 }
             })

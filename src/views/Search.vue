@@ -11,7 +11,7 @@
             <div class="container flex not-product" v-show="isData===0">
                 <div><img src="../assets/image/loading.png" alt="img"></div>
                 <div class="not-product-title">
-                    <p>抱歉，居士没有找到“jkdnkjasdfghjkahngjk”相关的商品，要不您换个关键字我帮您再找找看</p>
+                    <p>抱歉，居士没有找到“{{keyWord}}”相关的商品，要不您换个关键字我帮您再找找看</p>
                     <p>建议您：</p>
                     <p>1、看看输入的文字是否有误</p>
                     <p>2、调整关键字,如"同仁堂五子衍宗丸"改成"五子衍宗丸"或"五子衍宗"</p>
@@ -21,12 +21,17 @@
             <!-- 没有搜索结果时候的状态结束 -->
 
             <!-- 商品筛选开始 -->
-            <div class="product-screen container" v-show="isData===1">
-                <span class="product-screen-title">商品筛选 &gt;</span>
-                <span class="product-screen-item">品牌：
-                    <span class="product-screen-content">白云山</span> x</span>
-                <span class="product-screen-item">品牌：
-                    <span class="product-screen-content">白云山</span> x</span>
+            <div class=" flex product-screen container" v-show="isData===1">
+                <div class="product-screen-title">全部结果 &gt;</div>
+                <div class="product-screen-sub" v-for="(item, index) in result" :key="index">
+                    <div class="product-screen-item" @click="onClose(item)">
+                        <span>{{item.name}}：</span>
+                        <span class="product-screen-content">{{item.content}}</span>
+                        <span>x</span>
+                    </div>
+                    <b>&gt;</b>
+                </div>
+                <span>"{{keyWord}}"</span>
             </div>
             <!-- 商品筛选结束 -->
 
@@ -42,7 +47,7 @@
                             <!-- 不是多选时候的状态展示开始 -->
                             <div class="screen-not-selection" v-show="isSelect!==index">
                                 <div :class="isOpen===index?'screen-content active':'screen-content'">
-                                    <router-link :to="{path:'search',query:i.url}" class="sreen-item" v-for="(i,d) in item.brandList" :key="d">{{i.name}}</router-link>
+                                    <span @click="onSubmit(i.name,item.name)" class="sreen-item" v-for="(i,d) in item.brandList" :key="d">{{i.name}}</span>
                                 </div>
                                 <div class="screen-more" @click="open(index)">
                                     <span>{{isOpen===index?'收缩':'更多'}}</span>
@@ -60,7 +65,7 @@
                                     <el-checkbox v-model="i.checked" v-for="(i,d) in item.brandList" :key="d">{{i.name}}</el-checkbox>
                                 </div>
                                 <div class="select-btn">
-                                    <el-button size="mini" type="primary" @click="onSubmit">提交</el-button>
+                                    <el-button size="mini" type="primary" @click="onSubmit(item.brandList,item.name)">提交</el-button>
                                     <el-button size="mini" @click="onNot">取消</el-button>
                                 </div>
                             </div>
@@ -107,13 +112,13 @@
                             <!-- 商品总数开始 -->
                             <div class="priduct-amount">
                                 <div class="amount-box">共
-                                    <span class="amount">452</span> 个商品</div>
+                                    <span class="amount">{{dataList.productList.length}}</span> 个商品</div>
                                 <div class="paging-box">
                                     <i class="el-icon-arrow-left"></i>
                                     <span>
                                         <span class="current-page">1</span>
                                         /
-                                        <span>11</span>
+                                        <span>1</span>
                                     </span>
                                     <i class="el-icon-arrow-right"></i>
                                 </div>
@@ -139,7 +144,7 @@
                         <ul class="search-product-sub">
                             <li class="search-product-item" v-for="(item,index) in dataList.productList" :key="index">
                                 <i></i>
-                                <router-link class="pic" to="">
+                                <router-link class="pic" to="product/1">
                                     <div class="pic-img"><img :src="item.img" alt="item.name"></div>
                                     <p class="pic-name" v-html="item.name.replace('避孕套',`<font style='color:red'> 避孕套</font>`)"></p>
                                     <p class="pic-box">
@@ -160,7 +165,7 @@
                     <p class="right-title">搜索该关键词的人还买了</p>
                     <ul class="right-product-sub">
                         <li class="right-product-item" v-for="(item,index) in dataList.extendList" :key="index">
-                            <router-link to="">
+                            <router-link to="product/1">
                                 <div class="right-img"><img :src="item.img" alt="img"></div>
                                 <p class="right-name">{{item.name}}</p>
                                 <p class="right-box">
@@ -198,7 +203,9 @@ export default {
             isData: "static",
             isOpen: "static",
             isSelect: "static",
+            result: [],
             input: "",
+            keyWord: "",
             dataList: {}
         };
     },
@@ -208,15 +215,24 @@ export default {
         }
     },
     created() {
+        // 截取关键词
+        this.keyWord = this.$route.query.keyword;
+        let fil = this.$route.query.filed;
+        if (fil) {
+            fil = JSON.parse(fil);
+            this.result = fil;
+            console.log(fil);
+        }
+
+        // 获取搜索结果数据
         this.$ajax({
             url:
                 "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/searchData",
             method: "get"
         })
-            .then(response => {
-                console.log(response);
-                if (response.status === 200) {
-                    this.dataList = response.data.data;
+            .then(res => {
+                if (res.status === 200) {
+                    this.dataList = res.data.data;
                     if (this.dataList.productList.length > 0) {
                         this.isData = 1;
                     } else {
@@ -245,8 +261,71 @@ export default {
         onNot() {
             this.isSelect = "static";
         },
-        // 确定多选
-        onSubmit() {}
+        // 确定多选和单独点击某个类型中的选项
+        onSubmit(list, name) {
+            let arr = "";
+            let data = {};
+            let isExist = true;
+            let query = this.$route.query.filed;
+
+            if (typeof list === Object) {
+                list.forEach((item, index) => {
+                    if (item.checked) {
+                        arr += item.name + ",";
+                    }
+                });
+                arr = arr.substring(0, arr.length - 1);
+            } else {
+                arr = list;
+            }
+
+            if (query) {
+                query = JSON.parse(query);
+                for (let item of query) {
+                    if (item.name === name) {
+                        if (typeof list === Object) {
+                            item.content += "," + arr;
+                        } else {
+                            item.content = arr;
+                        }
+                        isExist = false;
+                    }
+                }
+            } else {
+                query = [];
+            }
+
+            if (isExist) {
+                data = {
+                    name: name,
+                    content: arr
+                };
+                query.push(data);
+            }
+
+            query = JSON.stringify(query);
+            this.$router.push({
+                path: "search",
+                query: { keyword: this.keyWord, filed: query }
+            });
+        },
+        // 关闭二次筛选的搜索条件
+        onClose(key) {
+            let query = JSON.parse(this.$route.query.filed);
+
+            query.forEach((item, index) => {
+                if (item.name === key.name) {
+                    query.splice(index, 1);
+                }
+            });
+
+            query = JSON.stringify(query);
+
+            this.$router.push({
+                path: "search",
+                query: { keyword: this.keyWord, filed: query }
+            });
+        }
     }
 };
 </script>

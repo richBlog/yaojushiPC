@@ -57,8 +57,8 @@ export default {
                     "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/search",
                 method: "get"
             })
-                .then(response => {
-                    let data = response.data.data;
+                .then(res => {
+                    let data = res.data.data;
                     if (data.length > 0) {
                         this.active = false;
                         this.keyword = data;

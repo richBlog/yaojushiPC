@@ -89,8 +89,8 @@ export default {
         this.$ajax({
             url: 'https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/footer',
             method: 'get'
-        }).then(response=>{
-            let data = response.data.data;
+        }).then(res=>{
+            let data = res.data.data;
             this.brankImg = data.brankImg;
             this.wxImg = data.wxImg;
             this.wxHlep = data.wxHlep;
