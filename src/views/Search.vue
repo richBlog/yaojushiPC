@@ -305,7 +305,7 @@ export default {
 
             query = JSON.stringify(query);
             this.$router.push({
-                path: "search",
+                path: "/search",
                 query: { keyword: this.keyWord, filed: query }
             });
         },
@@ -322,7 +322,7 @@ export default {
             query = JSON.stringify(query);
 
             this.$router.push({
-                path: "search",
+                path: "/search",
                 query: { keyword: this.keyWord, filed: query }
             });
         }

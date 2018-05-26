@@ -45,6 +45,11 @@ export default new Router({
       name: 'Search',
       component: resolve => require(['views/Search'], resolve)
     },
+    {
+      path: '/AllClassify',
+      name: 'AllClassify',
+      component: resolve => require(['views/AllClassify'], resolve)
+    },
   ],
   // 路由跳转时候滚动到顶部
   scrollBehavior(to, from, savedPosition) {

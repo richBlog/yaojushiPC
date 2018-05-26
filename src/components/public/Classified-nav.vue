@@ -2,7 +2,7 @@
     <div class="container flex layout-main-nav">
         <div class="nav-classification">
             <i></i>
-            <span>全部分类</span>
+            <router-link to="/AllClassify">全部分类</router-link>
             <classifyView v-if="active"/>
         </div>
         <ul class="nav-sub">
@@ -37,6 +37,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .layout-main-nav {
+    margin-top: 20px;
     line-height: 36px;
     font-size: 16px;
     text-align: center;
@@ -44,7 +45,7 @@ export default {
         min-width: 180px; // 不知道为啥少3PX 所以强制最小180px
         height: 36px;
         background-color: #0066d4;
-        span {
+        a {
             color: #fff;
         }
         i {
