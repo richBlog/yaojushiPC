@@ -26,10 +26,7 @@ export default {
     components: {
         NavView
     },
-    props: ["state"],
-    data() {
-        return {};
-    }
+    props: ["state"]
 };
 </script>
 

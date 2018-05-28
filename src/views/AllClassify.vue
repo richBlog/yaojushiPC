@@ -7,7 +7,7 @@
 
             <!-- 一级分类开始 -->
             <div class="flex first-classify">
-                <router-link :class="item.isKeyWord" :to="item.url" v-for="(item,index) in classifyList.firstList" :key="index">{{item.name}}</router-link>
+                <router-link target="_blank" :class="item.isKeyWord" :to="{path:item.url,query:{name:item.name}}" v-for="(item,index) in classifyList.firstList" :key="index">{{item.name}}</router-link>
             </div>
             <!-- 一级分类结束 -->
 
@@ -17,10 +17,10 @@
                     <p>{{item.name}}</p>
                     <div class="second-main" v-for="(key,dex) in item.classify" :key="dex">
                         <div class="classify-title">
-                            <router-link :to="key.url">{{key.name}}</router-link>
+                            <router-link target="_blank" :to="key.url">{{key.name}}</router-link>
                         </div>
                         <div class="classify-content">
-                            <router-link :to="i.url" v-for="(i,k) in key.content" :key="k">{{i.name}}</router-link>
+                            <router-link target="_blank" :to="i.url" v-for="(i,k) in key.content" :key="k">{{i.name}}</router-link>
                         </div>
                     </div>
                 </div>
@@ -49,8 +49,7 @@ export default {
     },
     created() {
         this.$ajax({
-            url:
-                "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/allClassify",
+            url: this.$pathUrl.getAllClassify,
             method: "get"
         })
             .then(res => {

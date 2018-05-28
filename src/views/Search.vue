@@ -145,7 +145,7 @@
                             <li class="search-product-item" v-for="(item,index) in dataList.productList" :key="index">
                                 <i></i>
                                 <router-link class="pic" to="product/1">
-                                    <div class="pic-img"><img :src="item.img" alt="item.name"></div>
+                                    <div class="pic-img"><img v-lazy="item.img" alt="item.name"></div>
                                     <p class="pic-name" v-html="item.name.replace('避孕套',`<font style='color:red'> 避孕套</font>`)"></p>
                                     <p class="pic-box">
                                         <span class="new-pic">￥{{item.newPrice}}</span>
@@ -160,23 +160,7 @@
                 </div>
 
                 <!-- 右侧产品推广开始 -->
-
-                <div class="search-right">
-                    <p class="right-title">搜索该关键词的人还买了</p>
-                    <ul class="right-product-sub">
-                        <li class="right-product-item" v-for="(item,index) in dataList.extendList" :key="index">
-                            <router-link to="product/1">
-                                <div class="right-img"><img :src="item.img" alt="img"></div>
-                                <p class="right-name">{{item.name}}</p>
-                                <p class="right-box">
-                                    <span>￥{{item.newPrice}}</span>
-                                    <span>￥{{item.oldPrice}}</span>
-                                </p>
-                            </router-link>
-                        </li>
-                    </ul>
-                </div>
-
+                <advertView :extendList="dataList.extendList" :title="'搜索该关键词的人还买了'"/>
                 <!-- 右侧产品推广结束 -->
             </div>
 
@@ -189,13 +173,15 @@
 <script>
 import headerView from "components/public/Header";
 import classifiedView from "components/public/Classified-nav";
+import advertView from "components/public/Advert";
 import footerView from "components/public/Footer";
 
 export default {
     components: {
         headerView,
         classifiedView,
-        footerView
+        footerView,
+        advertView
     },
     data() {
         return {
@@ -226,8 +212,7 @@ export default {
 
         // 获取搜索结果数据
         this.$ajax({
-            url:
-                "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/searchData",
+            url: this.$pathUrl.getSearchData,
             method: "get"
         })
             .then(res => {

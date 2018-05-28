@@ -49,7 +49,7 @@ export default {
     },
     created() {
         this.$ajax({
-            url: "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/product",
+            url: this.$pathUrl.getProduct,
             methods: "get"
         })
             .then(res => {

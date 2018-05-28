@@ -156,16 +156,14 @@ export default {
     },
     created() {
          this.$ajax({
-            url: "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/productInfo",
+            url: this.$pathUrl.getProductInfo,
             methods: "get"
         })
             .then(res => {
                 if (res.status == 200) {
                     const data = res.data.data;
-                  
                     this.imgList = data.imgList;
                     this.img = this.imgList[0];
-                      console.log();
                     this.productList = data.productList;
                     this.promiseList = data.promiseList;
                 }

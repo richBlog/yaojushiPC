@@ -220,14 +220,8 @@ export default {
     },
     created() {
         this.status = 1;
-        this.getAjax(
-            "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/addressDefult",
-            this.getAddress
-        );
-        this.getAjax(
-            "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/bill",
-            this.getBill
-        );
+        this.getAjax(this.$pathUrl.getAddressDefult, this.getAddress);
+        this.getAjax(this.$pathUrl.getBill, this.getBill);
     },
     methods: {
         // 发送ajax

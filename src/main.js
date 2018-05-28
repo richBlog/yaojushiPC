@@ -42,6 +42,7 @@ import router from './router'
 import axios from 'axios'
 import VueLazyload  from 'vue-lazyload'
 import store from 'vuexs/index'
+import baseUrl from 'apis/axios.url.js'
 
 
 
@@ -88,6 +89,7 @@ Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$prompt = MessageBox.prompt;
 Vue.prototype.$message = Message;
 Vue.prototype.$ajax = axios;
+Vue.prototype.$pathUrl = baseUrl.pathUrl;
 
 Vue.config.productionTip = false
 
