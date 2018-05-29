@@ -31,34 +31,37 @@ export default {
     },
     data() {
         return {
-            isShow: false
+            isShow: false,
+            ticking : false
         };
     },
     mounted() {
-        window.onload = () => {
-            window.addEventListener("scroll", this.scrollMonitor);
-        };
+        window.addEventListener("scroll", this.onScroll);
     },
     beforeDestroy() {
-        window.removeEventListener("scroll", this.scrollMonitor, false);
+        window.removeEventListener("scroll", this.onScroll, false);
     },
     methods: {
+
+        onScroll(){
+            if(!this.ticking){
+                requestAnimationFrame(this.scrollMonitor)
+                this.ticking = true;
+            }
+        },
         //   电梯滚动监控
         scrollMonitor() {
+            console.log('zhixingl ')
             let t =
                 document.documentElement.scrollTop || document.body.scrollTop; //获取距离页面顶部的距离
-            console.log(t);
             // t1-t7获取对应的楼层到顶部的距离
-            let t1 = document.querySelector("#t1").offsetTop;
-            let t2 = document.querySelector("#t2").offsetTop;
-            let t3 = document.querySelector("#t3").offsetTop;
-            let t4 = document.querySelector("#t4").offsetTop;
-            let t5 = document.querySelector("#t5").offsetTop;
-            let t6 = document.querySelector("#t6").offsetTop;
-            let t7 = t6 + 654;
-
-       
-
+            let t1 = document.querySelector("#t1").offsetTop-340;
+            let t2 = document.querySelector("#t2").offsetTop-240;
+            let t3 = document.querySelector("#t3").offsetTop-240;
+            let t4 = document.querySelector("#t4").offsetTop-240;
+            let t5 = document.querySelector("#t5").offsetTop-240;
+            let t6 = document.querySelector("#t6").offsetTop-240;
+            let t7 = t6+500;
 
             //判断显示和隐藏的距离
             if (t > 1000 && t < t7) {
@@ -88,6 +91,8 @@ export default {
             } else {
                 this.isShow = false;
             }
+
+            this.ticking = false;
         }
     }
 };

@@ -22,7 +22,7 @@
                         <p>{{categoryName}}</p>
                         <ul class="jump-sub">
                             <li class="jump-item" v-for="(item,index) in category.categoryList" :key="index">
-                                <router-link target="_blank" :to="item.url">{{item.name}}</router-link>
+                                <router-link target="_blank" :to="{path:item.url,query:{name:item.name}}">{{item.name}}</router-link>
                             </li>
                         </ul>
                     </div>

@@ -8,7 +8,6 @@ const pathUrl = {
     getClassify: baseUrl + "/classify",
     getBill: baseUrl + "/bill",
     getAddressDefult: baseUrl + "/addressDefult",
-    getFooter: baseUrl + "/footer",
     getOrder: baseUrl + "/order",
     getProductGroom: baseUrl + "/productGroom",
     getProductInfo: baseUrl + "/productInfo",
