@@ -55,6 +55,11 @@ export default new Router({
       name: 'Category',
       component: resolve => require(['views/Category'], resolve)
     },
+    {
+      path: '/Personal/:id',
+      name: 'Personal',
+      component: resolve => require(['views/Personal'], resolve)
+    },
   ],
   // 路由跳转时候滚动到顶部
   scrollBehavior(to, from, savedPosition) {

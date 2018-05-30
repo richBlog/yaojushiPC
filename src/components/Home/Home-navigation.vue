@@ -20,7 +20,7 @@
                     </el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
-            <el-menu-item index="2">
+            <el-menu-item index="2" @click="goPersonal">
                 <i class="iconfont icon-ren"></i>
                 <span slot="title">我的账户</span>
             </el-menu-item>
@@ -80,6 +80,10 @@ export default {
         // 跳转购物车
         goShoppingCart() {
             this.$router.push("/shoppingCart");
+        },
+        // 跳转到用户中心
+        goPersonal(){
+             this.$router.push("/Personal/myOrder");
         }
     }
 };
