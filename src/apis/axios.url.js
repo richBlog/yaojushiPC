@@ -14,6 +14,7 @@ const pathUrl = {
     getProduct: baseUrl + "/product",
     getShoppingCart: baseUrl + "/shoppingCart",
     getCategory: baseUrl + "/category",
+    getCollect: baseUrl + "/collect",
 }
 
 module.exports = {

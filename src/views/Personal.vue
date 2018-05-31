@@ -27,6 +27,7 @@
                 <!-- 右侧内容开始 -->
                 <div class="personal-right">
                     <myOrder v-if="id === 'myOrder'" />
+                    <myCollect v-else-if="id === 'myCollect'" />
                 </div>
                 <!-- 右侧内容结束 -->
             </div>
@@ -43,13 +44,15 @@ import headerView from "components/public/Header";
 import classifiedView from "components/public/Classified-nav";
 import footerView from "components/public/Footer";
 import myOrder from "components/presonal/myOrder";
+import myCollect from "components/presonal/myCollect";
 
 export default {
     components: {
         headerView,
         classifiedView,
         footerView,
-        myOrder
+        myOrder,
+        myCollect
     },
     data() {
         return {
@@ -72,7 +75,7 @@ export default {
                         },
                         {
                             name: "我的收藏",
-                            url: "myOrder3"
+                            url: "myCollect"
                         },
                         {
                             name: "我的评论",
@@ -125,6 +128,10 @@ export default {
             ]
         };
     },
+    beforeRouteUpdate(to, from, next) {
+        this.id = to.params.id;
+        next();
+    },
     created() {
         this.id = this.$route.params.id;
     }
@@ -139,7 +146,7 @@ export default {
     padding: 14px 0;
 }
 
-.personal-nav{
+.personal-nav {
     display: flex;
 }
 // 左侧导航菜单开始
@@ -181,7 +188,7 @@ export default {
 }
 // 左侧导航菜单结束
 
-.personal-right{
+.personal-right {
     width: 1000px;
     border: 1px solid #eee;
 }

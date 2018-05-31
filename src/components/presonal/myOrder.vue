@@ -79,6 +79,9 @@ export default {
             ]
         }
     },
+    created(){
+        console.log(110)
+    }
 };
 </script>
 
