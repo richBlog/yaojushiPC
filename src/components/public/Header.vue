@@ -53,8 +53,7 @@ export default {
         // 根据搜索框内容获取对应的搜索信息
         getSearchData() {
             this.$ajax({
-                url:
-                    "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341/search",
+                url: this.$pathUrl.getSearchData,
                 method: "get"
             })
                 .then(res => {
@@ -99,6 +98,7 @@ export default {
 <style lang="less">
 .layout-header {
     width: 100%;
+    padding: 0;
     height: auto !important;
 }
 
