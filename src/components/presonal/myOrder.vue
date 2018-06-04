@@ -19,7 +19,7 @@
                 <el-col :span="4" :class="statice==='交易完成'?'active':''" @click.native="tabOrder('交易完成')">
                     交易完成( {{order.dealEnd}} )
                 </el-col>
-                <el-col :span="4">
+                <el-col :span="4" class="order-static-explain" @click.native="orderExplain">
                     <span>查看订单状态说明</span>
                 </el-col>
             </el-row>
@@ -31,7 +31,7 @@
                 <el-col :span="3">操作</el-col>
             </el-row>
 
-            <div class="home-box" v-if="order.orderList.length ===0">
+            <div class="home-box" v-if="isOrder">
                 暂无订单,去
                 <router-link to="/" class="home">药居士首页</router-link> 看看
             </div>
@@ -58,11 +58,11 @@
                     </el-col>
                     <el-col :span="3">{{item.static}}</el-col>
                     <el-col :span="3" class="operate">
-                        <el-button size="mini" type="danger" v-if="item.static==='作废'">重新购买</el-button>
-                        <el-button size="mini" type="danger" v-else-if="item.static==='进行中'">确认收货</el-button>
-                        <el-button size="mini" type="danger" v-else>申请售后</el-button>
-                        <div>订单详情</div>
-                        <div>取消订单</div>
+                        <el-button @click="shopping" size="mini" type="danger" v-if="item.static==='作废'">重新购买</el-button>
+                        <el-button @click="ensure" size="mini" type="danger" v-else-if="item.static==='进行中'">确认收货</el-button>
+                        <el-button @click="afterSale" size="mini" type="danger" v-else>申请售后</el-button>
+                        <div @click="orderInfo(item.identifier)">订单详情</div>
+                        <div @click="orderNot">取消订单</div>
                     </el-col>
                 </el-row>
             </div>
@@ -76,100 +76,90 @@ export default {
     data() {
         return {
             statice: "所有订单",
-            order: {
-                allOrder: 3,
-                obligation: 0,
-                waitComfig: 1,
-                abateOrder: 1,
-                dealEnd: 1,
-                orderList: [
-                    {
-                        id: "",
-                        name: "药居士",
-                        identifier: "123123112355",
-                        time: "2017/11/02 13:34:48",
-                        money: 37.5,
-                        freight: 15,
-                        static: "作废",
-                        pay: "在线支付",
-                        list: [
-                            {
-                                img:
-                                    "http://p8pi9ribk.bkt.clouddn.com/loading.png",
-                                count: 1,
-                                title:
-                                    "999 感冒颗粒 快速水电费老师的离开家发生了看到了看法999 感冒颗粒 快速水电费老师的离开家发生了看到了看法",
-                                url: "1"
-                            },
-                            {
-                                img:
-                                    "http://p8pi9ribk.bkt.clouddn.com/loading.png",
-                                count: 99,
-                                title:
-                                    "999 感冒颗粒 快速水电费老师的离开家发生了看到了看法",
-                                url: "1"
-                            }
-                        ]
-                    },
-                    {
-                        id: "",
-                        name: "药居士",
-                        identifier: "123123112355",
-                        time: "2017/11/02 13:34:48",
-                        money: 37.5,
-                        freight: 15,
-                        static: "已完成",
-                        pay: "在线支付",
-                        list: [
-                            {
-                                img:
-                                    "http://p8pi9ribk.bkt.clouddn.com/loading.png",
-                                count: 1,
-                                title:
-                                    "999 感冒颗粒 快速水电费老师的离开家发生了看到了看法",
-                                url: "1"
-                            }
-                        ]
-                    },
-                    {
-                        id: "",
-                        name: "药居士",
-                        identifier: "123123112355",
-                        time: "2017/11/02 13:34:48",
-                        money: 37.5,
-                        freight: 15,
-                        static: "进行中",
-                        pay: "在线支付",
-                        list: [
-                            {
-                                img:
-                                    "http://p8pi9ribk.bkt.clouddn.com/loading.png",
-                                count: 1,
-                                title:
-                                    "999 感冒颗粒 快速水电费老师的离开家发生了看到了看法999 感冒颗粒 快速水电费老师的离开家发生了看到了看法",
-                                url: "1"
-                            },
-                            {
-                                img:
-                                    "http://p8pi9ribk.bkt.clouddn.com/loading.png",
-                                count: 99,
-                                title:
-                                    "999 感冒颗粒 快速水电费老师的离开家发生了看到了看法",
-                                url: "1"
-                            }
-                        ]
-                    }
-                ]
-            }
+            isOrder: false,
+            order: {}
         };
     },
     created() {
-        // console.log(110);
+        this.$ajax({
+            url: this.$pathUrl.getMyOrder,
+            methods: "get"
+        })
+            .then(res => {
+                this.order = res.data.data;
+                if (this.order.orderList.length <= 0) {
+                    this.isOrder = true;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
     },
     methods: {
         // 订单类型切换
         tabOrder(title) {
             this.statice = title;
+        },
+        // 订单详情
+        orderInfo(id) {
+            this.$router.push({
+                name: 'orderDetails',
+                params: {
+                    id: id
+                }
+            })
+        },
+        // 取消订单
+        orderNot() {
+            this.$confirm("是否取消订单?", "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning"
+            })
+                .then(() => {
+                    this.$message({
+                        type: "success",
+                        message: "取消订单成功!"
+                    });
+                })
+                .catch(() => {
+                    this.$message({
+                        type: "info",
+                        message: "已取消操作"
+                    });
+                });
+        },
+        // 重新购买
+        shopping() {
+            alert("重新购买功能正在开发中...");
+        },
+        // 确认收货
+        ensure() {
+            this.$confirm("是否确定收货? 确认后钱将直接到达商户上", "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning"
+            })
+                .then(() => {
+                    this.$message({
+                        type: "success",
+                        message: "确认收货成功!"
+                    });
+                })
+                .catch(() => {
+                    this.$message({
+                        type: "info",
+                        message: "已取消操作"
+                    });
+                });
+        },
+        // 申请售后
+        afterSale() {
+            alert("申请售后功能正在开发中...");
+        },
+        // 跳转到订单说明页面
+        orderExplain() {
+            alert("订单说明页面正在开发中...");
         }
     }
 };
@@ -209,6 +199,9 @@ export default {
             &.active {
                 color: #ff0000;
             }
+        }
+        .order-static-explain {
+            color: #2d8ef3;
         }
     }
 

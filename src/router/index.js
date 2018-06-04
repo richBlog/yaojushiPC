@@ -60,6 +60,11 @@ export default new Router({
       name: 'Personal',
       component: resolve => require(['views/Personal'], resolve)
     },
+    {
+      path: '/orderDetails/:id',
+      name: 'orderDetails',
+      component: resolve => require(['components/presonal/orderDetails'], resolve)
+    },
   ],
   // 路由跳转时候滚动到顶部
   scrollBehavior(to, from, savedPosition) {
