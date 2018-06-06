@@ -132,6 +132,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.presonal-collect{
+    border: 1px solid #eee;
+}
+
+
+
 .collect-title {
     padding: 20px;
     border-bottom: 1px solid #eee;

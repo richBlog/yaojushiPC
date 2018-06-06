@@ -28,6 +28,8 @@
                 <div class="personal-right">
                     <myOrder v-if="id === 'myOrder'" />
                     <myCollect v-else-if="id === 'myCollect'" />
+                    <myIntegral v-else-if="id === 'myIntegral'" />
+                    <myCoupon v-else-if="id === 'myCoupon'" />
                 </div>
                 <!-- 右侧内容结束 -->
             </div>
@@ -45,6 +47,8 @@ import classifiedView from "components/public/Classified-nav";
 import footerView from "components/public/Footer";
 import myOrder from "components/presonal/myOrder";
 import myCollect from "components/presonal/myCollect";
+import myIntegral from "components/presonal/myIntegral";
+import myCoupon from "components/presonal/myCoupon";
 
 export default {
     components: {
@@ -52,7 +56,9 @@ export default {
         classifiedView,
         footerView,
         myOrder,
-        myCollect
+        myCollect,
+        myIntegral,
+        myCoupon
     },
     data() {
         return {
@@ -67,11 +73,11 @@ export default {
                         },
                         {
                             name: "我的积分",
-                            url: "myOrder1"
+                            url: "myIntegral"
                         },
                         {
                             name: "我的优惠券",
-                            url: "myOrder2"
+                            url: "myCoupon"
                         },
                         {
                             name: "我的收藏",
@@ -190,6 +196,5 @@ export default {
 
 .personal-right {
     width: 1000px;
-    border: 1px solid #eee;
 }
 </style>

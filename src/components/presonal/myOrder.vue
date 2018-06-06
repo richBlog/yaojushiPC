@@ -168,7 +168,7 @@ export default {
 <style lang="less" scoped>
 .presonal-order {
     padding: 20px;
-
+    border: 1px solid #eee;
     .home-box {
         padding: 80px 0;
         margin-top: 12px;

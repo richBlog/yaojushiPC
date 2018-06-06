@@ -35,7 +35,9 @@ import {
   MessageBox,
   Message,
   Cascader,
-  CheckboxGroup
+  CheckboxGroup,
+  Option,
+  Select
 } from 'element-ui'
 import App from './App'
 import router from './router'
@@ -79,6 +81,8 @@ Vue.use(Col)
 Vue.use(Cascader)
 Vue.use(CheckboxGroup)
 Vue.use(VueLazyload)
+Vue.use(Select)
+Vue.use(Option)
 
 
 
