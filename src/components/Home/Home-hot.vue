@@ -10,7 +10,7 @@
                 </div>
                 <p class="produce-name" v-text="item.name"></p>
                 <div class="produce-price">
-                    <span v-text="'￥'+item.newPrice"></span>
+                    <span>￥{{item.newPrice | money}}</span>
                     <span v-text="item.oldPrice"></span>
                 </div>
             </li>
@@ -22,10 +22,15 @@
     </div>
 </template>
 <script>
+import filterMoney from 'apis/filter.js'
 export default {
     name: "hotView",
-    props:["seckillProduct"]
-
+    props: ["seckillProduct"],
+    filters: {
+        money(value) {
+            return filterMoney.moneyFilter(value);
+        }
+    }
 };
 </script>
 <style lang="less">

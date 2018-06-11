@@ -77,10 +77,10 @@
                                 <span class="activity-type">[{{item.type}}]</span>
                                 <router-link :to="'/product/' + item.productId" target="_blank">{{item.name}}</router-link>
                             </el-col>
-                            <el-col :span="4" class="vip-price">￥{{item.price}}</el-col>
+                            <el-col :span="4" class="vip-price">￥{{item.price | money}}</el-col>
                             <el-col :span="4">{{item.count}}</el-col>
-                            <el-col :span="4">￥{{item.discountPrice}}</el-col>
-                            <el-col :span="2">￥{{item.subtotal}}</el-col>
+                            <el-col :span="4">￥{{item.discountPrice | money}}</el-col>
+                            <el-col :span="2">￥{{item.subtotal | money}}</el-col>
                         </el-row>
                     </li>
                     <li class="sum-price">合计：￥{{billList.sum}}</li>
@@ -131,18 +131,18 @@
                 <!-- 价格计算开始 -->
                 <div class="price-computed">
                     <p>
-                        <span>已节省：￥{{billList.TotalDiscount}}</span>
-                        <span>商品总价：￥{{billList.sum}}</span>
+                        <span>已节省：￥{{billList.TotalDiscount | money}}</span>
+                        <span>商品总价：￥{{billList.sum | money}}</span>
                     </p>
                     <p>
-                        运费：￥{{billList.freight}}
+                        运费：￥{{billList.freight | money}}
                     </p>
                     <p>
-                        积分抵扣金额：-￥{{billList.integralDiscount}}
+                        积分抵扣金额：-￥{{billList.integralDiscount | money}}
                     </p>
                     <p>
                         您需要为订单共支付：
-                        <span class="final-price">￥{{billList.finalPrice}}</span>
+                        <span class="final-price">￥{{billList.finalPrice | money}}</span>
                     </p>
                 </div>
 
@@ -161,6 +161,8 @@
 
 <script>
 import { regionData, CodeToText } from "element-china-area-data";
+import filterMoney from "apis/filter.js";
+
 export default {
     data() {
         return {
@@ -217,6 +219,11 @@ export default {
             addressInfo: {},
             billList: {}
         };
+    },
+    filters: {
+        money(value) {
+            return filterMoney.moneyFilter(value);
+        }
     },
     created() {
         this.status = 1;

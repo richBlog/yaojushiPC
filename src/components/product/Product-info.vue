@@ -46,7 +46,7 @@
                 <div class="price-box">
                     <span class="words-title">门店价</span>
                     ￥
-                    <span class="price">{{productList.originalPrice}}.00</span>
+                    <span class="price">{{productList.originalPrice | money}}</span>
                 </div>
                 <div class="info-box">
                     <div class="words-title">活动</div>
@@ -138,6 +138,7 @@
     </div>
 </template>
 <script>
+import filterMoney from 'apis/filter.js'
 export default {
     name: "productInfo",
     data() {
@@ -153,6 +154,11 @@ export default {
             productList:{},
             promiseList:[]
         };
+    },
+    filters: {
+        money(value) {
+            return filterMoney.moneyFilter(value);
+        }
     },
     created() {
          this.$ajax({

@@ -52,8 +52,8 @@
                     </el-col>
                     <el-col :span="3">{{item.name}}</el-col>
                     <el-col :span="3">
-                        <div>￥{{item.money}}</div>
-                        <div>(含运费：￥{{item.freight}})</div>
+                        <div>￥{{item.money | money}}</div>
+                        <div>(含运费：￥{{item.freight | money}})</div>
                         <div>{{item.pay}}</div>
                     </el-col>
                     <el-col :span="3">{{item.static}}</el-col>
@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import filterMoney from 'apis/filter.js'
 export default {
     data() {
         return {
@@ -79,6 +80,11 @@ export default {
             isOrder: false,
             order: {}
         };
+    },
+    filters: {
+        money(value) {
+            return filterMoney.moneyFilter(value);
+        }
     },
     created() {
         this.$ajax({

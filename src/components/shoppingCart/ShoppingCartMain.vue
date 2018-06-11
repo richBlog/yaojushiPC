@@ -50,14 +50,14 @@
                             <el-input-number v-model="i.Count" @change="handleChange(Count)" :min="1" :max="10"></el-input-number>
                         </el-col>
                         <el-col :span="3" class="info-discount">
-                            <p>￥{{i.Discount}}</p>
+                            <p>￥{{i.Discount | money}}</p>
                             <div class="promotion-box" @mouseover="show(index,dex)" @mouseout="hide">
                                 <p class="promotion-title">促销信息</p>
                                 <p :class="isHide===index&&isShow===dex?'cover active':'cover'"></p>
                                 <p :class="isHide===index&&isShow===dex?'promotion-content active':'promotion-content'">{{i.SalesPromotion}}</p>
                             </div>
                         </el-col>
-                        <el-col :span="3" class="info-subtotal">￥{{i.Subtotal}}</el-col>
+                        <el-col :span="3" class="info-subtotal">￥{{i.Subtotal | money}}</el-col>
                         <el-col :span="3">
                             <el-button type="danger" size="mini" @click="del(dex)">删除</el-button>
                         </el-col>
@@ -75,11 +75,11 @@
                 </el-col>
                 <el-col :span="3" class="computed-price">
                     <p>总价：
-                        <span class="total-price">￥{{dataList.TotalPrice}}</span>
+                        <span class="total-price">￥{{dataList.TotalPrice | money}}</span>
                     </p>
                     <p>
                         已节省：
-                        <span class="concession">-￥{{dataList.Concession}}</span>
+                        <span class="concession">-￥{{dataList.Concession | money}}</span>
                     </p>
                 </el-col>
                 <el-col :span="3">
@@ -99,7 +99,7 @@
 
 <script>
 import ShoppingRecommendView from "./ShoppingRecommend";
-
+import filterMoney from "apis/filter.js";
 export default {
     components: {
         ShoppingRecommendView
@@ -114,6 +114,11 @@ export default {
             dataList: {}
         };
     },
+    filters: {
+        money(value) {
+            return filterMoney.moneyFilter(value);
+        }
+    },
     created() {
         this.$ajax({
             url: this.$pathUrl.getShoppingCart,
@@ -121,6 +126,7 @@ export default {
         })
             .then(res => {
                 if (res.status == 200) {
+                    console.log(res.data.data)
                     this.dataList = res.data.data;
                     this.dataState = 1;
                 }

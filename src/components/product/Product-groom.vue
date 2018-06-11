@@ -16,7 +16,7 @@
                 <router-link class="groom-item" :to="item.url" tag="li" v-for="item in groomList" :key="item.id">
                     <div class="groom-item-img"><img v-lazy="item.img" alt="img"></div>
                     <p class="groom-item-name">{{item.name}}</p>
-                    <p class="groom-item-price">￥{{item.price}}</p>
+                    <p class="groom-item-price">￥{{item.price | money}}</p>
                 </router-link>
             </ul>
         </div>
@@ -29,7 +29,7 @@
                 <router-link class="browse-item" :to="item.url" tag="li" v-for="item in groomList" :key="item.id">
                     <div class="browse-item-img"><img v-lazy="item.img" alt="img"></div>
                     <p class="browse-item-name">{{item.name}}</p>
-                    <p class="browse-item-price">￥{{item.price}}</p>
+                    <p class="browse-item-price">￥{{item.price | money}}</p>
                 </router-link>
             </ul>
         </div>
@@ -37,12 +37,18 @@
     </div>
 </template>
 <script>
+import filterMoney from 'apis/filter.js'
 export default {
     data() {
         return {
             classifyList: [],
             groomList: []
         };
+    },
+    filters: {
+        money(value) {
+            return filterMoney.moneyFilter(value);
+        }
     },
     created() {
         this.$ajax({
@@ -121,7 +127,7 @@ export default {
                 border: none;
             }
         }
-        .browse-price {
+        .browse-price,.browse-item-price {
             color: #ff0000;
         }
     }

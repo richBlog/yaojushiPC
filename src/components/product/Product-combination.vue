@@ -12,7 +12,7 @@
                                     </router-link>
                                     <p class="image-item-name">{{key.name}}</p>
                                     <p class="image-item-price">
-                                        <span>￥{{key.price}}</span>
+                                        <span>￥{{key.price | money}}</span>
                                     </p>
                                 </div>
                                 <div class="image-item-symbol" v-if="dex!==(item.list.length-1)"><img class="image-add" src="../../assets/image/jia.png" alt="jia"></div>
@@ -25,13 +25,13 @@
                     </div>
                     <div class="group-info">
                         <p class="group-info-province"><img src="../../assets/image/yh.png" alt="yh">
-                            <span>立省￥{{item.originalPrice-item.suitPrice}}.00</span>
+                            <span>立省￥{{item.originalPrice-item.suitPrice | money}}</span>
                         </p>
                         <p class="group-info-suitPrice">套餐价
-                            <span>￥{{item.suitPrice}}.00</span>
+                            <span>￥{{item.suitPrice | money}}</span>
                         </p>
                         <p class="group-info-originalPrice">原价
-                            <span>￥{{item.originalPrice}}.00</span>
+                            <span>￥{{item.originalPrice | money}}</span>
                         </p>
                         <el-button type="primary">加入购物车</el-button>
                     </div>
@@ -41,12 +41,18 @@
     </div>
 </template>
 <script>
+import filterMoney from 'apis/filter.js'
 export default {
     props: ["groutList"],
     data() {
         return {
             activeName: "0"
         };
+    },
+    filters:{
+        money(value){
+            return filterMoney.moneyFilter(value)
+        }
     },
     methods: {
         handleClick(tab, event) {}

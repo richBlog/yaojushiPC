@@ -30,6 +30,7 @@
                     <myCollect v-else-if="id === 'myCollect'" />
                     <myIntegral v-else-if="id === 'myIntegral'" />
                     <myCoupon v-else-if="id === 'myCoupon'" />
+                    <myDiscuss v-else-if="id === 'myDiscuss'" />
                 </div>
                 <!-- 右侧内容结束 -->
             </div>
@@ -45,10 +46,13 @@
 import headerView from "components/public/Header";
 import classifiedView from "components/public/Classified-nav";
 import footerView from "components/public/Footer";
-import myOrder from "components/presonal/myOrder";
-import myCollect from "components/presonal/myCollect";
-import myIntegral from "components/presonal/myIntegral";
-import myCoupon from "components/presonal/myCoupon";
+import {
+    myOrder,
+    myCollect,
+    myIntegral,
+    myCoupon,
+    myDiscuss
+} from "components/presonal";
 
 export default {
     components: {
@@ -58,7 +62,8 @@ export default {
         myOrder,
         myCollect,
         myIntegral,
-        myCoupon
+        myCoupon,
+        myDiscuss
     },
     data() {
         return {
@@ -85,7 +90,7 @@ export default {
                         },
                         {
                             name: "我的评论",
-                            url: "myOrder4"
+                            url: "myDiscuss"
                         },
                         {
                             name: "我的处方笺",
