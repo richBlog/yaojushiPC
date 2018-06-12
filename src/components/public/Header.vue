@@ -5,6 +5,12 @@
         <div class="layout-logo-container container">
             <div class="layout-logo">
                 <router-link to="/"><img src="../../assets/image/logo.png" alt="logo"></router-link>
+                <ul ref="scrollMain" class="scroll-main">
+                    <li><a href="">sssss</a></li>
+                    <li><a href="">sssfff</a></li>
+                    <li><a href="">dd</a></li>
+                    <li><a href="">sssss</a></li>
+                </ul>
             </div>
             <div class="layout-search" @mouseleave="dropHide">
                 <div class="search-frame">
@@ -49,7 +55,19 @@ export default {
             active: true
         };
     },
+    mounted(){
+        this.topScroll();
+    },
     methods: {
+        topScroll(){
+            let time = null;
+            let n = 0;
+            time = setInterval(this.scrollNews(n),1000);
+        },
+        scrollNews(n){
+            console.log(n);
+            this.$refs.scrollMain.style.top = n + 10 +'px';
+        },
         // 根据搜索框内容获取对应的搜索信息
         getSearchData() {
             this.$ajax({
@@ -110,6 +128,11 @@ export default {
     margin-top: 30px;
     .layout-logo {
         margin-right: 120px;
+    }
+    .scroll-main{
+        position: relative;
+        height: 30px;
+        overflow: hidden;
     }
     .search-frame {
         position: relative;

@@ -104,16 +104,14 @@ export default {
 };
 </script>
 
-<style lang="less"  scoped>
+<style lang="less">
+@import "~styles/public";
+
 .layout-discuss {
     padding: 20px;
-    border: 1px solid #eee;
+    border: 1px solid @b-line;
     .discuss-title {
-        margin-bottom: 20px;
-        span {
-            border-left: 3px solid #ff7e00;
-            padding-left: 20px;
-        }
+        .title();
     }
 
     .discuss-type {

@@ -26,11 +26,7 @@
 
                 <!-- 右侧内容开始 -->
                 <div class="personal-right">
-                    <myOrder v-if="id === 'myOrder'" />
-                    <myCollect v-else-if="id === 'myCollect'" />
-                    <myIntegral v-else-if="id === 'myIntegral'" />
-                    <myCoupon v-else-if="id === 'myCoupon'" />
-                    <myDiscuss v-else-if="id === 'myDiscuss'" />
+                    <router-view></router-view>
                 </div>
                 <!-- 右侧内容结束 -->
             </div>
@@ -46,28 +42,17 @@
 import headerView from "components/public/Header";
 import classifiedView from "components/public/Classified-nav";
 import footerView from "components/public/Footer";
-import {
-    myOrder,
-    myCollect,
-    myIntegral,
-    myCoupon,
-    myDiscuss
-} from "components/presonal";
+
 
 export default {
     components: {
         headerView,
         classifiedView,
-        footerView,
-        myOrder,
-        myCollect,
-        myIntegral,
-        myCoupon,
-        myDiscuss
+        footerView
     },
     data() {
         return {
-            id: "",
+            id: "myOrder",
             navList: [
                 {
                     name: "交易管理",
@@ -94,7 +79,7 @@ export default {
                         },
                         {
                             name: "我的处方笺",
-                            url: "myOrder5"
+                            url: "myPrescription"
                         }
                     ]
                 },
@@ -140,16 +125,16 @@ export default {
         };
     },
     beforeRouteUpdate(to, from, next) {
-        this.id = to.params.id;
+        this.id = to.name;
+        console.log(this.id);
+        console.log(to);
         next();
-    },
-    created() {
-        this.id = this.$route.params.id;
     }
 };
 </script>
 
 <style lang="less" scoped>
+
 .personal-main {
     margin-bottom: 30px;
 }
