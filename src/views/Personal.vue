@@ -126,8 +126,6 @@ export default {
     },
     beforeRouteUpdate(to, from, next) {
         this.id = to.name;
-        console.log(this.id);
-        console.log(to);
         next();
     }
 };

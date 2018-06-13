@@ -41,8 +41,8 @@
                                     <span class="product-name">{{item.name}}</span>
                                 </p>
                                 <p class="category-price">
-                                    <span class="new-price">￥{{item.newPrice}}</span>
-                                    <span class="old-price">￥{{item.oldPrice}}</span>
+                                    <span class="new-price">￥{{item.newPrice | money}}</span>
+                                    <span class="old-price">￥{{item.oldPrice | money}}</span>
                                 </p>
                             </router-link>
                         </li>
@@ -73,6 +73,7 @@ import headerView from "components/public/Header";
 import classifiedView from "components/public/Classified-nav";
 import advertView from "components/public/Advert";
 import footerView from "components/public/Footer";
+import moneyFilter from 'apis/filter'
 
 export default {
     components: {
@@ -87,6 +88,11 @@ export default {
             categoryName: "",
             category: {}
         };
+    },
+    filters:{
+        money(value){
+            return moneyFilter.moneyFilter(value);
+        }
     },
     created() {
         this.categoryName = this.$route.query.name;

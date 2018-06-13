@@ -14,8 +14,11 @@
 <script>
 import cm from "apis/common";
 export default {
-    props: ["isShow"],
-    name: "lifeView",
+    computed:{
+        isShow(){
+            return this.$store.getters.getShow;
+        }
+    },
     data() {
         return {
             menu: [

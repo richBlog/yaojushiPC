@@ -2,7 +2,7 @@
     <div class="container flex layout-main-nav">
         <div class="nav-classification">
             <i></i>
-            <router-link to="/AllClassify">全部分类</router-link>
+            <router-link to="/AllClassify" target="_blank">全部分类</router-link>
             <classifyView v-if="active"/>
         </div>
         <ul class="nav-sub">

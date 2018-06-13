@@ -5,6 +5,7 @@ const pathUrl = {
     getProductImgText: baseUrl + "/productImgText",
     getAllClassify: baseUrl + "/allClassify",
     getSearchData: baseUrl + "/searchData",
+    getSearch: baseUrl + "/search",
     getClassify: baseUrl + "/classify",
     getBill: baseUrl + "/bill",
     getAddressDefult: baseUrl + "/addressDefult",

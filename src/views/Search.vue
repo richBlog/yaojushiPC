@@ -148,8 +148,8 @@
                                     <div class="pic-img"><img v-lazy="item.img" alt="item.name"></div>
                                     <p class="pic-name" v-html="item.name.replace('避孕套',`<font style='color:red'> 避孕套</font>`)"></p>
                                     <p class="pic-box">
-                                        <span class="new-pic">￥{{item.newPrice}}</span>
-                                        <span class="old-pic">￥{{item.oldPrice}}</span>
+                                        <span class="new-pic">￥{{item.newPrice | money}}</span>
+                                        <span class="old-pic">￥{{item.oldPrice | money}}</span>
                                     </p>
                                 </router-link>
                             </li>
@@ -160,7 +160,7 @@
                 </div>
 
                 <!-- 右侧产品推广开始 -->
-                <advertView :extendList="dataList.extendList" :title="'搜索该关键词的人还买了'"/>
+                <advertView :extendList="dataList.extendList" :title="'搜索该关键词的人还买了'" />
                 <!-- 右侧产品推广结束 -->
             </div>
 
@@ -175,6 +175,7 @@ import headerView from "components/public/Header";
 import classifiedView from "components/public/Classified-nav";
 import advertView from "components/public/Advert";
 import footerView from "components/public/Footer";
+import moneyFilter from "apis/filter";
 
 export default {
     components: {
@@ -195,6 +196,11 @@ export default {
             dataList: {}
         };
     },
+    filters: {
+        money(value) {
+            return moneyFilter.moneyFilter(value);
+        }
+    },
     watch: {
         $route(to, from) {
             location.reload();
@@ -203,6 +209,7 @@ export default {
     created() {
         // 截取关键词
         this.keyWord = this.$route.query.keyword;
+        console.log(this.keyWord);
         let fil = this.$route.query.filed;
         if (fil) {
             fil = JSON.parse(fil);

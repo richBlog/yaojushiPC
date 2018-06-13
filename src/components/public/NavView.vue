@@ -14,20 +14,20 @@
                         <i></i>
                     </div>
                     <div class="item-menu">
-                        <router-link to="/" v-for="item in myYaoJuShi" :key="item.id" v-text="item.name"></router-link>
+                        <router-link :to="item.url" v-for="item in myYaoJuShi" :key="item.id" v-text="item.name"></router-link>
                     </div>
                 </li>
                 <li class="layout-nav-right-item">
                     <i></i>
-                    <span>400-1234-123</span>
+                    <span>027-83215071</span>
                 </li>
                 <li class="layout-nav-right-item">
                     <div>
-                        <span>我的订单</span>
+                        <router-link to="/Personal/myOrder">我的订单</router-link>
                         <i></i>
                     </div>
                     <div class="item-menu">
-                        <router-link to="/" v-for="item in myOrder" :key="item.id" v-text="item.name"></router-link>
+                        <router-link :to="{path:item.url,query:{id:item.id}}" v-for="item in myOrder" :key="item.id" v-text="item.name"></router-link>
                     </div>
                 </li>
                 <li class="layout-nav-right-item">
@@ -65,13 +65,13 @@ export default {
         return {
             commodityNum: 1, // 购物车数量
             myYaoJuShi: [
-                { name: "我的收藏", url: "#" },
-                { name: "我的优惠券", url: "#" },
-                { name: "我的处方", url: "#" }
+                { name: "我的收藏", url: "/Personal/myCollect" },
+                { name: "我的优惠券", url: "/Personal/myCoupon" },
+                { name: "我的处方", url: "/Personal/myPrescription" }
             ], // 我的药居士
             myOrder: [
-                { name: "待付款订单", url: "#" },
-                { name: "待确认收货", url: "#" }
+                { name: "待付款订单", url: "/Personal/myOrder",id:'待付款' },
+                { name: "待确认收货", url: "/Personal/myOrder",id:'待确认收货' }
             ], // 我的订单
             helpCenter: [
                 { name: "帮助中心", url: "#" },

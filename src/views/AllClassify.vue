@@ -17,7 +17,7 @@
                     <p>{{item.name}}</p>
                     <div class="second-main" v-for="(key,dex) in item.classify" :key="dex">
                         <div class="classify-title">
-                            <router-link target="_blank" :to="key.url">{{key.name}}</router-link>
+                            <router-link target="_blank" :to="{path:key.url,query:{name:key.name}}">{{key.name}}</router-link>
                         </div>
                         <div class="classify-content">
                             <router-link target="_blank" :to="i.url" v-for="(i,k) in key.content" :key="k">{{i.name}}</router-link>

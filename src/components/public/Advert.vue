@@ -7,8 +7,8 @@
                     <div class="right-img"><img v-lazy="item.img" alt="img"></div>
                     <p class="right-name">{{item.name}}</p>
                     <p class="right-box">
-                        <span>￥{{item.newPrice}}</span>
-                        <span>￥{{item.oldPrice}}</span>
+                        <span>￥{{item.newPrice | money}}</span>
+                        <span>￥{{item.oldPrice | money}}</span>
                     </p>
                 </router-link>
             </li>
@@ -17,8 +17,14 @@
 </template>
 
 <script>
+import moneyFilter from "apis/filter";
 export default {
-    props: ["extendList", "title"]
+    props: ["extendList", "title"],
+    filters: {
+        money(value) {
+            return moneyFilter.moneyFilter(value);
+        }
+    }
 };
 </script>
 

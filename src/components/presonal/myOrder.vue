@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import filterMoney from 'apis/filter.js'
+import filterMoney from "apis/filter.js";
 export default {
     data() {
         return {
@@ -86,7 +86,15 @@ export default {
             return filterMoney.moneyFilter(value);
         }
     },
+    beforeRouteUpdate(to, from, next) {
+        this.statice = to.query.id;
+        next();
+    },
     created() {
+        let id = this.$route.query.id;
+        if(id){
+            this.statice = id;
+        };
         this.$ajax({
             url: this.$pathUrl.getMyOrder,
             methods: "get"
@@ -109,11 +117,11 @@ export default {
         // 订单详情
         orderInfo(id) {
             this.$router.push({
-                name: 'orderDetails',
+                name: "orderDetails",
                 params: {
                     id: id
                 }
-            })
+            });
         },
         // 取消订单
         orderNot() {

@@ -4,13 +4,13 @@
         <ul class="banner-sub">
             <li class="banner-item" v-for="item in classifyList" :key="item.id">
                 <i></i>
-                <router-link to="/" v-text="item.name"></router-link>
+                <router-link target="_blank" :to="{path:item.url,query:{name:item.name}}">{{item.name}}</router-link>
                 <span>&gt;</span>
                 <!-- 二级分类S -->
                 <div class="second-level-container">
                     <ul class="second-level-sub" v-for="i in item.secondLevel" :key="i.id">
                         <li class="second-level-item">
-                            <router-link to="/" v-text="i.name"></router-link>
+                            <router-link target="_blank" :to="{path:i.url,query:{name:i.name}}" v-text="i.name"></router-link>
                         </li>
                         <li class="second-level-item" v-for="items in i.Submenu" :key="items.id">
                             <router-link to="/" v-text="items.name"></router-link>
@@ -38,6 +38,7 @@ export default {
         })
             .then(res => {
                 this.classifyList = res.data.data;
+                console.log(this.classifyList)
             })
             .catch(error => {
                 console.log(error);
@@ -124,15 +125,16 @@ export default {
             left: 180px;
             width: 1020px;
             min-width: 1020px;
-            background-color: #eee;
+            background-color: #fff;
             flex-wrap: wrap;
             padding: 5px 20px;
-            z-index: 1000;
+            z-index: 10000;
             .second-level-sub {
                 display: flex;
                 width: 25%;
                 flex-wrap: wrap;
                 margin-bottom: 13px;
+                z-index: 10000;
                 .second-level-item {
                     margin-right: 10%;
                     margin-bottom: 5px;
@@ -155,6 +157,7 @@ export default {
                     font-size: 12px;
                     &:hover {
                         color: red;
+                        text-decoration: underline;
                     }
                 }
             }
