@@ -37,7 +37,8 @@ import {
   Cascader,
   CheckboxGroup,
   Option,
-  Select
+  Select,
+  Upload
 } from 'element-ui'
 import App from './App'
 import router from './router'
@@ -83,6 +84,7 @@ Vue.use(CheckboxGroup)
 Vue.use(VueLazyload)
 Vue.use(Select)
 Vue.use(Option)
+Vue.use(Upload)
 
 
 

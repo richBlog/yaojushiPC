@@ -2,6 +2,14 @@
 //引入初始化样式
 @import "./base.less";
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .product-combination,
 .product-details {
   .el-tabs__nav {

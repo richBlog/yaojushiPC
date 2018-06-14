@@ -89,6 +89,11 @@ export default new Router({
               name: 'myPrescription',
               component: resolve => require(['components/presonal/myPrescription'], resolve),
           },
+          {
+              path: '/Personal/securityCenter',
+              name: 'securityCenter',
+              component: resolve => require(['components/presonal/securityCenter'], resolve),
+          },
       ]
     },
     {

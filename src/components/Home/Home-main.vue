@@ -110,7 +110,6 @@ import classifiedNavView from "../public/Classified-nav";
 import classifyView from "../public/Classify";
 import cm from "apis/common";
 
-let timer = null;
 
 export default {
     name: "homeMain",
@@ -187,7 +186,6 @@ export default {
             //判断显示和隐藏的距离
             if (t > 1000 && t < t7) {
                 this.$store.commit("setShow",true);
-
                 if (t >= t1 && t < t2) {
                     this.move(".t1");
                 } else if (t >= t2 && t < t3) {

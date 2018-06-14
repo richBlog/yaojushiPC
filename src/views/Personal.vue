@@ -43,7 +43,6 @@ import headerView from "components/public/Header";
 import classifiedView from "components/public/Classified-nav";
 import footerView from "components/public/Footer";
 
-
 export default {
     components: {
         headerView,
@@ -88,7 +87,7 @@ export default {
                     list: [
                         {
                             name: "安全中心",
-                            url: "myOrder6"
+                            url: "securityCenter"
                         },
                         {
                             name: "个人资料",
@@ -127,12 +126,14 @@ export default {
     beforeRouteUpdate(to, from, next) {
         this.id = to.name;
         next();
+    },
+    created() {
+        this.id = this.$route.name;
     }
 };
 </script>
 
 <style lang="less" scoped>
-
 .personal-main {
     margin-bottom: 30px;
 }
