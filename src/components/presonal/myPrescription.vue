@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import common from "apis/common"
 export default {
     data() {
         return {
@@ -144,31 +145,28 @@ export default {
         beforeRemove(file, fileList) {
             return this.$confirm(`确定移除 ${file.name}？`);
         },
-        removeAllSpace(str) {
-            return str.replace(/\s+/g, "");
-        },
         // 显示处方提交功能
         prescriptionShow(){
             this.state = 1;
         },
         // 提交处方笺
         submitPrescription() {
-            if (this.removeAllSpace(this.medicine) === "") {
+            if (common.removeAllSpace(this.medicine) === "") {
                 return this.$message.error("请填写医院信息");
             }
-            if (this.removeAllSpace(this.department) === "") {
+            if (common.removeAllSpace(this.department) === "") {
                 return this.$message.error("请填写科别信息");
             }
-            if (this.removeAllSpace(this.fullName) === "") {
+            if (common.removeAllSpace(this.fullName) === "") {
                 return this.$message.error("请填写您的姓名");
             }
-            if (this.removeAllSpace(this.age) === "") {
+            if (common.removeAllSpace(this.age) === "") {
                 return this.$message.error("请填写您的年龄");
             }
-            if (this.removeAllSpace(this.tel) === "") {
+            if (common.removeAllSpace(this.tel) === "") {
                 return this.$message.error("请填写联系方式");
             }
-            if (this.removeAllSpace(this.textarea) === "") {
+            if (common.removeAllSpace(this.textarea) === "") {
                 return this.$message.error("请填写您的诊断信息");
             }
 

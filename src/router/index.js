@@ -94,6 +94,16 @@ export default new Router({
               name: 'securityCenter',
               component: resolve => require(['components/presonal/securityCenter'], resolve),
           },
+          {
+              path: '/Personal/modify',
+              name: 'modify',
+              component: resolve => require(['components/presonal/modify'], resolve),
+          },
+          {
+              path: '/Personal/modifyWord',
+              name: 'modifyWord',
+              component: resolve => require(['components/presonal/modifyWord'], resolve),
+          },
       ]
     },
     {

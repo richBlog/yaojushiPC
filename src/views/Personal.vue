@@ -172,6 +172,7 @@ export default {
                 color: #808080;
                 &.active {
                     color: #ff0000;
+                    text-decoration: underline;
                 }
                 &:hover {
                     color: #ff0000;

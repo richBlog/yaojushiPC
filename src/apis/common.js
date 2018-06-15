@@ -53,8 +53,15 @@ export function loadImg(el) {
   }
 };
 
+// 去除输入框内的空格
+const removeAllSpace = (str) => {
+  return str.replace(/\s+/g, "");
+}
+
+
 export default {
   top,
   removeClass,
-  lazyLoad
+  lazyLoad,
+  removeAllSpace
 }

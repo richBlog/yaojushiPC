@@ -1,0 +1,35 @@
+.icon(@w,@h,@x,@y) {
+  display: inline-block;
+  width: @w;
+  height: @h;
+  margin-right: 10px;
+  background: url("../assets/image/sprites.png") no-repeat;
+  background-position-x: @x;
+  background-position-y: @y;
+  vertical-align: middle;
+}
+
+// 对号
+.icon-yes {
+  .icon(24px, 24px, -36px, -74px);
+}
+// 感叹号
+.icon-sigh {
+  .icon(24px, 24px, -77px, -74px);
+}
+// QQ
+.icon-qq {
+  .icon(24px, 24px, -158px, -74px);
+}
+// 微信
+.icon-weChat {
+  .icon(24px, 24px, -199px, -74px);
+}
+// 支付宝
+.icon-alipay {
+  .icon(24px, 24px, -240px, -74px);
+}
+// 淘宝
+.icon-taobao {
+  .icon(24px, 24px, -118px, -74px);
+}
