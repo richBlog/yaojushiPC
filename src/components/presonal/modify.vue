@@ -4,14 +4,14 @@
             <span>修改手机号</span>
         </p>
         <ul v-if="state" class="modify-main">
-            <li>手机：{{phone}}</li>
-            <li class="verification-code">输入验证码：
-                <el-input v-model="code" placeholder="请输入验证码"></el-input><img src="" alt="img"></li>
+            <li>手机号：{{phone}}</li>
+            <li class="verification-code">
+                <span>输入验证码：</span><el-input v-model="code" placeholder="请输入验证码"></el-input><img src="" alt="img"></li>
             <li>
                 <el-button type="primary" plain @click="obtain">获取短信验证码</el-button>
             </li>
-            <li>请填写手机校验码：
-                <el-input type="number" v-model="phoneCode" placeholder="请输入验证码"></el-input>
+            <li>
+                <span>请填写手机校验码：</span><el-input type="number" v-model="phoneCode" placeholder="请输入验证码"></el-input>
             </li>
             <li>
                 <el-button type="primary" plain @click="submission">提交</el-button>
@@ -101,15 +101,16 @@ export default {
         padding: 20px;
         border: @b-border;
         li {
-            width: 50%;
             margin-bottom: 15px;
             &:last-child {
-                width: 100%;
                 padding-top: 50px;
                 p {
                     margin-top: 10px;
                     color: #666;
                 }
+            }
+            span{
+                min-width: 130px;
             }
         }
         .verification-code {
@@ -117,7 +118,7 @@ export default {
             align-items: center;
         }
         .el-input {
-            width: 200px;
+            width: 300px;
             margin: 0 10px;
         }
         .el-button {
