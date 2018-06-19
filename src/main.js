@@ -38,7 +38,8 @@ import {
   CheckboxGroup,
   Option,
   Select,
-  Upload
+  Upload,
+  DatePicker
 } from 'element-ui'
 import App from './App'
 import router from './router'
@@ -85,6 +86,7 @@ Vue.use(VueLazyload)
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(Upload)
+Vue.use(DatePicker)
 
 
 

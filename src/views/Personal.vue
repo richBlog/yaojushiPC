@@ -91,7 +91,7 @@ export default {
                         },
                         {
                             name: "个人资料",
-                            url: "myOrder7"
+                            url: "personalData"
                         },
                         {
                             name: "收货中心",

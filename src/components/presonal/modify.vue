@@ -4,7 +4,7 @@
             <span>修改手机号</span>
         </p>
         <ul v-if="state" class="modify-main">
-            <li>手机号：{{phone}}</li>
+            <li>手机号：{{phone | asterisk}}</li>
             <li class="verification-code">
                 <span>输入验证码：</span><el-input v-model="code" placeholder="请输入验证码"></el-input><img src="" alt="img"></li>
             <li>
@@ -38,16 +38,22 @@
 
 <script>
 import common from "apis/common";
+import filter from "apis/filter";
 export default {
     data() {
         return {
-            phone: "1818****567",
+            phone: "18181234567",
             code: "",
             phoneCode: "",
             newPhone: "",
             newCode: "",
             state: true
         };
+    },
+    filters: {
+        asterisk(value) {
+            return filter.asterisk(value);
+        }
     },
     methods: {
         // 获取短信验证码

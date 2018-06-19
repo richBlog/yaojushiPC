@@ -104,6 +104,11 @@ export default new Router({
               name: 'modifyWord',
               component: resolve => require(['components/presonal/modifyWord'], resolve),
           },
+          {
+              path: '/Personal/personalData',
+              name: 'personalData',
+              component: resolve => require(['components/presonal/personalData'], resolve),
+          },
       ]
     },
     {
