@@ -109,6 +109,11 @@ export default new Router({
               name: 'personalData',
               component: resolve => require(['components/presonal/personalData'], resolve),
           },
+          {
+              path: '/Personal/receivingAddress',
+              name: 'receivingAddress',
+              component: resolve => require(['components/presonal/receivingAddress'], resolve),
+          },
       ]
     },
     {

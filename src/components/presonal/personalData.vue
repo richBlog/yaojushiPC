@@ -7,23 +7,23 @@
             <span @click="tabType(1)" :class="state===1?'active':''">基本信息</span>
             <span @click="tabType(2)" :class="state===2?'active':''">更多个人信息</span>
         </div>
+
+        <div v-if="state===1" class="user-image">
+            <div>
+                <el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+                    <img v-if="personalList.img" :src="personalList.img" class="avatar">
+                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
+            </div>
+            <div>{{personalList.userName}}</div>
+        </div>
+        <div class="progress-bar">
+            资料完整度：
+            <el-progress :text-inside="true" :stroke-width="16" :percentage="personalList.percentage"></el-progress>
+            <span>完善资料可以获取100积分</span>
+        </div>
         <!-- 基本信息开始 -->
-        <ul class="personal-main">
-            <li class="user-image">
-                <div>
-                    <!-- <img :src="personalList.img" alt="img"> -->
-                    <el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-                        <img v-if="personalList.img" :src="personalList.img" class="avatar">
-                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                    </el-upload>
-                </div>
-                <div>{{personalList.userName}}</div>
-            </li>
-            <li class="progress-bar">
-                资料完整度：
-                <el-progress :text-inside="true" :stroke-width="16" :percentage="personalList.percentage"></el-progress>
-                <span>完善资料可以获取100积分</span>
-            </li>
+        <ul v-if="state === 1" class="personal-main">
             <li>
                 <div class="info-title">用户名：</div>
                 <el-input v-model="personalList.userName" :disabled="personalList.disabled"></el-input>
@@ -59,10 +59,46 @@
                 <span>{{personalList.email}}</span>
             </li>
             <li>
-                <el-button type="primary" plain>提交</el-button>
+                <el-button type="primary" plain @click="subData">提交</el-button>
             </li>
         </ul>
         <!-- 基本信息结束 -->
+
+        <!-- 更多个人信息开始 -->
+        <ul v-if="state === 2" class="personal-box">
+            <li>
+                教育程度：
+                <el-select v-model="education" placeholder="请选择">
+                    <el-option v-for="item in moreList.education" :key="item.id" :value="item">
+                    </el-option>
+                </el-select>
+            </li>
+            <li>
+                婚姻状况：
+                <el-select v-model="marriage" placeholder="请选择">
+                    <el-option v-for="item in moreList.marriage" :key="item.id" :value="item">
+                    </el-option>
+                </el-select>
+            </li>
+            <li>
+                从事职业：
+                <el-select v-model="work" placeholder="请选择">
+                    <el-option v-for="item in moreList.work" :key="item.id" :value="item">
+                    </el-option>
+                </el-select>
+            </li>
+            <li>
+                月均收入：
+                <el-select v-model="income" placeholder="请选择">
+                    <el-option v-for="item in moreList.income" :key="item.id" :value="item">
+                    </el-option>
+                </el-select>
+            </li>
+            <li>
+                <el-button type="primary" plain @click="subMore">提交</el-button>
+            </li>
+        </ul>
+        <!-- 更多个人信息结束 -->
     </div>
 </template>
 
@@ -73,8 +109,7 @@ export default {
     data() {
         return {
             isShow: true,
-            state: 1,
-
+            state: 2,
             personalList: {
                 img: require("../../assets/image/user-image.png"),
                 percentage: 80,
@@ -87,7 +122,39 @@ export default {
                 day: 1,
                 tel: 12121546565,
                 email: "132121@qq.com"
-            }
+            },
+            moreList: {
+                education: [
+                    "初中及以下",
+                    "高中及中专",
+                    "专科",
+                    "本科",
+                    "硕士",
+                    "博士及以上"
+                ],
+                marriage: ["未婚", "已婚", "保密"],
+                work: [
+                    "学生",
+                    "事业单位",
+                    "企业职员",
+                    "个体业主",
+                    "自由职业",
+                    "军人",
+                    "离退休",
+                    "其他"
+                ],
+                income: [
+                    "少于1000元",
+                    "2000-3000元",
+                    "3000-5000元",
+                    "5000-8000元",
+                    "8000元以上"
+                ]
+            },
+            education: '',
+            marriage: '',
+            work: '',
+            income: ''
         };
     },
     filters: {
@@ -96,10 +163,37 @@ export default {
         }
     },
     methods: {
+        // 更多个人信息提交
+        subMore(){
+            this.$alert(
+                `修改成功,${this.education}、${
+                    this.marriage
+                }、${this.work}、${this.income}`,
+                "提示",
+                {
+                    confirmButtonText: "确定",
+                    callback: action => {}
+                }
+            );
+        },
+        // 提交修改信息
+        subData() {
+            this.$alert(
+                `修改成功,${this.personalList.userName}、${
+                    this.personalList.name
+                }、${this.personalList.radio}、${this.personalList.value1}`,
+                "提示",
+                {
+                    confirmButtonText: "确定",
+                    callback: action => {}
+                }
+            );
+        },
         // 基本信息和更多个人信息切换
         tabType(value) {
             this.state = value;
         },
+        // 用户名第一次修改的切换
         prompt() {
             this.personalList.disabled = false;
             this.isShow = false;
@@ -150,6 +244,28 @@ export default {
         }
     }
 
+    .user-image {
+        padding-top: 30px;
+        text-align: center;
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    }
+    .progress-bar {
+        display: flex;
+        padding: 0 22px;
+        margin-top: 43px;
+        .el-progress {
+            width: 271px;
+            margin: 0 10px;
+            vertical-align: middle;
+        }
+
+        span {
+            color: #ff952f;
+        }
+    }
     // 基本信息开始
     .personal-main {
         padding: 25px 22px;
@@ -158,34 +274,6 @@ export default {
             align-items: center;
             color: #333;
             margin-bottom: 25px;
-            &:first-child {
-                display: block;
-                margin-bottom: 0;
-            }
-        }
-        .user-image {
-            text-align: center;
-            img {
-                width: 100px;
-                height: 100px;
-            }
-            div {
-                &:last-child {
-                    margin-top: 11px;
-                    margin-bottom: 43px;
-                }
-            }
-        }
-        .progress-bar {
-            .el-progress {
-                width: 271px;
-                margin: 0 10px;
-                vertical-align: middle;
-            }
-
-            span {
-                color: #ff952f;
-            }
         }
 
         .el-input {
@@ -216,5 +304,14 @@ export default {
         }
     }
     // 基本信息结束
+
+    // 更多个人信息开始
+    .personal-box {
+        padding: 22px;
+        li{
+            margin-bottom: 20px;
+        }
+    }
+    // 更多个人信息结束
 }
 </style>

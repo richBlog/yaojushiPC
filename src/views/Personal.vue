@@ -95,7 +95,7 @@ export default {
                         },
                         {
                             name: "收货中心",
-                            url: "myOrder8"
+                            url: "receivingAddress"
                         },
                         {
                             name: "消息中心",
@@ -172,7 +172,6 @@ export default {
                 color: #808080;
                 &.active {
                     color: #ff0000;
-                    text-decoration: underline;
                 }
                 &:hover {
                     color: #ff0000;

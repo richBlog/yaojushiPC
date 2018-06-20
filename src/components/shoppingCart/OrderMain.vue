@@ -226,7 +226,7 @@ export default {
         }
     },
     created() {
-        this.status = 1;
+        this.status = 0;
         this.getAjax(this.$pathUrl.getAddressDefult, this.getAddress);
         this.getAjax(this.$pathUrl.getBill, this.getBill);
     },
