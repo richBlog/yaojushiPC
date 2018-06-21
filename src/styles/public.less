@@ -7,10 +7,19 @@
 @b-border: 1px solid #eee;
 
 // 定义标题头部样式
-.title(){
-    margin-bottom: 20px;
-    span {
-        border-left: 3px solid @c-title;
-        padding-left: 20px;
-    }
+.title() {
+  margin-bottom: 20px;
+  span {
+    border-left: 3px solid @c-title;
+    padding-left: 20px;
+  }
+}
+
+.span() {
+  cursor: pointer;
+  color: #2d8ef3;
+  &:hover {
+    color: #ff0000;
+    text-decoration: underline;
+  }
 }

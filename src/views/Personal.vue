@@ -99,7 +99,7 @@ export default {
                         },
                         {
                             name: "消息中心",
-                            url: "myOrder9"
+                            url: "messageCenter"
                         }
                     ]
                 },
@@ -108,7 +108,7 @@ export default {
                     list: [
                         {
                             name: "申请退换货",
-                            url: "myOrder0"
+                            url: "refundableProduct"
                         },
                         {
                             name: "投诉建议",

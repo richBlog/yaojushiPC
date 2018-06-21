@@ -29,7 +29,7 @@
                 <el-input v-model="personalList.userName" :disabled="personalList.disabled"></el-input>
                 <div v-if="personalList.isPrompt">
                     <span @click="prompt" v-if="isShow" class="modify-user-name">修改</span>
-                    <span class="modify-prompt" v-text="personalList.disabled?'可用于登陆，请牢记':'您只要一次修改机会，请谨慎修改'"></span>
+                    <span class="modify-prompt" v-text="personalList.disabled?'可用于登陆，请牢记':'您只有一次修改机会，请谨慎修改'"></span>
                 </div>
 
             </li>
@@ -109,7 +109,7 @@ export default {
     data() {
         return {
             isShow: true,
-            state: 2,
+            state: 1,
             personalList: {
                 img: require("../../assets/image/user-image.png"),
                 percentage: 80,

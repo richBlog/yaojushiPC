@@ -2,7 +2,6 @@
     <div class="receiving-address">
         <p class="address-title">
             <span>收货地址</span>
-
         </p>
 
         <p>现保留 {{addressList.length}} 个收货地址，还可以增加 {{10 - addressList.length}} 个地址。
@@ -23,15 +22,15 @@
 
             <el-row class="address-item" v-for="(item,index) in addressList" :key="index">
                 <el-col :span="4">{{item.name}}</el-col>
-                <el-col :span="8">{{item.address}}</el-col>
+                <el-col :span="8">{{item.area+item.address}}</el-col>
                 <el-col :span="4">{{item.phone}}</el-col>
                 <el-col :span="4">
                     <i v-if="item.default" class="icon-yes"></i>
-                    <span v-if="!item.default">设为默认</span>
+                    <span v-if="!item.default" @click="editAddress(item.id)">设为默认</span>
                 </el-col>
                 <el-col :span="4">
-                    <span>修改</span>
-                    <span>删除</span>
+                    <span @click="modify(item)">修改</span>
+                    <span @click="delAddress(item.id)">删除</span>
                 </el-col>
             </el-row>
         </div>
@@ -40,7 +39,7 @@
         <div class="add-address" v-if="state===1">
             <div class="add-main">
                 <p>
-                    <span>添加收货地址</span>
+                    <span v-text="edit?'编辑收货地址':'添加收货地址'"></span>
                     <span @click="hideAddress">X</span>
                 </p>
                 <div class="user-info">
@@ -59,11 +58,12 @@
                         </el-form-item>
                         <el-form-item label="邮编">
                             <el-input v-model="ruleForm.zipCode"></el-input>
+                            <el-checkbox v-if="!edit" v-model="ruleForm.default">使用新地址为默认地址</el-checkbox>
                         </el-form-item>
 
                         <el-form-item>
                             <el-button type="primary" @click="submitForm('ruleForm')">保存收货人信息</el-button>
-                            <el-button @click="submitForm('ruleForm')">重置</el-button>
+                            <el-button @click="delSubmit">重置</el-button>
                         </el-form-item>
                     </el-form>
                 </div>
@@ -80,19 +80,26 @@ export default {
     data() {
         return {
             state: 0,
+            edit: false,
             addressList: [
                 {
                     name: "陈大大",
-                    address: "湖北省武汉市水电费困了就睡",
+                    area: "湖北省武汉市东西湖区",
+                    address: "水电费困了就睡",
+                    region: ["420000", "420100", "420112"],
                     phone: 1324654656,
                     default: true,
+                    zipCode: "",
                     id: 1
                 },
                 {
                     name: "陈大大1",
-                    address: "湖北省武汉市水电费困了就睡",
+                    area: "湖北省武汉市东西湖区",
+                    address: "水电费困了就睡",
+                    region: ["420000", "420100", "420112"],
                     phone: 2165125655,
                     default: false,
+                    zipCode: "",
                     id: 1
                 }
             ],
@@ -102,7 +109,8 @@ export default {
                 region: [],
                 address: "",
                 phone: "",
-                zipCode: ''
+                zipCode: "",
+                default: true
             },
             rules: {
                 name: [
@@ -142,14 +150,71 @@ export default {
         };
     },
     methods: {
-        showAddress(){
+        // 设置默认地址
+        editAddress() {
+            this.$message({
+                type: "success",
+                message: "设置成功!"
+            });
+        },
+        // 删除收货地址
+        delAddress() {
+            this.$confirm("是否删除该收货地址", "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning"
+            })
+                .then(() => {
+                    this.$message({
+                        type: "success",
+                        message: "删除成功!"
+                    });
+                })
+                .catch(() => {
+                    this.$message({
+                        type: "info",
+                        message: "已取消删除"
+                    });
+                });
+        },
+        // 修改地址
+        modify(item) {
+            console.log(item);
+            this.edit = true;
+            this.state = 1;
+            this.ruleForm = {
+                name: item.name,
+                region: item.region,
+                address: item.address,
+                phone: item.phone,
+                zipCode: item.zipCode,
+                default: item.default
+            };
+        },
+        // 显示添加收货地址
+        showAddress() {
+            this.edit = false;
             this.state = 1;
         },
-        hideAddress(){
+        // 隐藏添加收货地址
+        hideAddress() {
             this.state = 0;
         },
+        // 清空输入框内容
+        delSubmit() {
+            this.ruleForm = {
+                name: "",
+                region: [],
+                address: "",
+                phone: "",
+                zipCode: "",
+                default: true
+            };
+        },
+        // 提交信息
         submitForm(formName) {
-           this.$refs[formName].validate(valid => {
+            this.$refs[formName].validate(valid => {
+                console.log("valid", valid);
                 if (valid) {
                     console.log(this.ruleForm.name);
                     for (let item of this.ruleForm.region) {

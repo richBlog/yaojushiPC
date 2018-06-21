@@ -114,6 +114,16 @@ export default new Router({
               name: 'receivingAddress',
               component: resolve => require(['components/presonal/receivingAddress'], resolve),
           },
+          {
+              path: '/Personal/messageCenter',
+              name: 'messageCenter',
+              component: resolve => require(['components/presonal/messageCenter'], resolve),
+          },
+          {
+              path: '/Personal/refundableProduct',
+              name: 'refundableProduct',
+              component: resolve => require(['components/presonal/refundableProduct'], resolve),
+          },
       ]
     },
     {
