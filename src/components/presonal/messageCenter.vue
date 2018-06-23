@@ -42,7 +42,7 @@ export default {
                     title: "恭喜您注册成为药居士新用户！",
                     content:
                         "恭喜您注册成为药居士新用户！恭喜您注册成为药居士新用户！恭喜您注册成为药居士新用户！恭喜您注册成为药居士新用户！恭喜您注册成为药居士新用户！恭喜您注册成为药居士新用户！恭喜您注册成为药居士新用户！恭喜您注册成为药居士新用户！恭喜您注册成为药居士新用户！恭喜您注册成为药居士新用户！恭喜您注册成为药居士新用户！恭喜您注册成为药居士新用户！恭喜您注册成为药居士新用户！恭喜您注册成为药居士新用户！恭喜您注册成为药居士新用户！"
-                },
+                }
             ]
         };
     },
@@ -56,7 +56,7 @@ export default {
             }
         },
         // 删除消息
-        delMessage(index){
+        delMessage(index) {
             this.$confirm("是否删除该条消息", "提示", {
                 confirmButtonText: "确定",
                 cancelButtonText: "取消",
@@ -89,7 +89,7 @@ export default {
         .title();
     }
 
-    .not-data{
+    .not-data {
         height: 150px;
         line-height: 150px;
         text-align: center;
@@ -110,13 +110,8 @@ export default {
                 font-weight: bold;
             }
             span {
-                color: #2d8ef3;
                 margin-right: 5px;
-                &:hover {
-                    cursor: pointer;
-                    text-decoration: underline;
-                    color: #ff0000;
-                }
+                .span();
             }
         }
         .message-content {

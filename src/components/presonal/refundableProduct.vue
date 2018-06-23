@@ -21,6 +21,8 @@
                     <el-col :span="4">状态</el-col>
                 </el-row>
 
+                <div v-if="refundableList.length <=0" class="not-data">没有记录</div>
+
                 <el-row class="order-item" v-for="(item,index) in refundableList" :key="index">
                     <el-col :span="4">{{item.orderCode}}</el-col>
                     <el-col :span="12">
@@ -40,6 +42,7 @@
                     <el-col :span="4">
                         <div>{{item.state}}</div>
                         <div class="waiter" v-if="item.state === '申请失败'">联系客服</div>
+                        <div v-if="state===2">删除订单</div>
                     </el-col>
                 </el-row>
             </div>
@@ -86,6 +89,23 @@ export default {
                     price: 2265,
                     pay: "在线支付",
                     state: "申请失败"
+                },
+                {
+                    orderCode: "1561651616655",
+                    list: [
+                        {
+                            img: "http://p8pi9ribk.bkt.clouddn.com/loading.png",
+                            content:
+                                "999 感冒颗粒 快速水电费老师的离开家发生了看到了看法999 感冒颗粒 快速水电费老师的离开家发生了看到了看法",
+                            url: "",
+                            count: 1
+                        }
+                    ],
+                    id: 1,
+                    freight: true,
+                    price: 2265,
+                    pay: "在线支付",
+                    state: "申请失败"
                 }
             ]
         };
@@ -99,6 +119,11 @@ export default {
         // 类型切换
         clickTab(value) {
             this.state = value;
+            switch (value) {
+                case 2:
+                    this.refundableList = [];
+                    break;
+            }
         }
     }
 };
@@ -115,14 +140,19 @@ export default {
         .title();
         margin: 0;
     }
-
+    .not-data {
+        height: 150px;
+        line-height: 150px;
+        text-align: center;
+        border: @b-border;
+    }
     .order-tab {
         padding: 10px 0;
         display: flex;
         justify-content: space-between;
         border-bottom: @b-border;
         span {
-            cursor: pointer;
+            cursor: pointer; 
             border-right: @b-border;
             padding: 0 20px;
             &.active {
@@ -192,6 +222,7 @@ export default {
                     text-decoration: underline;
                 }
             }
+
             .item-count {
                 margin-top: 15px;
                 color: #999;
@@ -200,6 +231,7 @@ export default {
         }
         .waiter {
             .span();
+            margin-top: 10px;
         }
     }
 }
