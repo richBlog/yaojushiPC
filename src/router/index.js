@@ -124,6 +124,11 @@ export default new Router({
               name: 'refundableProduct',
               component: resolve => require(['components/presonal/refundableProduct'], resolve),
           },
+          {
+              path: '/Personal/proposal',
+              name: 'proposal',
+              component: resolve => require(['components/presonal/proposal'], resolve),
+          },
       ]
     },
     {

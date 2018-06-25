@@ -41,8 +41,8 @@
                     </el-col>
                     <el-col :span="4">
                         <div>{{item.state}}</div>
-                        <div class="waiter" v-if="item.state === '申请失败'">联系客服</div>
-                        <div v-if="state===2">删除订单</div>
+                        <div class="waiter" v-if="item.state === '申请失败' || item.state === '退款失败'">联系客服</div>
+                        <div @click="delRecord" class="del-record" v-if="item.state !== '申请失败'">删除记录</div>
                     </el-col>
                 </el-row>
             </div>
@@ -73,14 +73,14 @@ export default {
                             img: "http://p8pi9ribk.bkt.clouddn.com/loading.png",
                             content:
                                 "999 感冒颗粒 快速水电费老师的离开家发生了看到了看法999 感冒颗粒 快速水电费老师的离开家发生了看到了看法",
-                            url: "",
+                            url: "/product/1",
                             count: 1
                         },
                         {
                             img: "http://p8pi9ribk.bkt.clouddn.com/loading.png",
                             content:
                                 "999 感冒颗粒 快速水电费老师的离开家发生了看到了看法999 感冒颗粒 快速水电费老师的离开家发生了看到了看法",
-                            url: "",
+                            url: "/product/1",
                             count: 1
                         }
                     ],
@@ -97,7 +97,7 @@ export default {
                             img: "http://p8pi9ribk.bkt.clouddn.com/loading.png",
                             content:
                                 "999 感冒颗粒 快速水电费老师的离开家发生了看到了看法999 感冒颗粒 快速水电费老师的离开家发生了看到了看法",
-                            url: "",
+                            url: "/product/1",
                             count: 1
                         }
                     ],
@@ -105,7 +105,7 @@ export default {
                     freight: true,
                     price: 2265,
                     pay: "在线支付",
-                    state: "申请失败"
+                    state: "退款失败"
                 }
             ]
         };
@@ -124,6 +124,26 @@ export default {
                     this.refundableList = [];
                     break;
             }
+        },
+        // 删除记录
+        delRecord(){
+            this.$confirm("是否删除该条记录", "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning"
+            })
+                .then(() => {
+                    this.$message({
+                        type: "success",
+                        message: "删除成功!"
+                    });
+                })
+                .catch(() => {
+                    this.$message({
+                        type: "info",
+                        message: "已取消删除"
+                    });
+                });
         }
     }
 };
@@ -230,6 +250,11 @@ export default {
             }
         }
         .waiter {
+            .span();
+            margin-top: 10px;
+        }
+
+        .del-record{
             .span();
             margin-top: 10px;
         }

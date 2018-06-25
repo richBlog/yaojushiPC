@@ -112,7 +112,7 @@ export default {
                         },
                         {
                             name: "投诉建议",
-                            url: "myOrder11"
+                            url: "proposal"
                         },
                         {
                             name: "移动客服",
