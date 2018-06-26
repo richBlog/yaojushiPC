@@ -129,6 +129,11 @@ export default new Router({
               name: 'proposal',
               component: resolve => require(['components/presonal/proposal'], resolve),
           },
+          {
+              path: '/Personal/waiter',
+              name: 'waiter',
+              component: resolve => require(['components/presonal/waiter'], resolve),
+          },
       ]
     },
     {
