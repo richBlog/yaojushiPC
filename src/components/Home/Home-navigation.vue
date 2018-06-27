@@ -44,7 +44,7 @@
                     </el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
-            <el-menu-item index="5">
+            <el-menu-item index="5" @click="userProblem">
                 <i class="el-icon-edit-outline"></i>
                 <span slot="title">用户反馈</span>
             </el-menu-item>
@@ -84,6 +84,10 @@ export default {
         // 跳转到用户中心
         goPersonal(){
              this.$router.push("/Personal/myOrder");
+        },
+        // 跳转到用户反馈
+        userProblem(){
+             this.$router.push("/Personal/proposal");
         }
     }
 };

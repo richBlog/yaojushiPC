@@ -58,88 +58,96 @@ export default new Router({
     {
       path: '/Personal/:id',
       component: resolve => require(['views/Personal'], resolve),
-      children:[
-          {
-              path: '/Personal/myOrder',
-              name: 'myOrder',
-              component: resolve => require(['components/presonal/myOrder'], resolve),
-          },
-          {
-              path: '/Personal/myCollect',
-              name: 'myCollect',
-              component: resolve => require(['components/presonal/myCollect'], resolve),
-          },
-          {
-              path: '/Personal/myIntegral',
-              name: 'myIntegral',
-              component: resolve => require(['components/presonal/myIntegral'], resolve),
-          },
-          {
-              path: '/Personal/myCoupon',
-              name: 'myCoupon',
-              component: resolve => require(['components/presonal/myCoupon'], resolve),
-          },
-          {
-              path: '/Personal/myDiscuss',
-              name: 'myDiscuss',
-              component: resolve => require(['components/presonal/myDiscuss'], resolve),
-          },
-          {
-              path: '/Personal/myPrescription',
-              name: 'myPrescription',
-              component: resolve => require(['components/presonal/myPrescription'], resolve),
-          },
-          {
-              path: '/Personal/securityCenter',
-              name: 'securityCenter',
-              component: resolve => require(['components/presonal/securityCenter'], resolve),
-          },
-          {
-              path: '/Personal/modify',
-              name: 'modify',
-              component: resolve => require(['components/presonal/modify'], resolve),
-          },
-          {
-              path: '/Personal/modifyWord',
-              name: 'modifyWord',
-              component: resolve => require(['components/presonal/modifyWord'], resolve),
-          },
-          {
-              path: '/Personal/personalData',
-              name: 'personalData',
-              component: resolve => require(['components/presonal/personalData'], resolve),
-          },
-          {
-              path: '/Personal/receivingAddress',
-              name: 'receivingAddress',
-              component: resolve => require(['components/presonal/receivingAddress'], resolve),
-          },
-          {
-              path: '/Personal/messageCenter',
-              name: 'messageCenter',
-              component: resolve => require(['components/presonal/messageCenter'], resolve),
-          },
-          {
-              path: '/Personal/refundableProduct',
-              name: 'refundableProduct',
-              component: resolve => require(['components/presonal/refundableProduct'], resolve),
-          },
-          {
-              path: '/Personal/proposal',
-              name: 'proposal',
-              component: resolve => require(['components/presonal/proposal'], resolve),
-          },
-          {
-              path: '/Personal/waiter',
-              name: 'waiter',
-              component: resolve => require(['components/presonal/waiter'], resolve),
-          },
+      children: [{
+          path: '/Personal/myOrder',
+          name: 'myOrder',
+          component: resolve => require(['components/presonal/myOrder'], resolve),
+        },
+        {
+          path: '/Personal/myCollect',
+          name: 'myCollect',
+          component: resolve => require(['components/presonal/myCollect'], resolve),
+        },
+        {
+          path: '/Personal/myIntegral',
+          name: 'myIntegral',
+          component: resolve => require(['components/presonal/myIntegral'], resolve),
+        },
+        {
+          path: '/Personal/myCoupon',
+          name: 'myCoupon',
+          component: resolve => require(['components/presonal/myCoupon'], resolve),
+        },
+        {
+          path: '/Personal/myDiscuss',
+          name: 'myDiscuss',
+          component: resolve => require(['components/presonal/myDiscuss'], resolve),
+        },
+        {
+          path: '/Personal/myPrescription',
+          name: 'myPrescription',
+          component: resolve => require(['components/presonal/myPrescription'], resolve),
+        },
+        {
+          path: '/Personal/securityCenter',
+          name: 'securityCenter',
+          component: resolve => require(['components/presonal/securityCenter'], resolve),
+        },
+        {
+          path: '/Personal/modify',
+          name: 'modify',
+          component: resolve => require(['components/presonal/modify'], resolve),
+        },
+        {
+          path: '/Personal/modifyWord',
+          name: 'modifyWord',
+          component: resolve => require(['components/presonal/modifyWord'], resolve),
+        },
+        {
+          path: '/Personal/personalData',
+          name: 'personalData',
+          component: resolve => require(['components/presonal/personalData'], resolve),
+        },
+        {
+          path: '/Personal/receivingAddress',
+          name: 'receivingAddress',
+          component: resolve => require(['components/presonal/receivingAddress'], resolve),
+        },
+        {
+          path: '/Personal/messageCenter',
+          name: 'messageCenter',
+          component: resolve => require(['components/presonal/messageCenter'], resolve),
+        },
+        {
+          path: '/Personal/refundableProduct',
+          name: 'refundableProduct',
+          component: resolve => require(['components/presonal/refundableProduct'], resolve),
+        },
+        {
+          path: '/Personal/proposal',
+          name: 'proposal',
+          component: resolve => require(['components/presonal/proposal'], resolve),
+        },
+        {
+          path: '/Personal/waiter',
+          name: 'waiter',
+          component: resolve => require(['components/presonal/waiter'], resolve),
+        },
       ]
     },
     {
       path: '/orderDetails/:id',
       name: 'orderDetails',
       component: resolve => require(['components/presonal/orderDetails'], resolve)
+    },
+    {
+      path: '/HelpCenter/:id',
+      component: resolve => require(['views/HelpCenter'], resolve),
+      children: [{
+        path: '/HelpCenter/help',
+        name: 'help',
+        component: resolve => require(['components/help/help'], resolve)
+      }]
     },
   ],
   // 路由跳转时候滚动到顶部

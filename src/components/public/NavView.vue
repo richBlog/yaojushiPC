@@ -41,7 +41,7 @@
                         <i></i>
                     </div>
                     <div class="item-menu">
-                        <router-link to="/" v-for="item in helpCenter" :key="item.id" v-text="item.name"></router-link>
+                        <router-link :to="item.url" v-for="item in helpCenter" :key="item.id" v-text="item.name"></router-link>
                     </div>
                 </li>
                 <li class="layout-nav-right-item">
@@ -50,7 +50,7 @@
                         <i></i>
                     </div>
                     <div class="item-menu">
-                        <router-link to="/" v-for="item in webNavigation" :key="item.id" v-text="item.name"></router-link>
+                        <router-link :to="item.url" v-for="item in webNavigation" :key="item.id" v-text="item.name"></router-link>
                     </div>
                 </li>
             </ul>
@@ -74,7 +74,7 @@ export default {
                 { name: "待确认收货", url: "/Personal/myOrder",id:'待确认收货' }
             ], // 我的订单
             helpCenter: [
-                { name: "帮助中心", url: "#" },
+                { name: "帮助中心", url: "/HelpCenter/help" },
                 { name: "联系我们", url: "#" },
                 { name: "投诉建议", url: "#" }
             ], // 客户服务
