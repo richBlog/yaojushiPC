@@ -123,7 +123,6 @@ export default {
 <style lang="less">
 .layout-register {
     background-image: url(../assets/image/register-bg.png);
-    background-repeat: no-repeat;
     min-height: 960px;
     height: 100%;
 }

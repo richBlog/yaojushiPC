@@ -143,11 +143,48 @@ export default new Router({
     {
       path: '/HelpCenter/:id',
       component: resolve => require(['views/HelpCenter'], resolve),
-      children: [{
-        path: '/HelpCenter/help',
-        name: 'help',
-        component: resolve => require(['components/help/help'], resolve)
-      }]
+      children: [
+          {
+            path: '/HelpCenter/help',
+            name: 'help',
+            component: resolve => require(['components/help/help'], resolve)
+          },
+          {
+            path: '/HelpCenter/userRegister',
+            name: 'userRegister',
+            component: resolve => require(['components/help/userRegister'], resolve)
+          },
+          {
+            path: '/HelpCenter/userLogin',
+            name: 'userLogin',
+            component: resolve => require(['components/help/userLogin'], resolve)
+          },
+          {
+            path: '/HelpCenter/vipGrade',
+            name: 'vipGrade',
+            component: resolve => require(['components/help/vipGrade'], resolve)
+          },
+          {
+            path: '/HelpCenter/integralExplanation',
+            name: 'integralExplanation',
+            component: resolve => require(['components/help/integralExplanation'], resolve)
+          },
+          {
+            path: '/HelpCenter/commonProblem',
+            name: 'commonProblem',
+            component: resolve => require(['components/help/commonProblem'], resolve)
+          },
+          {
+            path: '/HelpCenter/retrievePassword',
+            name: 'retrievePassword',
+            component: resolve => require(['components/help/retrievePassword'], resolve)
+          },
+          {
+            path: '/HelpCenter/coupon',
+            name: 'coupon',
+            component: resolve => require(['components/help/coupon'], resolve)
+          },
+        ]
     },
   ],
   // 路由跳转时候滚动到顶部

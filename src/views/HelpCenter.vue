@@ -16,7 +16,7 @@
                             <h3 @click="tabList(index)">
                                 <i :class="state===index?'active':''"></i>{{item.name}}</h3>
                             <div :class="state===index?'help-item active':'help-item'">
-                                <router-link :to="i.url" v-for="(i,d) in item.secondList" :key="d">{{i.name}}</router-link>
+                                <router-link :class="routeState===i.url?'active':''" :to="i.url" v-for="(i,d) in item.secondList" :key="d">{{i.name}}</router-link>
                             </div>
                         </div>
                     </div>
@@ -47,6 +47,7 @@ export default {
     },
     data() {
         return {
+            routeState: "state",
             state: "state",
             list: [
                 {
@@ -54,27 +55,31 @@ export default {
                     secondList: [
                         {
                             name: "新会员注册",
-                            url: ""
+                            url: "userRegister"
                         },
                         {
                             name: "用户登录",
-                            url: ""
+                            url: "userLogin"
                         },
                         {
                             name: "找回密码",
-                            url: ""
+                            url: "retrievePassword"
                         },
                         {
                             name: "会员级别",
-                            url: ""
+                            url: "vipGrade"
                         },
                         {
                             name: "积分说明",
-                            url: ""
+                            url: "integralExplanation"
                         },
                         {
                             name: "优惠券",
-                            url: ""
+                            url: "coupon"
+                        },
+                        {
+                            name: "常见问题",
+                            url: "commonProblem"
                         }
                     ]
                 },
@@ -236,6 +241,13 @@ export default {
             ]
         };
     },
+    beforeRouteUpdate(to, from, next) {
+        this.routeState = to.name;
+        next();
+    },
+    created() {
+        this.routeState = this.$route.name;
+    },
     methods: {
         tabList(index) {
             if (this.state === index) {
@@ -290,7 +302,10 @@ export default {
             display: block;
             line-height: 40px;
             font-size: 12px;
-            &:hover{
+            &:hover {
+                color: #ff0000;
+            }
+            &.active {
                 color: #ff0000;
             }
         }
