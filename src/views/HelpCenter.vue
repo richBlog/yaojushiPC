@@ -88,19 +88,15 @@ export default {
                     secondList: [
                         {
                             name: "购物流程",
-                            url: ""
-                        },
-                        {
-                            name: "放心购",
-                            url: ""
+                            url: "shoppingGuide"
                         },
                         {
                             name: "订单状态说明",
-                            url: ""
+                            url: "orderState"
                         },
                         {
                             name: "服务说明",
-                            url: ""
+                            url: "serviceExplain"
                         },
                         {
                             name: "服务协议",
@@ -125,23 +121,23 @@ export default {
                     secondList: [
                         {
                             name: "配送范围及运费",
-                            url: ""
+                            url: "deliveryFreight"
                         },
                         {
                             name: "隐私配送",
-                            url: ""
+                            url: "deliveryPrivacy"
                         },
                         {
-                            name: "冷藏易碎商品配送政策",
-                            url: ""
+                            name: "易碎商品配送政策",
+                            url: "fragile"
                         },
                         {
                             name: "包装流程",
-                            url: ""
+                            url: "packing"
                         },
                         {
                             name: "商品验货及签收",
-                            url: ""
+                            url: "receipt"
                         }
                     ]
                 },
@@ -150,16 +146,16 @@ export default {
                     secondList: [
                         {
                             name: "货到付款",
-                            url: ""
+                            url: "toPay"
                         },
                         {
                             name: "网上支付",
-                            url: ""
+                            url: "onlinePay"
                         },
-                        {
-                            name: "银行转账",
-                            url: ""
-                        }
+                        // {
+                        //     name: "银行转账",
+                        //     url: ""
+                        // }
                     ]
                 },
                 {
@@ -167,36 +163,36 @@ export default {
                     secondList: [
                         {
                             name: "退换货流程",
-                            url: ""
+                            url: "returns"
                         },
                         {
                             name: "退换货政策",
-                            url: ""
+                            url: "returnsPolicy"
                         },
                         {
                             name: "退款流程",
-                            url: ""
+                            url: "refund"
                         }
                     ]
                 },
                 {
                     name: "特色服务",
                     secondList: [
-                        {
-                            name: "会员俱乐部",
-                            url: ""
-                        },
+                        // {
+                        //     name: "会员俱乐部",
+                        //     url: ""
+                        // },
                         {
                             name: "投诉建议",
-                            url: ""
+                            url: "/Personal/proposal"
                         },
-                        {
-                            name: "用药咨询",
-                            url: ""
-                        },
+                        // {
+                        //     name: "用药咨询",
+                        //     url: "medicalConsultation"
+                        // },
                         {
                             name: "免责声明",
-                            url: ""
+                            url: "relief"
                         }
                     ]
                 }
@@ -218,10 +214,10 @@ export default {
                     name: "荣誉长廊",
                     url: ""
                 },
-                {
-                    name: "厂家授权",
-                    url: ""
-                },
+                // {
+                //     name: "厂家授权",
+                //     url: ""
+                // },
                 {
                     name: "加入药居士",
                     url: ""
@@ -230,14 +226,14 @@ export default {
                     name: "联系我们",
                     url: ""
                 },
-                {
-                    name: "法律声明",
-                    url: ""
-                },
-                {
-                    name: "版权声明",
-                    url: ""
-                }
+                // {
+                //     name: "法律声明",
+                //     url: ""
+                // },
+                // {
+                //     name: "版权声明",
+                //     url: ""
+                // }
             ]
         };
     },
@@ -265,6 +261,7 @@ export default {
 .help-box {
     display: flex;
     box-sizing: border-box;
+    margin-bottom: 50px;
     .help-public-left {
         min-width: 200px;
         margin-right: 10px;

@@ -184,6 +184,76 @@ export default new Router({
             name: 'coupon',
             component: resolve => require(['components/help/coupon'], resolve)
           },
+          {
+            path: '/HelpCenter/shoppingGuide',
+            name: 'shoppingGuide',
+            component: resolve => require(['components/help/shoppingGuide'], resolve)
+          },
+          {
+            path: '/HelpCenter/orderState',
+            name: 'orderState',
+            component: resolve => require(['components/help/orderState'], resolve)
+          },
+          {
+            path: '/HelpCenter/serviceExplain',
+            name: 'serviceExplain',
+            component: resolve => require(['components/help/serviceExplain'], resolve)
+          },
+          {
+            path: '/HelpCenter/deliveryFreight',
+            name: 'deliveryFreight',
+            component: resolve => require(['components/help/deliveryFreight'], resolve)
+          },
+          {
+            path: '/HelpCenter/deliveryPrivacy',
+            name: 'deliveryPrivacy',
+            component: resolve => require(['components/help/deliveryPrivacy'], resolve)
+          },
+          {
+            path: '/HelpCenter/fragile',
+            name: 'fragile',
+            component: resolve => require(['components/help/fragile'], resolve)
+          },
+          {
+            path: '/HelpCenter/packing',
+            name: 'packing',
+            component: resolve => require(['components/help/packing'], resolve)
+          },
+          {
+            path: '/HelpCenter/receipt',
+            name: 'receipt',
+            component: resolve => require(['components/help/receipt'], resolve)
+          },
+          {
+            path: '/HelpCenter/toPay',
+            name: 'toPay',
+            component: resolve => require(['components/help/toPay'], resolve)
+          },
+          {
+            path: '/HelpCenter/onlinePay',
+            name: 'onlinePay',
+            component: resolve => require(['components/help/onlinePay'], resolve)
+          },
+          {
+            path: '/HelpCenter/returns',
+            name: 'returns',
+            component: resolve => require(['components/help/returns'], resolve)
+          },
+          {
+            path: '/HelpCenter/returnsPolicy',
+            name: 'returnsPolicy',
+            component: resolve => require(['components/help/returnsPolicy'], resolve)
+          },
+          {
+            path: '/HelpCenter/refund',
+            name: 'refund',
+            component: resolve => require(['components/help/refund'], resolve)
+          },
+          {
+            path: '/HelpCenter/relief',
+            name: 'relief',
+            component: resolve => require(['components/help/relief'], resolve)
+          },
         ]
     },
   ],
