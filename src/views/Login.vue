@@ -44,7 +44,7 @@
                     <!-- <el-button type="primary" @click="login">登陆</el-button> -->
                     <div class="login-main-retrieve">
                         <router-link class="login-main-register" to="Register">免费注册></router-link>
-                        <router-link to="Register">忘记密码？</router-link>
+                        <router-link to="/SendPassword">忘记密码？</router-link>
                     </div>
                 </div>
             </div>
@@ -201,6 +201,10 @@ export default {
         justify-content: space-between;
         .login-main-register {
             color: #0d8dfd;
+        }
+        a:hover {
+            color: #ff0000;
+            text-decoration: underline;
         }
     }
 }

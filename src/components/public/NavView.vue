@@ -75,8 +75,8 @@ export default {
             ], // 我的订单
             helpCenter: [
                 { name: "帮助中心", url: "/HelpCenter/help" },
-                { name: "联系我们", url: "#" },
-                { name: "投诉建议", url: "#" }
+                { name: "联系我们", url: "/HelpCenter/contact" },
+                { name: "投诉建议", url: "/Personal/proposal" }
             ], // 客户服务
             webNavigation: [
                 { name: "特色频道", url: "#" },

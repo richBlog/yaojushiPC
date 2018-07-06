@@ -4,6 +4,7 @@
             <span>服务说明</span>
         </p>
         <div class="layout-main">
+            <div><img src="~assets/image/help/photo_002.png" alt="img"></div>
             <p class="explain">
                 <span>&nbsp;&nbsp;湖北药居士健康药房连锁药店有限公司</span>是经国家食品药品监督管理局审批的合法药品经营企业，获GSP认证，具备《互联网药品信息服务资格证》、《互联网药品交易服务资格证》，经营受国家、省市药监、工商部门监督管理、安全与规范检查。</p>
                 <br>&nbsp;&nbsp;药居士平台展示的所有产品均按国家GSP认证规定进行采购、验收、仓储管理及出仓标准，商品均为正品，请放心选购。

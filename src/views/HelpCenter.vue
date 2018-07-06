@@ -30,7 +30,7 @@
                 <router-view :classifyList="list" :about="about"></router-view>
             </div>
         </div>
-
+        <navigationView/>
         <footerView/>
     </div>
 </template>
@@ -39,11 +39,13 @@
 import headerView from "components/public/Header";
 import classifiedView from "components/public/Classified-nav";
 import footerView from "components/public/Footer";
+import navigationView from "components/home/Home-navigation";
 export default {
     components: {
         headerView,
         classifiedView,
-        footerView
+        footerView,
+        navigationView
     },
     data() {
         return {
@@ -100,19 +102,19 @@ export default {
                         },
                         {
                             name: "服务协议",
-                            url: ""
+                            url: "agreement"
                         },
-                        {
-                            name: "隐私声明",
-                            url: ""
-                        },
+                        // {
+                        //     name: "隐私声明",
+                        //     url: ""
+                        // },
                         {
                             name: "发票制度",
-                            url: ""
+                            url: "invoice"
                         },
                         {
                             name: "药居士掌上药店",
-                            url: ""
+                            url: "palmar"
                         }
                     ]
                 },
@@ -211,8 +213,8 @@ export default {
                     url: ""
                 },
                 {
-                    name: "荣誉长廊",
-                    url: ""
+                    name: "相关资质",
+                    url: "aptitude"
                 },
                 // {
                 //     name: "厂家授权",
@@ -220,11 +222,11 @@ export default {
                 // },
                 {
                     name: "加入药居士",
-                    url: ""
+                    url: "recruit"
                 },
                 {
                     name: "联系我们",
-                    url: ""
+                    url: "contact"
                 },
                 // {
                 //     name: "法律声明",

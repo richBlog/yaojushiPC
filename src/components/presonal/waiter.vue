@@ -5,7 +5,7 @@
         </p>
         <div class="waiter-main">
             <div class="waiter-img-phone">
-                <img src="~assets/image/phone.png" alt="phone">
+                <img src="~assets/image/p_center.png" alt="p_center">
             </div>
             <div class="waiter-content">
                 <div class="waiter-item">

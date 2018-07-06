@@ -20,6 +20,9 @@
                         <el-input v-model="ruleForm2.phoneCode" placeholder="请输入手机验证码"></el-input>
                         <el-button type="primary" class="codePhone" :disabled="codeChecked" @click="codePhone">获取短信验证码</el-button>
                     </el-form-item>
+                    <el-form-item label="用户名" prop="userName">
+                        <el-input v-model="ruleForm2.userName" placeholder="用户名长度为4-16位字符（区分大小写）"></el-input>
+                    </el-form-item>
                     <el-form-item label="密码" prop="pass">
                         <el-input type="password" v-model="ruleForm2.pass" auto-complete="off" placeholder="密码长度为6-16位字符（区分大小写）"></el-input>
                     </el-form-item>
@@ -32,7 +35,7 @@
                     </el-form-item>
                     <el-form-item>
                         <el-checkbox v-model="checked">我已阅读并同意</el-checkbox>
-                        <router-link to="/">《药居士用户使用条款》</router-link>
+                        <router-link to="/HelpCenter/agreement">《药居士用户使用条款》</router-link>
                     </el-form-item>
                 </el-form>
             </div>
@@ -70,17 +73,29 @@ export default {
                 callback();
             }
         };
+        let userName = (rule, value, callback) => {
+            let reg = /^[A-Za-z0-9]{4,16}$/;
+            let re = reg.test(value);
+            if (!re) {
+                callback(new Error("您的用户名格式不正确"));
+            } else {
+                callback();
+            }
+        };
         return {
             ruleForm2: {
                 pass: "",
                 checkPass: "",
                 phone: "",
-                phoneCode: ""
+                phoneCode: "",
+                userName: ""
             },
             rules2: {
                 pass: [{ validator: validatePass, trigger: "blur" }],
                 checkPass: [{ validator: validatePass2, trigger: "blur" }],
-                phone: [{ validator: phone, trigger: "blur" }]
+                phone: [{ validator: phone, trigger: "blur" }],
+                userName: [{ validator: userName, trigger: "blur" }]
+
             },
             checked: true,
             codeChecked: false
@@ -192,6 +207,11 @@ export default {
         .el-checkbox {
             margin-left: 20px;
         }
+    }
+
+    a:hover{
+        color: #ff0000;
+        text-decoration: underline;
     }
 }
 </style>

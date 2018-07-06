@@ -70,7 +70,7 @@
         <!-- 常见问题开始 -->
         <div class="problem">
             <p class="problem-title">常见问题
-                <router-link to="">更多>></router-link>
+                <router-link to="commonProblem">更多>></router-link>
             </p>
             <ul class="problem-list">
                 <li class="problem-item">

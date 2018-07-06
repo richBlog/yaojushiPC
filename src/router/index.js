@@ -254,8 +254,43 @@ export default new Router({
             name: 'relief',
             component: resolve => require(['components/help/relief'], resolve)
           },
+          {
+            path: '/HelpCenter/agreement',
+            name: 'agreement',
+            component: resolve => require(['components/help/agreement'], resolve)
+          },
+          {
+            path: '/HelpCenter/invoice',
+            name: 'invoice',
+            component: resolve => require(['components/help/invoice'], resolve)
+          },
+          {
+            path: '/HelpCenter/palmar',
+            name: 'palmar',
+            component: resolve => require(['components/help/palmar'], resolve)
+          },
+          {
+            path: '/HelpCenter/recruit',
+            name: 'recruit',
+            component: resolve => require(['components/help/recruit'], resolve)
+          },
+          {
+            path: '/HelpCenter/aptitude',
+            name: 'aptitude',
+            component: resolve => require(['components/help/aptitude'], resolve)
+          },
+          {
+            path: '/HelpCenter/contact',
+            name: 'contact',
+            component: resolve => require(['components/help/contact'], resolve)
+          },
         ]
     },
+    {
+        path: '/SendPassword',
+        name: 'SendPassword',
+        component: resolve => require(['views/SendPassword'], resolve)
+      },
   ],
   // 路由跳转时候滚动到顶部
   scrollBehavior(to, from, savedPosition) {

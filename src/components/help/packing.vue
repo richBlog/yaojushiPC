@@ -13,6 +13,7 @@
                 <br>&nbsp;&nbsp;可配资料：包装外盒LOGO粘（可选）、防压气垫
                 <br>&nbsp;&nbsp;5. 发货：整理完毕后，由快递公司负责将商品送到顾客手上。
             </p>
+            <div><img src="~assets/image/help/packaging_01.jpg" alt="img"></div>
         </div>
     </div>
 </template>

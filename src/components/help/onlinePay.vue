@@ -6,7 +6,7 @@
 
         <div class="layout-main">
             <h3>支付平台名称</h3>
-            <div><img src="" alt="img"></div>
+            <div><img src="~assets/image/help/code_pay.png" alt="img"></div>
             <h3>在线支付帮助</h3>
             <p class="explain">&nbsp;&nbsp;
                 目前药居士在线支付只支持支付宝、微信支付，更多支付方式尽请等待...........
@@ -25,5 +25,8 @@
 .layout-main {
     padding-left: 20px;
     padding-right: 20px;
+    img{
+        margin: 15px 0;
+    }
 }
 </style>

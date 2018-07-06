@@ -64,8 +64,8 @@
                 <div class="me-box">
                     <a :href="item.url" target="_blank" v-for="item in governmentData" :key="item.id" v-text="item.name"></a>
                 </div>
-                <div class="copyright">©2010-2016
-                    <router-link to="/">武汉药居士网上药店</router-link> 版权所有，并保留所有权利</div>
+                <div class="copyright">©2017年-至今
+                    <router-link to="/" target="_blank">武汉药居士网上药店</router-link> 版权所有，并保留所有权利</div>
             </div>
         </div>
     </el-footer>
@@ -115,23 +115,23 @@ export default {
                     text: [
                         {
                             name: "购物流程",
-                            url: "#"
+                            url: "/HelpCenter/shoppingGuide"
                         },
                         {
                             name: "积分说明",
-                            url: "#"
+                            url: "/HelpCenter/integralExplanation"
                         },
                         {
                             name: "会员级别",
-                            url: "#"
+                            url: "/HelpCenter/vipGrade"
                         },
                         {
                             name: "优惠券",
-                            url: "#"
+                            url: "/HelpCenter/coupon"
                         },
                         {
                             name: "常见问题",
-                            url: "#"
+                            url: "/HelpCenter/commonProblem"
                         }
                     ]
                 },
@@ -140,15 +140,15 @@ export default {
                     text: [
                         {
                             name: "配送范围及运费",
-                            url: "#"
+                            url: "/HelpCenter/deliveryFreight"
                         },
                         {
                             name: "隐私配送",
-                            url: "#"
+                            url: "/HelpCenter/deliveryPrivacy"
                         },
                         {
                             name: "商品验收及签收",
-                            url: "#"
+                            url: "/HelpCenter/receipt"
                         }
                     ]
                 },
@@ -157,16 +157,16 @@ export default {
                     text: [
                         {
                             name: "货到付款",
-                            url: "#"
+                            url: "/HelpCenter/toPay"
                         },
                         {
                             name: "网上支付",
-                            url: "#"
-                        },
-                        {
-                            name: "银行转账",
-                            url: "#"
+                            url: "/HelpCenter/onlinePay"
                         }
+                        // {
+                        //     name: "银行转账",
+                        //     url: "#"
+                        // }
                     ]
                 },
                 {
@@ -174,36 +174,36 @@ export default {
                     text: [
                         {
                             name: "退换货流程",
-                            url: "#"
+                            url: "/HelpCenter/returns"
                         },
                         {
                             name: "退换货政策",
-                            url: "#"
+                            url: "/HelpCenter/returnsPolicy"
                         },
                         {
                             name: "退款流程",
-                            url: "#"
+                            url: "/HelpCenter/refund"
                         }
                     ]
                 },
                 {
                     title: "特色服务",
                     text: [
-                        {
-                            name: "会员及俱乐部",
-                            url: "#"
-                        },
+                        // {
+                        //     name: "会员及俱乐部",
+                        //     url: "#"
+                        // },
                         {
                             name: "投诉建议",
-                            url: "#"
+                            url: "/Personal/proposal"
                         },
-                        {
-                            name: "用药咨询",
-                            url: "#"
-                        },
+                        // {
+                        //     name: "用药咨询",
+                        //     url: "#"
+                        // },
                         {
                             name: "免费声明",
-                            url: "#"
+                            url: "/HelpCenter/relief"
                         }
                     ]
                 }
@@ -274,16 +274,12 @@ export default {
             // 关于我们
             me: [
                 {
-                    name: "批发商洽",
-                    url: "#"
-                },
-                {
                     name: "关于我们",
                     url: "#"
                 },
                 {
                     name: "掌声药店",
-                    url: "#"
+                    url: "/HelpCenter/palmar"
                 },
                 {
                     name: "实体药店",
@@ -291,31 +287,15 @@ export default {
                 },
                 {
                     name: "加入药居士",
-                    url: "#"
+                    url: "/HelpCenter/recruit"
                 },
                 {
                     name: "联系我们",
-                    url: "#"
+                    url: "/HelpCenter/contact"
                 },
                 {
                     name: "经营认证",
-                    url: "#"
-                },
-                {
-                    name: "友情链接",
-                    url: "#"
-                },
-                {
-                    name: "TAG列表",
-                    url: "#"
-                },
-                {
-                    name: "网站地图",
-                    url: "#"
-                },
-                {
-                    name: "CPS联盟",
-                    url: "#"
+                    url: "/HelpCenter/aptitude"
                 }
             ],
             governmentData: [
