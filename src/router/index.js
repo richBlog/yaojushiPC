@@ -143,154 +143,158 @@ export default new Router({
     {
       path: '/HelpCenter/:id',
       component: resolve => require(['views/HelpCenter'], resolve),
-      children: [
-          {
-            path: '/HelpCenter/help',
-            name: 'help',
-            component: resolve => require(['components/help/help'], resolve)
-          },
-          {
-            path: '/HelpCenter/userRegister',
-            name: 'userRegister',
-            component: resolve => require(['components/help/userRegister'], resolve)
-          },
-          {
-            path: '/HelpCenter/userLogin',
-            name: 'userLogin',
-            component: resolve => require(['components/help/userLogin'], resolve)
-          },
-          {
-            path: '/HelpCenter/vipGrade',
-            name: 'vipGrade',
-            component: resolve => require(['components/help/vipGrade'], resolve)
-          },
-          {
-            path: '/HelpCenter/integralExplanation',
-            name: 'integralExplanation',
-            component: resolve => require(['components/help/integralExplanation'], resolve)
-          },
-          {
-            path: '/HelpCenter/commonProblem',
-            name: 'commonProblem',
-            component: resolve => require(['components/help/commonProblem'], resolve)
-          },
-          {
-            path: '/HelpCenter/retrievePassword',
-            name: 'retrievePassword',
-            component: resolve => require(['components/help/retrievePassword'], resolve)
-          },
-          {
-            path: '/HelpCenter/coupon',
-            name: 'coupon',
-            component: resolve => require(['components/help/coupon'], resolve)
-          },
-          {
-            path: '/HelpCenter/shoppingGuide',
-            name: 'shoppingGuide',
-            component: resolve => require(['components/help/shoppingGuide'], resolve)
-          },
-          {
-            path: '/HelpCenter/orderState',
-            name: 'orderState',
-            component: resolve => require(['components/help/orderState'], resolve)
-          },
-          {
-            path: '/HelpCenter/serviceExplain',
-            name: 'serviceExplain',
-            component: resolve => require(['components/help/serviceExplain'], resolve)
-          },
-          {
-            path: '/HelpCenter/deliveryFreight',
-            name: 'deliveryFreight',
-            component: resolve => require(['components/help/deliveryFreight'], resolve)
-          },
-          {
-            path: '/HelpCenter/deliveryPrivacy',
-            name: 'deliveryPrivacy',
-            component: resolve => require(['components/help/deliveryPrivacy'], resolve)
-          },
-          {
-            path: '/HelpCenter/fragile',
-            name: 'fragile',
-            component: resolve => require(['components/help/fragile'], resolve)
-          },
-          {
-            path: '/HelpCenter/packing',
-            name: 'packing',
-            component: resolve => require(['components/help/packing'], resolve)
-          },
-          {
-            path: '/HelpCenter/receipt',
-            name: 'receipt',
-            component: resolve => require(['components/help/receipt'], resolve)
-          },
-          {
-            path: '/HelpCenter/toPay',
-            name: 'toPay',
-            component: resolve => require(['components/help/toPay'], resolve)
-          },
-          {
-            path: '/HelpCenter/onlinePay',
-            name: 'onlinePay',
-            component: resolve => require(['components/help/onlinePay'], resolve)
-          },
-          {
-            path: '/HelpCenter/returns',
-            name: 'returns',
-            component: resolve => require(['components/help/returns'], resolve)
-          },
-          {
-            path: '/HelpCenter/returnsPolicy',
-            name: 'returnsPolicy',
-            component: resolve => require(['components/help/returnsPolicy'], resolve)
-          },
-          {
-            path: '/HelpCenter/refund',
-            name: 'refund',
-            component: resolve => require(['components/help/refund'], resolve)
-          },
-          {
-            path: '/HelpCenter/relief',
-            name: 'relief',
-            component: resolve => require(['components/help/relief'], resolve)
-          },
-          {
-            path: '/HelpCenter/agreement',
-            name: 'agreement',
-            component: resolve => require(['components/help/agreement'], resolve)
-          },
-          {
-            path: '/HelpCenter/invoice',
-            name: 'invoice',
-            component: resolve => require(['components/help/invoice'], resolve)
-          },
-          {
-            path: '/HelpCenter/palmar',
-            name: 'palmar',
-            component: resolve => require(['components/help/palmar'], resolve)
-          },
-          {
-            path: '/HelpCenter/recruit',
-            name: 'recruit',
-            component: resolve => require(['components/help/recruit'], resolve)
-          },
-          {
-            path: '/HelpCenter/aptitude',
-            name: 'aptitude',
-            component: resolve => require(['components/help/aptitude'], resolve)
-          },
-          {
-            path: '/HelpCenter/contact',
-            name: 'contact',
-            component: resolve => require(['components/help/contact'], resolve)
-          },
-        ]
+      children: [{
+          path: '/HelpCenter/help',
+          name: 'help',
+          component: resolve => require(['components/help/help'], resolve)
+        },
+        {
+          path: '/HelpCenter/userRegister',
+          name: 'userRegister',
+          component: resolve => require(['components/help/userRegister'], resolve)
+        },
+        {
+          path: '/HelpCenter/userLogin',
+          name: 'userLogin',
+          component: resolve => require(['components/help/userLogin'], resolve)
+        },
+        {
+          path: '/HelpCenter/vipGrade',
+          name: 'vipGrade',
+          component: resolve => require(['components/help/vipGrade'], resolve)
+        },
+        {
+          path: '/HelpCenter/integralExplanation',
+          name: 'integralExplanation',
+          component: resolve => require(['components/help/integralExplanation'], resolve)
+        },
+        {
+          path: '/HelpCenter/commonProblem',
+          name: 'commonProblem',
+          component: resolve => require(['components/help/commonProblem'], resolve)
+        },
+        {
+          path: '/HelpCenter/retrievePassword',
+          name: 'retrievePassword',
+          component: resolve => require(['components/help/retrievePassword'], resolve)
+        },
+        {
+          path: '/HelpCenter/coupon',
+          name: 'coupon',
+          component: resolve => require(['components/help/coupon'], resolve)
+        },
+        {
+          path: '/HelpCenter/shoppingGuide',
+          name: 'shoppingGuide',
+          component: resolve => require(['components/help/shoppingGuide'], resolve)
+        },
+        {
+          path: '/HelpCenter/orderState',
+          name: 'orderState',
+          component: resolve => require(['components/help/orderState'], resolve)
+        },
+        {
+          path: '/HelpCenter/serviceExplain',
+          name: 'serviceExplain',
+          component: resolve => require(['components/help/serviceExplain'], resolve)
+        },
+        {
+          path: '/HelpCenter/deliveryFreight',
+          name: 'deliveryFreight',
+          component: resolve => require(['components/help/deliveryFreight'], resolve)
+        },
+        {
+          path: '/HelpCenter/deliveryPrivacy',
+          name: 'deliveryPrivacy',
+          component: resolve => require(['components/help/deliveryPrivacy'], resolve)
+        },
+        {
+          path: '/HelpCenter/fragile',
+          name: 'fragile',
+          component: resolve => require(['components/help/fragile'], resolve)
+        },
+        {
+          path: '/HelpCenter/packing',
+          name: 'packing',
+          component: resolve => require(['components/help/packing'], resolve)
+        },
+        {
+          path: '/HelpCenter/receipt',
+          name: 'receipt',
+          component: resolve => require(['components/help/receipt'], resolve)
+        },
+        {
+          path: '/HelpCenter/toPay',
+          name: 'toPay',
+          component: resolve => require(['components/help/toPay'], resolve)
+        },
+        {
+          path: '/HelpCenter/onlinePay',
+          name: 'onlinePay',
+          component: resolve => require(['components/help/onlinePay'], resolve)
+        },
+        {
+          path: '/HelpCenter/returns',
+          name: 'returns',
+          component: resolve => require(['components/help/returns'], resolve)
+        },
+        {
+          path: '/HelpCenter/returnsPolicy',
+          name: 'returnsPolicy',
+          component: resolve => require(['components/help/returnsPolicy'], resolve)
+        },
+        {
+          path: '/HelpCenter/refund',
+          name: 'refund',
+          component: resolve => require(['components/help/refund'], resolve)
+        },
+        {
+          path: '/HelpCenter/relief',
+          name: 'relief',
+          component: resolve => require(['components/help/relief'], resolve)
+        },
+        {
+          path: '/HelpCenter/agreement',
+          name: 'agreement',
+          component: resolve => require(['components/help/agreement'], resolve)
+        },
+        {
+          path: '/HelpCenter/invoice',
+          name: 'invoice',
+          component: resolve => require(['components/help/invoice'], resolve)
+        },
+        {
+          path: '/HelpCenter/palmar',
+          name: 'palmar',
+          component: resolve => require(['components/help/palmar'], resolve)
+        },
+        {
+          path: '/HelpCenter/recruit',
+          name: 'recruit',
+          component: resolve => require(['components/help/recruit'], resolve)
+        },
+        {
+          path: '/HelpCenter/aptitude',
+          name: 'aptitude',
+          component: resolve => require(['components/help/aptitude'], resolve)
+        },
+        {
+          path: '/HelpCenter/contact',
+          name: 'contact',
+          component: resolve => require(['components/help/contact'], resolve)
+        },
+        {
+          path: '/HelpCenter/pharmacy',
+          name: 'pharmacy',
+          component: resolve => require(['components/help/pharmacy'], resolve)
+        },
+      ]
     },
     {
-        path: '/SendPassword',
-        name: 'SendPassword',
-        component: resolve => require(['views/SendPassword'], resolve)
-      },
+      path: '/SendPassword',
+      name: 'SendPassword',
+      component: resolve => require(['views/SendPassword'], resolve)
+    },
   ],
   // 路由跳转时候滚动到顶部
   scrollBehavior(to, from, savedPosition) {

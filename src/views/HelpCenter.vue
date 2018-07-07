@@ -23,7 +23,7 @@
                     <div>
                         <h2>关于药居士</h2>
                         <div class="help-list">
-                            <router-link :to="item.url" v-for="(item,index) in about" :key="index">{{item.name}}</router-link>
+                            <router-link :class="routeState===item.url?'active':''" :to="item.url" v-for="(item,index) in about" :key="index">{{item.name}}</router-link>
                         </div>
                     </div>
                 </div>
@@ -206,7 +206,7 @@ export default {
                 },
                 {
                     name: "实体药店",
-                    url: ""
+                    url: "pharmacy"
                 },
                 {
                     name: "企业文化",
@@ -306,6 +306,7 @@ export default {
             }
             &.active {
                 color: #ff0000;
+                text-decoration: underline;
             }
         }
 
