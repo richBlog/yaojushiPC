@@ -1,5 +1,6 @@
 const baseUrl = "https://easy-mock.com/mock/5af8e2bb0d7ff97d1fdc9341";
 
+
 const pathUrl = {
     getHome: baseUrl + "/home",
     getProductImgText: baseUrl + "/productImgText",
@@ -18,6 +19,7 @@ const pathUrl = {
     getCollect: baseUrl + "/collect",
     getMyOrder: baseUrl + "/myOrder",
     getOrderDetails: baseUrl + "/orderDetails",
+
 }
 
 module.exports = {

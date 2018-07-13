@@ -43,6 +43,7 @@ module.exports = {
       'styles': resolve('src/styles'),
       'views': resolve('src/views'),
       'vuexs': resolve('src/vuexs'),
+      'static': resolve('src/static'),
     }
   },
   module: {

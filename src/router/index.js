@@ -288,12 +288,39 @@ export default new Router({
           name: 'pharmacy',
           component: resolve => require(['components/help/pharmacy'], resolve)
         },
+        {
+          path: '/HelpCenter/introduce',
+          name: 'introduce',
+          component: resolve => require(['components/help/introduce'], resolve)
+        },
+        {
+          path: '/HelpCenter/enterprise',
+          name: 'enterprise',
+          component: resolve => require(['components/help/enterprise'], resolve)
+        },
       ]
     },
     {
       path: '/SendPassword',
       name: 'SendPassword',
       component: resolve => require(['views/SendPassword'], resolve)
+    },
+    {
+      path: '/Special/:id',
+      component: resolve => require(['views/Special'], resolve),
+      children: [{
+        path: '/Special/male',
+        name: 'male',
+        component: resolve => require(['components/special/male'], resolve)
+      },{
+        path: '/Special/pediatrics',
+        name: 'pediatrics',
+        component: resolve => require(['components/special/pediatrics'], resolve)
+      },{
+        path: '/Special/woman',
+        name: 'woman',
+        component: resolve => require(['components/special/woman'], resolve)
+      }]
     },
   ],
   // 路由跳转时候滚动到顶部

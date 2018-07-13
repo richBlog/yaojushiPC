@@ -275,7 +275,7 @@ export default {
             me: [
                 {
                     name: "关于我们",
-                    url: "#"
+                    url: "/HelpCenter/introduce"
                 },
                 {
                     name: "掌声药店",
@@ -283,7 +283,7 @@ export default {
                 },
                 {
                     name: "实体药店",
-                    url: "#"
+                    url: "/HelpCenter/pharmacy"
                 },
                 {
                     name: "加入药居士",

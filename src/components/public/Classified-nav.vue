@@ -7,7 +7,7 @@
         </div>
         <ul class="nav-sub">
             <li class="nav-item" v-for="item in LateralClassification" :key="item.id">
-                <router-link to="/" v-text="item.name"></router-link>
+                <router-link :to="item.url" v-text="item.name" target="_blank"></router-link>
             </li>
         </ul>
     </div>
@@ -24,9 +24,9 @@ export default {
             // 横向分类字段 后期会后台会提供接口获取
             LateralClassification: [
                 { name: "首页", url: "/" },
-                { name: "内科用药", url: "#" },
-                { name: "儿科用药", url: "#" },
-                { name: "妇科用药", url: "#" },
+                { name: "男性用药", url: "/Special/male" },
+                { name: "儿科用药", url: "/Special/pediatrics" },
+                { name: "妇科用药", url: "/Special/woman" },
                 { name: "五官用药", url: "#" },
                 { name: "皮肤外用", url: "#" },
                 { name: "健康咨询", url: "#" }
@@ -78,6 +78,9 @@ export default {
             &:hover {
                 background-color: #0066d4;
                 a {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
                     color: #fff;
                     transition: none;
                     -webkit-transition: none;

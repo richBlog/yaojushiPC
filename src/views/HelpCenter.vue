@@ -202,7 +202,7 @@ export default {
             about: [
                 {
                     name: "药居士介绍",
-                    url: ""
+                    url: "introduce"
                 },
                 {
                     name: "实体药店",
@@ -210,7 +210,7 @@ export default {
                 },
                 {
                     name: "企业文化",
-                    url: ""
+                    url: "enterprise"
                 },
                 {
                     name: "相关资质",
