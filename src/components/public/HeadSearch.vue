@@ -1,25 +1,25 @@
 <template>
     <div class="layout-logo-container container">
         <div class="layout-logo">
-            <router-link to="/"><img src="~assets/image/logo.png" alt="logo"></router-link>
+            <router-link to="/"><img :src="woman?womanLog:log" alt="logo"></router-link>
             <div ref="scrollMain" class="scroll-main" @mouseleave=" moveOut" @mouseenter="moveInfo">
                 <ul ref="scrollBox" class="scroll-box">
                     <li class="licence" v-for="(item,index) in licence" :key="index">
-                        <a :href="item.url" target="_blank">{{item.name}}</a>
+                        <a :class="{active:woman}" :href="item.url" target="_blank">{{item.name}}</a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="layout-search" @mouseleave="dropHide">
             <div class="search-frame">
-                <input class="search-btn" @click="searchData(input,searchKeyword)" type="button" value="搜索"><input v-model="input" @input="getSearchData" class="search-box" type="text" :placeholder="searchKeyword">
+                <input :class="{'search-btn': true,active:woman}" @click="searchData(input,searchKeyword)" type="button" value="搜索"><input v-model="input" @input="getSearchData" :class="{'search-box': true,active:woman}" type="text" :placeholder="searchKeyword">
                 <ul :class="active?'drop-frame':'drop-frame active'">
                     <li class="drop-item" v-for="(item,index) in keyword" :key="index" @click="goSearch(item)">{{item}}</li>
                 </ul>
             </div>
             <ul class="search-quick">
                 <li class="keyword" v-for="item in quickKeyword" :key="item.id">
-                    <span @click="goSearch(item)">{{item}}</span>
+                    <span :class="{active:woman}" @click="goSearch(item)">{{item}}</span>
                 </li>
             </ul>
         </div>
@@ -28,8 +28,11 @@
 
 <script>
 export default {
+    props: ["woman"],
     data() {
         return {
+            log: require("../../assets/image/logo.png"),
+            womanLog: require("../../assets/image/special/woman/logo.png"),
             licence: [
                 {
                     name: "互联网药品信息服务资格证：(鄂)-经营性-2018-0009",
@@ -172,10 +175,9 @@ export default {
 <style lang="less" scoped>
 // logo+搜索S
 .layout-logo-container {
-    height: 70px;
+    height: 109px;
     display: flex;
-    padding: 30px 10px;
-    margin-bottom: 60px;
+    padding-top: 19px;
     .layout-logo {
         margin-right: 120px;
         text-align: left;
@@ -193,6 +195,9 @@ export default {
                 a {
                     color: #666;
                     font-size: 12px;
+                    &.active{
+                        color: #fff;
+                    }
                     &:hover {
                         color: #ff0000;
                         text-decoration: underline;
@@ -215,6 +220,11 @@ export default {
             color: #fff;
             cursor: pointer;
             font-size: 16px;
+            &.active {
+                border-top-right-radius: 30px;
+                border-bottom-right-radius: 30px;
+                background-color: #e56c80;
+            }
         }
         // 搜索输入框
         .search-box {
@@ -223,8 +233,13 @@ export default {
             left: 0;
             width: 450px;
             height: 40px;
-            padding-left: 10px;
+            padding-left: 20px;
             border: 2px solid #0691f9;
+            &.active {
+                border-color: #e56c80;
+                border-top-left-radius: 30px;
+                border-bottom-left-radius: 30px;
+            }
         }
         // 搜索下拉框
         .drop-frame {
@@ -267,8 +282,14 @@ export default {
             height: 30px;
             line-height: 30px;
             margin-right: 18px;
-            span:hover {
-                color: red;
+            span {
+                &.active{
+                    color: #fff;
+                }
+                &:hover{
+                     color: red;
+                }
+               
             }
         }
     }

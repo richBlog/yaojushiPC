@@ -1,9 +1,9 @@
 <template>
     <div class="spacial-home">
          <NavView/>
-        <div class="spacial-header">
-            <HeadSearch/>
-            <classifiedView/>
+        <div :class="{'spacial-header':woman}">
+            <HeadSearch :woman="woman"/>
+            <classifiedView :woman="woman"/>
         </div>
         
         <router-view></router-view>
@@ -24,13 +24,20 @@ export default {
         HeadSearch,
         classifiedView,
         footerView,
-        
-    }
+    },
+    data() {
+        return {
+            woman: false
+        }
+    },
+   created(){
+       this.$route.name==='woman'?this.woman=true:this.woman=false;
+   }
 };
 </script>
 <style lang="less" scoped>
 .spacial-header{
-    background: url('../assets/image/special/woman/header_bg@3x.png') no-repeat center;
+    background: url('../assets/image/special/woman/header_bg.png') no-repeat center;
 }
 </style>
 

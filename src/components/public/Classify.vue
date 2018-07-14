@@ -38,7 +38,7 @@ export default {
         })
             .then(res => {
                 this.classifyList = res.data.data;
-                console.log(this.classifyList)
+       
             })
             .catch(error => {
                 console.log(error);

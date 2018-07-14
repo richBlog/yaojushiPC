@@ -1,13 +1,13 @@
 <template>
-    <div class="container flex layout-main-nav">
-        <div class="nav-classification">
+    <div :class="{active:woman,'container flex layout-main-nav':true}">
+        <div :class="{active:woman,'nav-classification':true}">
             <i></i>
             <router-link to="/AllClassify" target="_blank">全部分类</router-link>
-            <classifyView v-if="active"/>
+            <classifyView v-if="active" />
         </div>
-        <ul class="nav-sub">
-            <li class="nav-item" v-for="item in LateralClassification" :key="item.id">
-                <router-link :to="item.url" v-text="item.name" target="_blank"></router-link>
+        <ul :class="{active:woman,'nav-sub':true}">
+            <li class="nav-item" :class="{active:woman}" v-for="item in LateralClassification" :key="item.id">
+                <router-link :class="{active:woman}" :to="item.url" v-text="item.name" target="_blank"></router-link>
             </li>
         </ul>
     </div>
@@ -15,8 +15,8 @@
 <script>
 import classifyView from "./Classify";
 export default {
-    props:["active"],
-    components:{
+    props: ["active", "woman"],
+    components: {
         classifyView
     },
     data() {
@@ -37,14 +37,21 @@ export default {
 </script>
 <style lang="less" scoped>
 .layout-main-nav {
-    margin-top: 20px;
     line-height: 36px;
     font-size: 16px;
     text-align: center;
+    &.active {
+        border-radius: 30px;
+        background-color: #ff788f;
+    }
     .nav-classification {
         min-width: 180px; // 不知道为啥少3PX 所以强制最小180px
         height: 36px;
         background-color: #0066d4;
+        &.active {
+            border-radius: 30px;
+            background-color: #e56c80;
+        }
         a {
             color: #fff;
         }
@@ -57,10 +64,10 @@ export default {
             height: 17px;
             background: url(../../assets/image/fenlei.png) no-repeat -12px -343px;
         }
-        .banner-classification{
+        .banner-classification {
             display: none;
         }
-        &:hover .banner-classification{
+        &:hover .banner-classification {
             display: block;
         }
     }
@@ -71,8 +78,10 @@ export default {
         min-width: 1020px;
         height: 36px;
         border-bottom: 2px solid #0066d4;
+        &.active {
+            border-bottom: 0;
+        }
         .nav-item {
-            // width: 64px;
             padding: 0 15px;
             font-weight: 600;
             &:hover {
@@ -84,6 +93,16 @@ export default {
                     color: #fff;
                     transition: none;
                     -webkit-transition: none;
+                }
+            }
+            &.active {
+                &:hover {
+                    background-color: #e56c80;
+                }
+            }
+            a {
+                &.active {
+                    color: #fff;
                 }
             }
         }
