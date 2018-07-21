@@ -1,14 +1,14 @@
 <template>
     <div class="spacial-home">
-         <NavView/>
-        <div :class="{'spacial-header':woman}">
-            <HeadSearch :woman="woman"/>
-            <classifiedView :woman="woman"/>
+        <NavView/>
+        <div :class="{'spacial-header':state==1,'skin-header':state==3}">
+            <HeadSearch :state="state" />
+            <classifiedView :state="state" />
         </div>
-        
+
         <router-view></router-view>
-    
-        <footerView/>
+
+        <footerView :state="state" />
     </div>
 </template>
 
@@ -23,21 +23,42 @@ export default {
         NavView,
         HeadSearch,
         classifiedView,
-        footerView,
+        footerView
     },
     data() {
         return {
-            woman: false
-        }
+            state: 0
+        };
     },
-   created(){
-       this.$route.name==='woman'?this.woman=true:this.woman=false;
-   }
+    created() {
+        let name = this.$route.name;
+        switch (name) {
+            case "woman":
+                this.state = 1;
+                break;
+            case "ostalgia":
+                this.state = 2;
+                break;
+            case "skin":
+                this.state = 3;
+                break;
+            case "apparatus":
+                this.state = 4;
+                break;
+        }
+    }
 };
 </script>
 <style lang="less" scoped>
-.spacial-header{
-    background: url('../assets/image/special/woman/header_bg.png') no-repeat center;
+.spacial-header {
+    background: url("../assets/image/special/woman/header_bg.png") no-repeat
+        center;
+}
+
+.skin-header {
+    margin: 0 auto;
+    width: 1920px;
+    background-color: #5ec1d2;
 }
 </style>
 

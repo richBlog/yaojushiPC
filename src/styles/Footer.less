@@ -7,8 +7,28 @@
 // 品牌认证
 .layout-footer-brank {
   background-color: #1a82ee;
-  height: 105px;
+  height: 99px;
   border-bottom: 1px solid #0c74df;
+  margin: 0 auto;
+  //   妇科用药专题样式
+  &.active {
+    border-bottom: 0;
+    background: url("http://p8pi9ribk.bkt.clouddn.com/ostalgia_bg_05.jpg")
+      no-repeat center;
+  }
+  //    皮肤外用专题样式
+  &.active1 {
+    width: 1920px;
+    border-bottom: 0;
+    background-color: #5ec1d2;
+  }
+  &.active2 {
+    border-bottom: 0;
+    background-color: #1AD198;
+  }
+
+
+
   .brank-box {
     height: 105px;
     display: flex;
@@ -35,8 +55,22 @@
 // 微信和手机二维码
 .layout-footer-wx {
   background-color: #1a82ee;
-  height: 245px;
+  height: 244px;
+  margin: 0 auto;
   margin-bottom: 14px;
+//   妇科用药专题样式
+  &.active {
+    background: url("http://p8pi9ribk.bkt.clouddn.com/ostalgia_bg_06.jpg")
+      no-repeat center;
+  }
+//    皮肤外用专题样式
+  &.active1 {
+    width: 1920px;
+    background-color: #5ec1d2;
+  }
+  &.active2 {
+    background-color: #1AD198;
+  }
   // 二维码
   .wx-container {
     height: 245px;
@@ -45,6 +79,9 @@
     .wx {
       display: flex;
       border-right: 1px solid #0c74df;
+      &.active {
+        border-color: #fff;
+      }
       div {
         margin-right: 35px;
       }
@@ -64,6 +101,9 @@
   .wx-sm {
     padding-left: 40px;
     border-right: 1px solid #0c74df;
+    &.active {
+      border-color: #fff;
+    }
     .wx-sm-box {
       display: flex;
       .wx-sm-item {

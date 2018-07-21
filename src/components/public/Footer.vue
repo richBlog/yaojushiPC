@@ -1,7 +1,7 @@
 <template>
     <el-footer class="layout-footer-container">
         <!-- 认证 -->
-        <div class="layout-footer-brank">
+        <div class="layout-footer-brank" :class="{active: state==2,active1: state==3,active2: state==4}">
             <ul class="container brank-box">
                 <li v-for="item in brankImg" :key="item.id" class="brank-box-item">
                     <div class="brank-item-img"><img v-lazy="item.img" alt="img" :data-src="item.img"></div>
@@ -13,9 +13,9 @@
             </ul>
         </div>
         <!-- 微信二维码 -->
-        <div class="layout-footer-wx">
+        <div class="layout-footer-wx" :class="{active: state==2,active1: state==3,active2: state==4}">
             <div class="container wx-container">
-                <div class="wx">
+                <div class="wx" :class="{active: state==2 || state==3|| state==4}">
                     <div>
                         <span>手机购药</span>
                         <img v-lazy="wxImg" alt="手机">
@@ -25,7 +25,7 @@
                         <img v-lazy="wxImg" alt="微信">
                     </div>
                 </div>
-                <div class="wx-sm">
+                <div class="wx-sm" :class="{active: state==2 || state==3|| state==4}">
                     <ul class="wx-sm-box">
                         <li class="wx-sm-item" v-for="item in wxHlep" :key="item.id">
                             <p v-text="item.title"></p>
@@ -72,6 +72,7 @@
 </template>
 <script>
 export default {
+    props: ["state"],
     name: "footerView",
     data() {
         return {

@@ -1,25 +1,25 @@
 <template>
     <div class="layout-logo-container container">
         <div class="layout-logo">
-            <router-link to="/"><img :src="woman?womanLog:log" alt="logo"></router-link>
+            <router-link to="/"><img :src="state==1||state==3?womanLog:log" alt="logo"></router-link>
             <div ref="scrollMain" class="scroll-main" @mouseleave=" moveOut" @mouseenter="moveInfo">
                 <ul ref="scrollBox" class="scroll-box">
                     <li class="licence" v-for="(item,index) in licence" :key="index">
-                        <a :class="{active:woman}" :href="item.url" target="_blank">{{item.name}}</a>
+                        <a :class="{active:state==1 || state==3}" :href="item.url" target="_blank">{{item.name}}</a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="layout-search" @mouseleave="dropHide">
             <div class="search-frame">
-                <input :class="{'search-btn': true,active:woman}" @click="searchData(input,searchKeyword)" type="button" value="搜索"><input v-model="input" @input="getSearchData" :class="{'search-box': true,active:woman}" type="text" :placeholder="searchKeyword">
+                <input :class="{'search-btn': true,active:state==1,active1:state==2,active2:state==3}" @click="searchData(input,searchKeyword)" type="button" value="搜索"><input v-model="input" @input="getSearchData" :class="{'search-box': true,active:state==1,active1:state==2,active2:state==3}" type="text" :placeholder="searchKeyword">
                 <ul :class="active?'drop-frame':'drop-frame active'">
                     <li class="drop-item" v-for="(item,index) in keyword" :key="index" @click="goSearch(item)">{{item}}</li>
                 </ul>
             </div>
             <ul class="search-quick">
                 <li class="keyword" v-for="item in quickKeyword" :key="item.id">
-                    <span :class="{active:woman}" @click="goSearch(item)">{{item}}</span>
+                    <span :class="{active:state}" @click="goSearch(item)">{{item}}</span>
                 </li>
             </ul>
         </div>
@@ -28,7 +28,7 @@
 
 <script>
 export default {
-    props: ["woman"],
+    props: ["state"],
     data() {
         return {
             log: require("../../assets/image/logo.png"),
@@ -195,7 +195,7 @@ export default {
                 a {
                     color: #666;
                     font-size: 12px;
-                    &.active{
+                    &.active {
                         color: #fff;
                     }
                     &:hover {
@@ -225,6 +225,13 @@ export default {
                 border-bottom-right-radius: 30px;
                 background-color: #e56c80;
             }
+            &.active1 {
+                background-color: #d8dad7;
+            }
+            &.active2 {
+                background-color: #fff;
+                color: #5ec1d2;
+            }
         }
         // 搜索输入框
         .search-box {
@@ -239,6 +246,28 @@ export default {
                 border-color: #e56c80;
                 border-top-left-radius: 30px;
                 border-bottom-left-radius: 30px;
+            }
+            &.active1 {
+                border-color: #d8dad7;
+            }
+            &.active2 {
+                border-color: #fff;
+                background-color: #5ec1d2;
+                &::-webkit-input-placeholder {
+                    color: #fff;
+                }
+                &::-moz-placeholder {
+                    /* Mozilla Firefox 19+ */
+                    color: #fff;
+                }
+                &:-moz-placeholder {
+                    /* Mozilla Firefox 4 to 18 */
+                    color: #fff;
+                }
+                &:-ms-input-placeholder {
+                    /* Internet Explorer 10-11 */
+                    color: #fff;
+                }
             }
         }
         // 搜索下拉框
@@ -283,13 +312,12 @@ export default {
             line-height: 30px;
             margin-right: 18px;
             span {
-                &.active{
+                &.active {
                     color: #fff;
                 }
-                &:hover{
-                     color: red;
+                &:hover {
+                    color: red;
                 }
-               
             }
         }
     }

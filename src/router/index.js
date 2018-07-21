@@ -312,14 +312,26 @@ export default new Router({
         path: '/Special/male',
         name: 'male',
         component: resolve => require(['components/special/male'], resolve)
-      },{
+      }, {
         path: '/Special/pediatrics',
         name: 'pediatrics',
         component: resolve => require(['components/special/pediatrics'], resolve)
-      },{
+      }, {
         path: '/Special/woman',
         name: 'woman',
         component: resolve => require(['components/special/woman'], resolve)
+      }, {
+        path: '/Special/ostalgia',
+        name: 'ostalgia',
+        component: resolve => require(['components/special/ostalgia'], resolve)
+      }, {
+        path: '/Special/skin',
+        name: 'skin',
+        component: resolve => require(['components/special/skin'], resolve)
+      }, {
+        path: '/Special/apparatus',
+        name: 'apparatus',
+        component: resolve => require(['components/special/apparatus'], resolve)
       }]
     },
   ],
