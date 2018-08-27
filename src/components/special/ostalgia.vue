@@ -1,7 +1,9 @@
 <template>
     <div class="ostalgia">
         <!-- banner开始 -->
-        <div class="ostalgia-banner"><img src="http://p8pi9ribk.bkt.clouddn.com/ostalgia_banner.png" alt="风湿骨痛"></div>
+        <div class="ostalgia-banner">
+            <div><img src="http://p8pi9ribk.bkt.clouddn.com/ostalgia_banner.png" alt="风湿骨痛"></div>
+        </div>
         <!-- banner结束 -->
 
         <!-- 产品推荐开始 -->
@@ -23,28 +25,30 @@
         <!-- 产品推荐结束 -->
 
         <!-- 产品类型开始 -->
-        <ul class="ostalgia-type">
-            <li class="type-item" :style="{backgroundImage: 'url('+item.bg+')'}" v-for="(item,index) in ostalgiaList" :key="index">
-                <div><img :src="item.img" alt="风湿骨痛专题"></div>
-                <ul class="product-main container">
-                    <li class="product-item" v-for="(i,d) in item.list" :key="d">
-                        <div class="product-bg"><img src="" alt=""></div>
-                        <div class="product-info">
-                            <div>
-                                <router-link :to="'/Product/'+i.url"></router-link>
+        <div class="ostalgia-body">
+            <ul class="ostalgia-type">
+                <li class="type-item" :style="{backgroundImage: 'url('+item.bg+')'}" v-for="(item,index) in ostalgiaList" :key="index">
+                    <div><img :src="item.img" alt="风湿骨痛专题"></div>
+                    <ul class="product-main container">
+                        <li class="product-item" v-for="(i,d) in item.list" :key="d">
+                            <div class="product-bg"><img src="" alt=""></div>
+                            <div class="product-info">
+                                <div>
+                                    <router-link :to="'/Product/'+i.url"></router-link>
+                                </div>
+                                <div>
+                                    <p class="product-name">{{i.name}}</p>
+                                    <p class="product-price">价格：
+                                        <span>￥{{i.price}}</span>
+                                    </p>
+                                </div>
                             </div>
-                            <div>
-                                <p class="product-name">{{i.name}}</p>
-                                <p class="product-price">价格：
-                                    <span>￥{{i.price}}</span>
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-            <li :style="{fontSize:'0'}"><img src="http://p8pi9ribk.bkt.clouddn.com/ostalgia_c_bg_05.png" alt="风湿骨痛专题"></li>
-        </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="type-item-last"></li>
+            </ul>
+        </div>
         <!-- 产品类型结束 -->
     </div>
 </template>
@@ -77,8 +81,21 @@ export default {
 
 <style lang="less" scoped>
 .ostalgia-banner {
-    font-size: 0;
-    text-align: center;
+    height: 800px;
+    position: relative;
+    overflow: hidden;
+    div {
+        width: 1920px;
+        max-width: 1920px;
+        position: absolute;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
 }
 
 // 产品推荐开始
@@ -134,14 +151,24 @@ export default {
 
 // 产品类型开始
 .ostalgia-type {
-    width: 1920px;
-    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    .type-item-last{
+        // width: 100%;
+        position: relative;
+        top: -80px;
+        height: 159px;
+        background: url('http://p8pi9ribk.bkt.clouddn.com/ostalgia_c_bg_05.png') no-repeat center;
+        z-index: -1;
+        margin-bottom: -80px;
+    }
     .type-item {
-        width: 100%;
+        // width: 1920px;
         height: 1616px;
         background-repeat: no-repeat;
-
+        background-position: center;
         text-align: center;
+        z-index: 100;
         &:first-child {
             height: 1713px;
             padding-top: 41px;

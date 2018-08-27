@@ -2,9 +2,11 @@
     <div class="woman">
         <!-- banner开始 -->
         <div class="woman-banner">
-            <img src="~assets/image/special/woman/banner_01.png" alt="女性分类">
-            <img src="~assets/image/special/woman/banner_02.png" alt="女性分类">
-            <img src="~assets/image/special/woman/banner_03.png" alt="女性分类">
+            <div>
+                <img src="http://p8pi9ribk.bkt.clouddn.com/woman_banner_01.png" alt="女性分类">
+                <img src="http://p8pi9ribk.bkt.clouddn.com/woman_banner_02.png" alt="女性分类">
+                <img src="http://p8pi9ribk.bkt.clouddn.com/woman_banner_03.png" alt="女性分类">
+            </div>
         </div>
         <!-- banner结束 -->
         <!-- 新品推荐开始 -->
@@ -175,10 +177,27 @@ export default {
 
 <style lang="less" scoped>
 @imaUrl: "../../assets/image/special/woman/";
-
+@font-face {
+    font-family: 'woman';
+    src: url("../../assets/fonts/造字工房毅黑体.otf");
+}
 .woman-banner {
-    text-align: center;
+    height: 799px;
+    position: relative;
+    overflow: hidden;
     font-size: 0;
+    div {
+        width: 1920px;
+        max-width: 1920px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
 }
 // 新品推荐开始
 .groom-main {
@@ -196,8 +215,7 @@ export default {
     color: #ff788f;
     text-align: center;
     font-size: 72px;
-    font-weight: bold;
-    font-family: "MFYiHei_Noncommercial-Regular";
+    font-family: "woman";
     border-radius: 30px;
     background-color: #fff;
     box-shadow: 0 0 20px #b9b9b9;
@@ -297,7 +315,6 @@ export default {
 .woman-type {
     margin-top: 284.5px;
     .type-item {
-        width: 1920px;
         position: relative;
         padding-top: 100.5px;
         padding-bottom: 76px;
@@ -413,8 +430,8 @@ export default {
             color: #ff788f;
             text-align: center;
             font-size: 30px;
-            font-weight: bold;
-            font-family: "MFYiHei_Noncommercial-Regular";
+            // font-weight: bold;
+            font-family: "woman";
             background-color: #fff;
             cursor: pointer;
             &:hover,

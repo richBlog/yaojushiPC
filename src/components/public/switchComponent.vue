@@ -134,10 +134,10 @@ export default {
         cursor: pointer;
     }
     .btn-left {
-        left: -104px;
+        left: -74px;
     }
     .btn-right {
-        right: -104px;
+        right: -74px;
     }
 
 

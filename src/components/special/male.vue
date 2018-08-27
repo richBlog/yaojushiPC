@@ -2,7 +2,11 @@
 
     <div class="special-male">
         <!-- banner开始 -->
-        <div class="male-banner"><img src="~assets/image/special/male/banner.png" alt="咨询"></div>
+        <div class="male-banner">
+            <div class="img-box">
+                <img src="http://p8pi9ribk.bkt.clouddn.com/male_banner.png" alt="咨询">
+            </div>
+        </div>
         <!-- banner结束 -->
 
         <!-- 类型切换开始 -->
@@ -170,10 +174,23 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.img-box {
+    width: 1920px;
+    max-width: 1920px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
 // banner开始
 .male-banner {
-    text-align: center;
-    background-color: #e4e8ed;
+    height: 800px;
+    position: relative;
+    overflow: hidden;
 }
 // banner结束
 

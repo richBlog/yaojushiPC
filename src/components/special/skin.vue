@@ -2,17 +2,21 @@
     <div class="skin">
         <!-- bannner开始 -->
         <div class="skin-banner">
-            <img src="http://p8pi9ribk.bkt.clouddn.com/skin_banner_01.png" alt="皮肤外用专题">
-            <img src="http://p8pi9ribk.bkt.clouddn.com/skin_banner_02.png" alt="皮肤外用专题">
+            <div class="img-box">
+                <img src="http://p8pi9ribk.bkt.clouddn.com/skin_banner_01.png" alt="皮肤外用专题">
+                <img src="http://p8pi9ribk.bkt.clouddn.com/skin_banner_02.png" alt="皮肤外用专题">
+            </div>
         </div>
         <!-- bannner结束 -->
 
         <!-- 导言开始 -->
         <div class="skin-leadin">
-            <img src="http://p8pi9ribk.bkt.clouddn.com/skin_bg_01.png" alt="导言">
-            <img src="http://p8pi9ribk.bkt.clouddn.com/skin_bg_02.png" alt="导言">
-            <div class="leadin">
-                <img src="http://p8pi9ribk.bkt.clouddn.com/skin_f_01.png" alt="导言">
+            <div class="img-box">
+                <img src="http://p8pi9ribk.bkt.clouddn.com/skin_bg_01.png" alt="导言">
+                <img src="http://p8pi9ribk.bkt.clouddn.com/skin_bg_02.png" alt="导言">
+                <div class="leadin">
+                    <img src="http://p8pi9ribk.bkt.clouddn.com/skin_f_01.png" alt="导言">
+                </div>
             </div>
         </div>
         <!-- 导言结束 -->
@@ -78,7 +82,9 @@
                 <li :class="{active:state===4}" @click="jump(4)">驱除蚊虫</li>
                 <li :class="{active:state===5}" @click="jump(5)">祛暑清热</li>
             </ul>
-            <div><a href="#"><img src="http://p8pi9ribk.bkt.clouddn.com/skin_b_t_top.png" alt="top"></a></div>
+            <div>
+                <a href="#"><img src="http://p8pi9ribk.bkt.clouddn.com/skin_b_t_top.png" alt="top"></a>
+            </div>
         </aside>
         <!-- 电梯导航结束 -->
     </div>
@@ -187,11 +193,26 @@ export default {
     text-align: center;
 }
 .skin-banner {
+    height: 800px;
+    position: relative;
+    overflow: hidden;
     font-size: 0;
+}
+.img-box {
+    width: 1920px;
+    max-width: 1920px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    img {
+        width: 100%;
+        height: 100%;
+    }
 }
 .skin-leadin {
     position: relative;
     font-size: 0;
+    height: 540px;
     .leadin {
         position: absolute;
         top: 0;
@@ -206,6 +227,7 @@ export default {
     font-family: "MicrosoftYaHei";
     .skin-item {
         position: relative;
+        overflow: hidden;
         .skin-box {
             position: absolute;
             top: 0;

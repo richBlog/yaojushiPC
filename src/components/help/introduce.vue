@@ -1,29 +1,20 @@
 <template>
     <div class="introduce">
-        <div v-for="(item,index) in imgList" :key="index"><img :src="item" alt="药居士介绍"></div>
+        <img src="http://p8pi9ribk.bkt.clouddn.com/enterprise_p_pic_01.png" alt="">
+        <img src="http://p8pi9ribk.bkt.clouddn.com/enterprise_p_pic_02.png" alt="">
+        <img src="http://p8pi9ribk.bkt.clouddn.com/enterprise_p_pic_03.png" alt="">
+        <img src="http://p8pi9ribk.bkt.clouddn.com/enterprise_p_pic_04.png" alt="">
+        <img src="http://p8pi9ribk.bkt.clouddn.com/enterprise_p_pic_05.png" alt="">
+        <img src="http://p8pi9ribk.bkt.clouddn.com/enterprise_p_pic_06.png" alt="">
+        <img src="http://p8pi9ribk.bkt.clouddn.com/enterprise_p_pic_07.png" alt="">
     </div>
 </template>
 
-<script>
-    export default {
-        data() {
-            return {
-                imgList: [
-                    require('../../assets/image/help/js_banner.png'),
-                    require('../../assets/image/help/e_story.png'),
-                    require('../../assets/image/help/d_idea.png'),
-                    require('../../assets/image/help/b_policy.png'),
-                ]
-            }
-        },
-    }
-</script>
+
 
 <style lang="less" scoped>
 .introduce{
+    font-size: 0;
     text-align: center;
-    div:nth-child(3){
-        margin-bottom: 50px;
-    }
 }
 </style>

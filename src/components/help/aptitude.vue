@@ -5,14 +5,17 @@
             <ul>
                 <li v-for="(item,index) in imgList" :key="index">
                     <div><img :src="item" alt="img"></div>
-                    <div class="enlarge" @click="show(item)">点击放大</div>
+                    <div class="enlarge" @click="show(index)">点击放大</div>
                 </li>
             </ul>
         </div>
 
         <div v-show="isShow" class="mask">
-            <img :src="state" alt="img">
-            <i @click="hide"></i>
+            <div>
+                <img :src="state" alt="img">
+                <i @click="hide"></i>
+            </div>
+
         </div>
     </div>
 </template>
@@ -22,30 +25,48 @@ export default {
     data() {
         return {
             isShow: false,
-            state: require("../../assets/image/help/qlfct_00.png"),
+            state: "",
             imgList: [
-                require("../../assets/image/help/qlfct_00.png"),
-                require("../../assets/image/help/qlfct_01.png"),
-                require("../../assets/image/help/qlfct_02.png"),
-                require("../../assets/image/help/qlfct_03.png"),
-                require("../../assets/image/help/qlfct_04.png"),
-                require("../../assets/image/help/qlfct_05.png"),
-                require("../../assets/image/help/qlfct_06.png"),
-                require("../../assets/image/help/qlfct_07.png"),
-                require("../../assets/image/help/qlfct_08.png"),
-                require("../../assets/image/help/qlfct_09.png"),
-                require("../../assets/image/help/qlfct_10.png"),
-                require("../../assets/image/help/qlfct_11.png"),
-                require("../../assets/image/help/qlfct_12.png")
+                "http://p8pi9ribk.bkt.clouddn.com/aptitude_p_01.png",
+                "http://p8pi9ribk.bkt.clouddn.com/aptitude_p_02.png",
+                "http://p8pi9ribk.bkt.clouddn.com/aptitude_p_03.png",
+                "http://p8pi9ribk.bkt.clouddn.com/aptitude_p_04.png",
+                "http://p8pi9ribk.bkt.clouddn.com/aptitude_p_05.png",
+                "http://p8pi9ribk.bkt.clouddn.com/aptitude_p_06.png"
             ]
         };
     },
     methods: {
-        show(value) {
+        show(index) {
             this.isShow = true;
-            this.state = value;
+            switch (index) {
+                case 0:
+                    this.state =
+                        "http://p8pi9ribk.bkt.clouddn.com/aptitude_p_d_01.jpg";
+                    break;
+                case 1:
+                    this.state =
+                        "http://p8pi9ribk.bkt.clouddn.com/aptitude_p_d_02.jpg";
+                    break;
+                case 2:
+                    this.state =
+                        "http://p8pi9ribk.bkt.clouddn.com/aptitude_p_d_03.jpg";
+                    break;
+                case 3:
+                    this.state =
+                        "http://p8pi9ribk.bkt.clouddn.com/aptitude_p_d_04.jpg";
+                    break;
+                case 4:
+                    this.state =
+                        "http://p8pi9ribk.bkt.clouddn.com/aptitude_p_d_05.jpg";
+                    break;
+                case 5:
+                    this.state =
+                        "http://p8pi9ribk.bkt.clouddn.com/aptitude_p_d_06.jpg";
+                    break;
+            }
         },
-        hide(){
+        hide() {
             this.isShow = false;
         }
     }
@@ -63,19 +84,20 @@ export default {
         margin-top: 40px;
         display: flex;
         flex-wrap: wrap;
+        padding: 0 32px;
     }
     li {
-        width: 23.5%;
-        height: 330px;
-        margin-right: 2%;
-        margin-bottom: 30px;
+        width: 270px;
+        height: 180px;
+        margin-right: 58px;
+        margin-bottom: 65px;
         text-align: center;
-        &:nth-child(4n) {
+        &:nth-child(3n) {
             margin-right: 0;
         }
         img {
             width: 100%;
-            height: 300px;
+            height: 100%;
         }
         .enlarge {
             font-size: 28px;
@@ -97,7 +119,7 @@ export default {
     left: 0;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 100;
-    img {
+    div {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -106,7 +128,7 @@ export default {
     i {
         position: absolute;
         top: 0;
-        right: 25%;
+        right: 0;
         display: block;
         width: 46px;
         height: 46px;

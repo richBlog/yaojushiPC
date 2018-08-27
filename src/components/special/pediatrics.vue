@@ -1,9 +1,11 @@
 <template>
     <div class="pediatrics">
         <div class="layout-bg">
-            <img src="~assets/image/special/pediatrics/banner_01.png" alt="儿童专题">
-            <img src="~assets/image/special/pediatrics/banner_02.png" alt="儿童专题">
-            <img src="~assets/image/special/pediatrics/banner_03.png" alt="儿童专题">
+            <div class="img-box">
+                <img src="http://p8pi9ribk.bkt.clouddn.com/pediatrics_banner_01.png" alt="儿童专题">
+                <img src="http://p8pi9ribk.bkt.clouddn.com/pediatrics_banner_02.png" alt="儿童专题">
+                <img src="http://p8pi9ribk.bkt.clouddn.com/pediatrics_banner_03.png" alt="儿童专题">
+            </div>
         </div>
         <!-- 优惠券领取开始 -->
         <div class="layout-coupon">
@@ -76,8 +78,8 @@
 import navigationView from "components/home/Home-navigation";
 import scrollTop from "apis/scrollTop";
 export default {
-    components:{
-navigationView
+    components: {
+        navigationView
     },
     data() {
         return {
@@ -165,11 +167,23 @@ navigationView
 @imaUrl: "../../assets/image/special/pediatrics/";
 
 .layout-bg {
-    font-size: 0;
-    text-align: center;
+    height: 785px;
+    position: relative;
+    overflow: hidden;
+    div {
+        width: 1920px;
+        max-width: 1920px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
 }
 .layout-coupon {
-    width: 1920px;
     height: 599px;
     background: url("@{imaUrl}bg_02.jpg") no-repeat center;
     margin: 0 auto;
@@ -220,10 +234,8 @@ navigationView
 
 .layout-main {
     .layout-item {
-        width: 1920px;
         background-position: center;
         background-repeat: no-repeat;
-        background-size: contain;
         margin: 0 auto;
         &:first-child {
             height: 1771px;

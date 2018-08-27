@@ -7,7 +7,6 @@
                     <router-link :to="'/Product/'+item.url"><img :src="item.img" alt="banner"></router-link>
                 </el-carousel-item>
             </el-carousel>
-
         </div>
         <!-- 轮播结束 -->
 
@@ -23,7 +22,11 @@
         <!-- 热门推荐结束 -->
 
         <!-- 器械小贴士开始 -->
-        <div class="apparatus-img"><img src="http://p8pi9ribk.bkt.clouddn.com/apparatus_banner_01.png" alt="器械小贴士"></div>
+        <div class="apparatus-img">
+            <div>
+                <img src="http://p8pi9ribk.bkt.clouddn.com/apparatus_banner_01.png" alt="器械小贴士">
+            </div>
+        </div>
         <!-- 器械小贴士结束 -->
 
         <!-- 产品类型开始 -->
@@ -158,8 +161,21 @@ export default {
 
 <style lang="less" scoped>
 .apparatus-banner {
-    width: 1920px;
-    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    height: 800px;
+    overflow: hidden;
+    .el-carousel {
+        width: 1920px;
+        max-width: 1920px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
 }
 
 .hot {
@@ -184,9 +200,22 @@ export default {
 }
 
 .apparatus-img {
-    font-size: 0;
-    text-align: center;
+    height: 603px;
+    position: relative;
     margin-bottom: 195px;
+    overflow: hidden;
+    div {
+        width: 1920px;
+        max-width: 1920px;
+        position: absolute;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
 }
 
 // 产品类型开始
