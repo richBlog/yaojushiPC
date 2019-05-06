@@ -88,9 +88,9 @@ export default {
                     img: require("../../assets/image/zheng2.png")
                 },
                 {
-                    name: "厂家授权 ",
-                    explain: "厂家授权 正品渠道",
-                    img: require("../../assets/image/zheng6.png")
+                    name: "24h服务",
+                    explain: "24h客服 在线服务",
+                    img: require("../../assets/image/24H.png")
                 },
                 {
                     name: "货到付款",
@@ -103,9 +103,9 @@ export default {
                     img: require("../../assets/image/zheng5.png")
                 },
                 {
-                    name: "满79元包邮",
-                    explain: "全场满79元包邮",
-                    img: require("../../assets/image/zheng3.png")
+                    name: "满88元包邮",
+                    explain: "全场满88元包邮",
+                    img: require("../../assets/image/88.png")
                 }
             ],
             wxImg: require("../../assets/image/wx1.png"),

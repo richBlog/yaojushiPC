@@ -97,7 +97,7 @@
                 <div class="info-prompt">
                     <div class="product-info-title">提示</div>
                     <p>{{productList.prompt}}
-                        <span>400-8811-020</span>）</p>
+                        <span>027-83215071</span>）</p>
                 </div>
                 <div class="info-promise">
                     <div class="product-info-title">承诺</div>
@@ -125,7 +125,7 @@
                 </div>
             </div>
             <div class="info-other-phone">
-                <img src="../../assets/image/tel.png" alt="tel">
+                <img src="../../assets/image/tel.jpg" alt="tel">
             </div>
             <div class="info-other-wx">
                 <img src="../../assets/image/wx1.png" alt="">

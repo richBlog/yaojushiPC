@@ -25,7 +25,7 @@
         <div class="questionAndAnswer">
             <P class="questionAndAnswer-title">
                 <span>商品问答</span>预定前如有疑问，可在下方留言咨询：或拨打免长途热线
-                <span>400-8811-000</span>
+                <span>027-83215071</span>
             </P>
             <ul class="questionAndAnswer-sub">
                 <li class="questionAndAnswer-item" v-for="item in interlocutionList" :key="item.id">
